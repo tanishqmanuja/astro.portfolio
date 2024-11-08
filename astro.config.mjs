@@ -1,11 +1,9 @@
-// @ts-check
 import { defineConfig } from "astro/config";
+import sitemap from "@astrojs/sitemap";
 
-// https://astro.build/config
+import { URL } from "./src/site.config";
+
 export default defineConfig({
-  // vite: {
-  //   ssr: {
-  //     noExternal: ["gsap"],
-  //   },
-  // },
+  site: URL,
+  integrations: [sitemap()],
 });
