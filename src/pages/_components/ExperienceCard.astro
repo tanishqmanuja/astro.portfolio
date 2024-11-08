@@ -1,0 +1,57 @@
+---
+interface Props {
+  company: string;
+  designation?: string;
+}
+
+const { company, designation } = Astro.props;
+---
+
+<div class="card">
+  <span class="symbol">-></span>
+  <div class="stack">
+    <span class="company">{company}</span>
+    {designation && <span class="designation">/* {designation} */</span>}
+  </div>
+</div>
+
+<style style="scss">
+  .card {
+    --gap: 2ch;
+
+    padding-inline-start: 1ch;
+    display: flex;
+    align-items: flex-start;
+    gap: var(--gap);
+
+    .symbol {
+      line-height: 2;
+      font-size: 0.75em;
+      opacity: 0.3;
+      white-space: nowrap;
+    }
+
+    .stack {
+      display: flex;
+      column-gap: var(--gap);
+      flex-wrap: wrap;
+    }
+
+    @container (max-width: 600px) {
+      .stack {
+        gap: unset;
+        flex-direction: column;
+      }
+    }
+
+    .company {
+      white-space: nowrap;
+      color: var(--clr-text-primary);
+    }
+
+    .designation {
+      color: var(--clr-text-secondary);
+      opacity: 0.6;
+    }
+  }
+</style>

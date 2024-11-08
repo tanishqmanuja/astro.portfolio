@@ -1,7 +1,43 @@
 ---
 import Section from "@/components/Section.astro";
+import { getCollection } from "astro:content";
+import ProjectCard from "./ProjectCard.astro";
+
+const projects = await getCollection("project");
 ---
 
 <Section title="Projects">
-  <p>ABC eBill</p>
+  <ul>
+    {
+      projects.map((project, i) => (
+        <li>
+          <span class="sign">{i.toString().padStart(2, "0")}</span>
+          <ProjectCard project={project} />
+        </li>
+      ))
+    }
+  </ul>
 </Section>
+
+<style>
+  ul {
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+    padding-inline-start: 1ch;
+    list-style-position: inside;
+
+    & > li {
+      display: flex;
+      flex-direction: row;
+      gap: 2ch;
+    }
+
+    & > li > .sign {
+      font-size: 0.75em;
+      line-height: 2;
+      opacity: 0.3;
+      white-space: nowrap;
+    }
+  }
+</style>

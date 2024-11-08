@@ -6,7 +6,7 @@ import EmojiFavicon from "../components/EmojiFavicon.astro";
 import { DESCRIPTION, TITLE } from "../site.config";
 import { AstroFont } from "astro-font";
 import type { ComponentProps } from "astro/types";
-import { ViewTransitions } from "astro:transitions";
+import { ClientRouter } from "astro:transitions";
 
 interface Props {
   title?: string;
@@ -43,7 +43,7 @@ const fontConfig = [
     <title>{title}</title>
     <EmojiFavicon emoji="🧑🏻‍💻" />
     <AstroFont config={fontConfig} />
-    <ViewTransitions />
+    <ClientRouter />
   </head>
   <body>
     <slot />

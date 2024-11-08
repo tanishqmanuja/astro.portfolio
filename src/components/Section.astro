@@ -15,24 +15,15 @@ const { title } = Astro.props;
   section {
     margin-top: 2rem;
 
-    h3 {
+    & > h3 {
       margin-bottom: var(--size-2);
 
       font-size: var(--font-size-0);
       font-family: var(--font-nothing);
       text-transform: uppercase;
 
-      /* border-style: solid;
-      border-width: 0;
-      border-left-width: 1ch;
-      border-color: var(--clr-orange);
-      padding-left: 16px;
-      padding-top: 1px; */
-
       &::before {
         content: "//";
-        /* opacity: 0.3; */
-
         color: var(--clr-orange);
         padding-right: 1ch;
       }

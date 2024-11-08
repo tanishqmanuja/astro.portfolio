@@ -1,0 +1,33 @@
+---
+import type { CollectionEntry } from "astro:content";
+import { render } from "astro:content";
+
+interface Props {
+  project: CollectionEntry<"project">;
+}
+
+const { project } = Astro.props;
+const { Content } = await render(project);
+---
+
+<article>
+  <h3>{project.data.title}</h3>
+  <p>
+    <Content />
+  </p>
+</article>
+
+<style style="scss">
+  article {
+    h3 {
+      width: fit-content;
+      font-size: 1rem;
+      font-weight: normal;
+      line-height: 1.5;
+    }
+
+    p {
+      color: var(--clr-text-secondary);
+    }
+  }
+</style>
