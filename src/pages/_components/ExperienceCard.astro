@@ -8,10 +8,10 @@ const { company, designation } = Astro.props;
 ---
 
 <div class="card">
-  <span class="symbol">-></span>
+  <span class="symbol">-</span>
   <div class="stack">
     <span class="company">{company}</span>
-    {designation && <span class="designation">/* {designation} */</span>}
+    {designation && <span class="designation"> &lt; {designation} /&gt;</span>}
   </div>
 </div>
 
@@ -22,12 +22,11 @@ const { company, designation } = Astro.props;
     padding-inline-start: 1ch;
     display: flex;
     align-items: flex-start;
-    gap: var(--gap);
+    column-gap: var(--gap);
 
     .symbol {
-      line-height: 2;
-      font-size: 0.75em;
       opacity: 0.3;
+      font-weight: bold;
       white-space: nowrap;
     }
 

@@ -11,7 +11,12 @@ const { Content } = await render(project);
 ---
 
 <article>
-  <h3>{project.data.title}</h3>
+  <span class="title">** {project.data.title} **</span>
+  {
+    project.data.subtitle && (
+      <span class="subtitle">/* {project.data.subtitle} */</span>
+    )
+  }
   <p>
     <Content />
   </p>
@@ -19,14 +24,22 @@ const { Content } = await render(project);
 
 <style style="scss">
   article {
-    h3 {
+    display: flex;
+    flex-direction: column;
+
+    .title {
       width: fit-content;
-      font-size: 1rem;
       font-weight: normal;
-      line-height: 1.5;
+      font-weight: bold;
+    }
+
+    .subtitle {
+      color: var(--clr-text-secondary);
+      opacity: 0.6;
     }
 
     p {
+      margin-top: 2px;
       color: var(--clr-text-secondary);
     }
   }

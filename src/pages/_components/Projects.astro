@@ -11,7 +11,7 @@ const projects = await getCollection("project");
     {
       projects.map((project, i) => (
         <li>
-          <span class="sign">{i.toString().padStart(2, "0")}</span>
+          <span class="number">{i.toString().padStart(2, "0")}</span>
           <ProjectCard project={project} />
         </li>
       ))
@@ -34,11 +34,14 @@ const projects = await getCollection("project");
       gap: 2ch;
     }
 
-    & > li > .sign {
-      font-size: 0.75em;
-      line-height: 2;
+    & > li > .number {
+      height: fit-content;
+      font-size: 0.9rem;
+      line-height: 24px;
+      font-weight: bold;
       opacity: 0.3;
       white-space: nowrap;
+      font-family: var(--font-nothing);
     }
   }
 </style>
