@@ -1,0 +1,31 @@
+---
+import Section from "@/components/Section.astro";
+
+const SKILLS = [
+  "Javascript",
+  "Typescript",
+  "HTML",
+  "CSS",
+  "C",
+  "C++",
+  "Angular",
+  "React",
+  "Node",
+  "Bun",
+  "Express",
+  "Ionic",
+  "Capacitor",
+  "MySQL",
+  "SQLite",
+  "Git",
+  "Docker",
+  "Linux",
+  "Bash",
+];
+---
+
+<Section title="Skills">
+  <p>
+    {SKILLS.join(", ").concat(", and more...")}
+  </p>
+</Section>

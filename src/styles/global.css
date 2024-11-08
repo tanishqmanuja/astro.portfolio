@@ -1,0 +1,24 @@
+@import url(./reset.css);
+
+:root {
+  --clr-orange: oklch(66.22% 0.2377 39.25);
+  --clr-text-highlight: white;
+  --clr-text-primary: #e1e1e1;
+  --clr-text-secondary: #a1a1a1;
+
+  --clr-background: #13151a;
+}
+
+html {
+  font-family: ui-monospace, SFMono-Regular, SF Mono, Menlo, Consolas,
+    Liberation Mono, monospace;
+  background: var(--clr-background);
+  color: var(--clr-text-primary);
+}
+
+body {
+  margin: 0;
+  display: flex;
+  flex-direction: column;
+  text-wrap: pretty;
+}

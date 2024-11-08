@@ -1,9 +1,112 @@
 ---
-import Layout from '../layouts/Layout.astro';
+import Layout from "@/layouts/Layout.astro";
+import About from "./_components/About.astro";
+import Skills from "./_components/Skills.astro";
+import Projects from "./_components/Projects.astro";
+import Experience from "./_components/Experience.astro";
+import Footer from "./_components/Footer.astro";
 ---
 
 <Layout>
-	<main>
-		<h1>Tanishq Manuja</h1>
-	</main>
+  <main>
+    <h1 id="header" aria-label="Tanishq Manuja">Tanishq Manuja</h1>
+    <h2>Software Developer</h2>
+
+    <About />
+    <Skills />
+    <Experience />
+    <Projects />
+  </main>
+  <Footer />
 </Layout>
+
+<style style="scss">
+  main {
+    flex-grow: 1;
+    margin-inline: auto;
+    padding-inline: 24px;
+    max-width: 800px;
+  }
+
+  h1 {
+    width: fit-content;
+    margin-top: clamp(30px, 7vw, 6rem);
+    color: var(--clr-text-highlight);
+    font-size: var(--font-size-fluid-3);
+    font-family: var(--font-nothing);
+    font-weight: normal;
+    text-indent: -1px;
+
+    transition: opacity 0.2s;
+    opacity: 0.9;
+
+    &:is(:hover, :focus-within) {
+      opacity: 1;
+    }
+  }
+
+  h2 {
+    width: fit-content;
+    margin-top: 2px;
+    color: var(--clr-text-secondary);
+    font-size: var(--font-size-fluid-1);
+    font-family: var(--font-nothing);
+    font-weight: normal;
+
+    &::before,
+    &::after {
+      opacity: 0.3;
+    }
+
+    &::before {
+      content: "{";
+      padding-right: 1ch;
+    }
+
+    &::after {
+      content: "}";
+      padding-left: 1ch;
+    }
+  }
+</style>
+
+<script>
+  import { gsap } from "gsap";
+  import { ScrambleTextPlugin } from "../lib/gsap/ScrambleTextPlugin";
+
+  gsap.registerPlugin(ScrambleTextPlugin);
+
+  const DEFAULT_CHARS =
+    "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789";
+
+  function scramble<Event extends PointerEvent | FocusEvent>(
+    event: Pick<Event, "target">
+  ) {
+    const target = event.target as HTMLElement;
+
+    if (!target) {
+      console.warn("[SCRAMBLE]: No target found");
+      return;
+    }
+
+    if (
+      !gsap.isTweening(target) &&
+      window.matchMedia("(prefers-reduced-motion: no-preference)").matches
+    ) {
+      gsap.to(target, {
+        duration: 0.8,
+        ease: "sine.in",
+        scrambleText: {
+          text: target.innerText,
+          speed: 2,
+          chars: DEFAULT_CHARS,
+          rightToLeft: true,
+        },
+      });
+    }
+  }
+
+  const header = document.getElementById("header")!;
+  header.addEventListener("pointerenter", scramble);
+  header.addEventListener("focus", scramble);
+</script>

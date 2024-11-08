@@ -1,0 +1,12 @@
+{
+  "[astro]": {
+    "editor.defaultFormatter": "astro-build.astro-vscode"
+  },
+
+  "cssvar.ignore": [],
+  "cssvar.files": [
+    "./node_modules/open-props/open-props.min.css",
+    "./src/styles/global.css"
+  ],
+  "cssvar.extensions": ["css", "astro"]
+}
