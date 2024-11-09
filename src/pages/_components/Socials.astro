@@ -1,52 +1,14 @@
 ---
-import { AUTHOR } from "@/site.config";
-
-type Social = {
-  name: string;
-  url: string;
-  title: string;
-};
-const socials: Social[] = [
-  {
-    name: "GitHub",
-    url: "https://github.com/tanishqmanuja",
-    title: `${AUTHOR} on GitHub`,
-  },
-  {
-    name: "X/Twitter",
-    url: "https://x.com/tanishqmanuja",
-    title: `${AUTHOR} on Twitter`,
-  },
-  {
-    name: "BlueSky",
-    url: "https://tanishqmanuja.bsky.social",
-    title: `${AUTHOR} on Bluesky`,
-  },
-  {
-    name: "Mail",
-    url: "mailto:tanishqmanuja@gmail.com",
-    title: `Send an email to ${AUTHOR}`,
-  },
-  {
-    name: "LinkedIn",
-    url: "https://www.linkedin.com/in/tanishqmanuja/",
-    title: `${AUTHOR} on LinkedIn`,
-  },
-  {
-    name: "Discord",
-    url: "https://discordapp.com/users/534785364926136323",
-    title: `${AUTHOR} on Discord`,
-  },
-];
+import { SOCIALS } from "@/site.config";
 ---
 
 <div class="socials">
-  <span class="decor" aria-hidden="true">Socials = (</span>
+  <span class="decor" aria-hidden="true">Socials(</span>
   {
-    socials.map((social, i) => (
+    SOCIALS.map((social, i) => (
       <div class="social-link">
         <a
-          href={social.url}
+          href={social.href}
           target="_blank"
           rel="noopener noreferrer"
           title={social.title}
@@ -54,7 +16,7 @@ const socials: Social[] = [
           {social.name}
         </a>
 
-        {i < socials.length - 1 && (
+        {i < SOCIALS.length - 1 && (
           <span class="decor" aria-hidden="true">
             ,
           </span>

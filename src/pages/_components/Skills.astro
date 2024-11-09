@@ -1,34 +1,12 @@
 ---
 import Section from "@/components/Section.astro";
-
-const skills = [
-  "Javascript",
-  "Typescript",
-  "HTML",
-  "CSS",
-  "C",
-  "C++",
-  "Angular",
-  "React",
-  "Astro",
-  "Node",
-  "Bun",
-  "Express",
-  "Ionic",
-  "Capacitor",
-  "MySQL",
-  "SQLite",
-  "Git",
-  "Docker",
-  "Linux",
-  "Bash",
-];
+import { SKILLS } from "@/site.config";
 ---
 
 <Section title="Skills">
   <p class="skills">
     {
-      skills.map((skill) => (
+      SKILLS.map((skill) => (
         <>
           <span>{skill}</span>,
         </>
