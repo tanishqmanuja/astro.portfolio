@@ -3,7 +3,7 @@ import { SOCIALS } from "@/site.config";
 ---
 
 <div class="socials">
-  <span class="decor" aria-hidden="true">Socials(</span>
+  <span class="decor" aria-hidden="true">Socials = [</span>
   {
     SOCIALS.map((social, i) => (
       <div class="social-link">
@@ -24,7 +24,7 @@ import { SOCIALS } from "@/site.config";
       </div>
     ))
   }
-  <span class="decor" aria-hidden="true">)</span>
+  <span class="decor" aria-hidden="true">]</span>
 </div>
 
 <style>
@@ -37,7 +37,6 @@ import { SOCIALS } from "@/site.config";
 
     & .decor {
       opacity: 0.3;
-      font-weight: bold;
       white-space: nowrap;
     }
   }
