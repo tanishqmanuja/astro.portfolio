@@ -22,6 +22,7 @@
   "type": "module",
   "devDependencies": {
     "@types/bun": "^1.1.13",
-    "@types/node": "^22.9.0"
+    "@types/node": "^22.9.0",
+    "sass": "^1.80.6"
   }
 }

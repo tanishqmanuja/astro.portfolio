@@ -27,7 +27,6 @@ const fontConfig = [
     preload: true,
     display: "swap",
     fallback: "monospace",
-    cssVariable: "font-nothing",
   },
 ] satisfies ComponentProps<typeof AstroFont>["config"];
 
@@ -66,7 +65,7 @@ const ogImageUrl = new URL("og.png", Astro.url.origin).href;
     <EmojiFavicon emoji="🧑🏻‍💻" />
     <AstroFont config={fontConfig} />
   </head>
-  <body>
+  <body class="base-layout">
     <slot />
   </body>
 </html>

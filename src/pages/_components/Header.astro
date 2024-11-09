@@ -1,22 +1,20 @@
 <header>
-  <h1 id="header" aria-label="Tanishq Manuja">Tanishq Manuja</h1>
-  <h2>Software Developer</h2>
+  <h1 id="header" class="header__title" aria-label="Tanishq Manuja">
+    Tanishq Manuja
+  </h1>
+  <h2 class="header__subtitle">Software Developer</h2>
 </header>
 
-<style style="scss">
+<style>
   header {
-    width: 100%;
-    max-width: var(--width-content);
-    margin-inline: auto;
-    padding-inline: var(--padding-sides);
+    margin-top: clamp(30px, 7vw, 6rem);
   }
 
-  h1 {
+  .header__title {
     width: fit-content;
-    margin-top: clamp(30px, 7vw, 6rem);
     color: var(--clr-text-highlight);
     font-size: var(--font-size-fluid-3);
-    font-family: var(--font-nothing);
+    font-family: var(--ff-nothing);
     font-weight: normal;
     text-indent: -1px;
 
@@ -28,12 +26,13 @@
     }
   }
 
-  h2 {
+  .header__subtitle {
+    text-wrap: stable;
     width: fit-content;
     margin-top: 2px;
     color: var(--clr-text-secondary);
     font-size: var(--font-size-fluid-1);
-    font-family: var(--font-nothing);
+    font-family: var(--ff-nothing);
     font-weight: normal;
 
     &::before,

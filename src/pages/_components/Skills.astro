@@ -10,6 +10,7 @@ const SKILLS = [
   "C++",
   "Angular",
   "React",
+  "Astro",
   "Node",
   "Bun",
   "Express",
@@ -25,7 +26,24 @@ const SKILLS = [
 ---
 
 <Section title="Skills">
-  <p>
-    {SKILLS.join(", ").concat(", and more...")}
+  <p class="skills">
+    {
+      SKILLS.map((skill) => (
+        <>
+          <span>{skill}</span>,
+        </>
+      ))
+    }
+    <span>and more</span>...
   </p>
 </Section>
+
+<style>
+  .skills {
+    color: var(--clr-text-secondary);
+
+    & > span {
+      color: var(--clr-text-primary);
+    }
+  }
+</style>

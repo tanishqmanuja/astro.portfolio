@@ -6,7 +6,7 @@
   "cssvar.ignore": [],
   "cssvar.files": [
     "./node_modules/open-props/open-props.min.css",
-    "./src/styles/global.css"
+    "./src/styles/app.css"
   ],
   "cssvar.extensions": ["css", "astro"]
 }

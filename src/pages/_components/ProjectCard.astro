@@ -10,36 +10,37 @@ const { project } = Astro.props;
 const { Content } = await render(project);
 ---
 
-<article>
-  <span class="title">** {project.data.title} **</span>
+<article class="project-card">
+  <span class="project-card__title">** {project.data.title} **</span>
   {
     project.data.subtitle && (
-      <span class="subtitle">/* {project.data.subtitle} */</span>
+      <span class="project-card__subtitle">/* {project.data.subtitle} */</span>
     )
   }
-  <p>
+  <p class="project-card__description">
     <Content />
   </p>
 </article>
 
-<style style="scss">
-  article {
+<style lang="scss">
+  .project-card {
     display: flex;
     flex-direction: column;
 
-    .title {
+    &__title {
       width: fit-content;
       font-weight: normal;
       font-weight: bold;
     }
 
-    .subtitle {
+    &__subtitle {
       color: var(--clr-text-secondary);
       opacity: 0.6;
     }
 
-    p {
+    &__description {
       margin-top: 2px;
+      max-width: 65ch;
       color: var(--clr-text-secondary);
     }
   }
