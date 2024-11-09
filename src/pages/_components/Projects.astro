@@ -9,14 +9,16 @@ const projects = await getCollection("project");
 <Section title="Projects">
   <ul class="project-list" role="list">
     {
-      projects.map((project, i) => (
-        <li class="project-list-item">
-          <span class="project-list-item__marker">
-            {i.toString().padStart(2, "0")}
-          </span>
-          <ProjectCard project={project} />
-        </li>
-      ))
+      projects
+        .sort((a, b) => a.id.localeCompare(b.id))
+        .map((project, i) => (
+          <li class="project-list-item">
+            <span class="project-list-item__marker">
+              {i.toString().padStart(2, "0")}
+            </span>
+            <ProjectCard project={project} />
+          </li>
+        ))
     }
   </ul>
 </Section>
@@ -37,12 +39,12 @@ const projects = await getCollection("project");
 
     &__marker {
       height: fit-content;
+      font-family: var(--ff-nothing);
       font-size: 0.9rem;
       line-height: 24px;
       font-weight: bold;
       opacity: 0.3;
       white-space: nowrap;
-      font-family: var(--ff-nothing);
     }
   }
 </style>
