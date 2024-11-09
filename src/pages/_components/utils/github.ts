@@ -1,5 +1,5 @@
-import { Octokit } from "@octokit/rest";
 import { GITHUB_TOKEN } from "astro:env/server";
+import { Octokit } from "@octokit/rest";
 
 const octokit = new Octokit({
   auth: GITHUB_TOKEN,

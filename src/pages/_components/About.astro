@@ -1,8 +1,8 @@
 ---
+import { GITHUB_USERNAME } from "@/site.config";
 import Section from "@/components/Section.astro";
 import Socials from "./Socials.astro";
 import { getTotalPublicRepos, getTotalStars } from "./utils/github";
-import { GITHUB_USERNAME } from "@/site.config";
 
 const publicRepos = import.meta.env.PROD
   ? await getTotalPublicRepos(GITHUB_USERNAME)
