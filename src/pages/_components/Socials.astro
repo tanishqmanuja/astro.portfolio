@@ -1,0 +1,101 @@
+---
+import { AUTHOR } from "@/site.config";
+
+type Social = {
+  name: string;
+  url: string;
+  title: string;
+};
+const socials: Social[] = [
+  {
+    name: "GitHub",
+    url: "https://github.com/tanishqmanuja",
+    title: `${AUTHOR} on GitHub`,
+  },
+  {
+    name: "X/Twitter",
+    url: "https://x.com/tanishqmanuja",
+    title: `${AUTHOR} on Twitter`,
+  },
+  {
+    name: "BlueSky",
+    url: "https://tanishqmanuja.bsky.social",
+    title: `${AUTHOR} on Bluesky`,
+  },
+  {
+    name: "Mail",
+    url: "mailto:tanishqmanuja@gmail.com",
+    title: `Send an email to ${AUTHOR}`,
+  },
+  {
+    name: "LinkedIn",
+    url: "https://www.linkedin.com/in/tanishqmanuja/",
+    title: `${AUTHOR} on LinkedIn`,
+  },
+  {
+    name: "Discord",
+    url: "https://discordapp.com/users/534785364926136323",
+    title: `${AUTHOR} on Discord`,
+  },
+];
+---
+
+<div class="socials">
+  <span class="decor" aria-hidden="true">Socials = (</span>
+  {
+    socials.map((social, i) => (
+      <div class="social-link">
+        <a
+          href={social.url}
+          target="_blank"
+          rel="noopener noreferrer"
+          title={social.title}
+        >
+          {social.name}
+        </a>
+
+        {i < socials.length - 1 && (
+          <span class="decor" aria-hidden="true">
+            ,
+          </span>
+        )}
+      </div>
+    ))
+  }
+  <span class="decor" aria-hidden="true">)</span>
+</div>
+
+<style>
+  .socials {
+    padding-top: var(--size-2);
+    display: flex;
+    flex-wrap: wrap;
+    column-gap: 1.5ch;
+    align-items: center;
+
+    & .decor {
+      opacity: 0.3;
+      font-weight: bold;
+      white-space: nowrap;
+    }
+  }
+
+  .social-link {
+    & > .decor {
+      margin-left: 2px;
+    }
+
+    & > a {
+      font-family: var(--ff-nothing);
+      font-size: var(--font-size-0);
+      text-decoration: none;
+      text-transform: uppercase;
+
+      &:is(:hover, :active, :focus-within) {
+        color: var(--clr-text-highlight);
+        text-underline-offset: 0.5em;
+        text-decoration: underline;
+      }
+    }
+  }
+</style>
