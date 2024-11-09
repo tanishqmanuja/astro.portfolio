@@ -1,6 +1,7 @@
 ---
 import type { CollectionEntry } from "astro:content";
 import { render } from "astro:content";
+import { getStars } from "./utils/github";
 
 interface Props {
   project: CollectionEntry<"project">;
@@ -8,6 +9,11 @@ interface Props {
 
 const { project } = Astro.props;
 const { Content } = await render(project);
+
+const stars =
+  import.meta.env.PROD && project.data.link
+    ? await getStars(project.data.link)
+    : 99;
 ---
 
 <article class="project-card">
@@ -24,15 +30,27 @@ const { Content } = await render(project);
 
   {
     project.data.link && (
-      <div class="project-card__link">
-        <a
-          href={project.data.link}
-          title="Visit Repository"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Repo
-        </a>
+      <div class="project-card__info">
+        {stars ? (
+          <>
+            <div class="project-card__stars">
+              <span>{stars} stars</span>
+            </div>
+            <span class="decor" aria-hidden="true">
+              |
+            </span>
+          </>
+        ) : null}
+        <div class="project-card__link">
+          <a
+            href={project.data.link}
+            title="Visit Repository"
+            target="_blank"
+            rel="noopener noreferrer"
+          >
+            Repo
+          </a>
+        </div>
       </div>
     )
   }
@@ -64,11 +82,30 @@ const { Content } = await render(project);
       color: var(--clr-text-secondary);
     }
 
-    &__link {
+    &__info {
       margin-top: 8px;
       margin-left: 1px;
+      display: flex;
+      align-items: center;
+      gap: 1ch;
       font-size: var(--font-size-0);
       font-family: var(--ff-nothing);
+    }
+
+    &__stars {
+      display: flex;
+      align-items: center;
+      column-gap: 0.5ch;
+      word-spacing: 0.5ch;
+      text-transform: uppercase;
+
+      &::before {
+        font-size: 1.15em;
+        content: "★";
+      }
+    }
+
+    &__link {
       transition: color 0.2s;
 
       &:has(a:hover, a:active, a:focus-within) {
@@ -91,6 +128,11 @@ const { Content } = await render(project);
           text-underline-offset: 0.5em;
         }
       }
+    }
+
+    .decor {
+      opacity: 0.2;
+      white-space: nowrap;
     }
   }
 </style>

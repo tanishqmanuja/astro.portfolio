@@ -1,6 +1,7 @@
 ---
-import Section from "@/components/Section.astro";
 import { getCollection } from "astro:content";
+
+import Section from "@/components/Section.astro";
 import ProjectCard from "./ProjectCard.astro";
 
 const projects = await getCollection("project");

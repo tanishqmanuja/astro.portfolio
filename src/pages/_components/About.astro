@@ -1,12 +1,32 @@
 ---
 import Section from "@/components/Section.astro";
 import Socials from "./Socials.astro";
+import { getTotalPublicRepos, getTotalStars } from "./utils/github";
+import { GITHUB_USERNAME } from "@/site.config";
+
+const publicRepos = import.meta.env.PROD
+  ? await getTotalPublicRepos(GITHUB_USERNAME)
+  : 99;
+
+const stars = import.meta.env.PROD ? await getTotalStars(GITHUB_USERNAME) : 99;
 ---
 
 <Section title="About">
   <p>
-    Passionate JavaScript develeoper with a focus on full-stack development.
+    I am a passionate JavaScript developer with over <span class="highlight"
+      >{publicRepos}</span
+    > public repositories and
+    <span class="highlight">{stars}</span> stars on github.
   </p>
 
   <Socials />
 </Section>
+
+<style>
+  .highlight {
+    font-family: var(--ff-nothing);
+    font-size: 0.78em;
+    font-weight: bold;
+    color: var(--clr-text-highlight);
+  }
+</style>
