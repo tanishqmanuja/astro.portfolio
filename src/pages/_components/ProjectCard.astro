@@ -14,12 +14,28 @@ const { Content } = await render(project);
   <span class="project-card__title">** {project.data.title} **</span>
   {
     project.data.subtitle && (
-      <span class="project-card__subtitle">/* {project.data.subtitle} */</span>
+      <span class="project-card__subtitle">--- {project.data.subtitle}</span>
     )
   }
-  <p class="project-card__description">
+
+  <div class="project-card__description">
     <Content />
-  </p>
+  </div>
+
+  {
+    project.data.link && (
+      <div class="project-card__link">
+        <a
+          href={project.data.link}
+          title="Visit Repository"
+          target="_blank"
+          rel="noopener noreferrer"
+        >
+          Repo
+        </a>
+      </div>
+    )
+  }
 </article>
 
 <style lang="scss">
@@ -34,14 +50,46 @@ const { Content } = await render(project);
     }
 
     &__subtitle {
+      margin-bottom: 8px;
+      text-transform: uppercase;
+      font-size: var(--font-size-0);
+      line-height: 1;
       color: var(--clr-text-secondary);
-      opacity: 0.6;
+      opacity: 0.75;
     }
 
     &__description {
-      margin-top: 2px;
       max-width: 65ch;
       color: var(--clr-text-secondary);
+    }
+
+    &__link {
+      margin-top: 8px;
+      margin-left: 1px;
+      font-size: var(--font-size-0);
+      font-family: var(--ff-nothing);
+      transition: color 0.2s;
+
+      &:has(a:hover, a:active, a:focus-within) {
+        color: var(--clr-text-highlight);
+      }
+
+      &::after {
+        content: ">";
+        padding-left: 0.25ch;
+      }
+
+      & > a {
+        color: var(--clr-text-primary);
+        text-decoration: none;
+        text-transform: uppercase;
+        transition: color 0.2s;
+
+        &:is(:hover, :active, :focus-within) {
+          color: var(--clr-text-highlight);
+          text-underline-offset: 0.5em;
+        }
+      }
     }
   }
 </style>

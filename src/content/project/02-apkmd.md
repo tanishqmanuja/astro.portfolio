@@ -1,6 +1,7 @@
 ---
 title: APKMirror Downloader
 subtitle: Open Source
+link: https://github.com/tanishqmanuja/apkmirror-downloader
 ---
 
-Developed a CLI tool and npm library to download apps from APKMirror programmatically with ease. This tool has been receiving attention on GitHub from various developers recently.
+A CLI tool and npm library to download apps from APKMirror programmatically with ease. Uses web scrapping using tools like Cheerio.

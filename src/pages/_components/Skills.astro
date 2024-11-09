@@ -1,7 +1,7 @@
 ---
 import Section from "@/components/Section.astro";
 
-const SKILLS = [
+const skills = [
   "Javascript",
   "Typescript",
   "HTML",
@@ -28,7 +28,7 @@ const SKILLS = [
 <Section title="Skills">
   <p class="skills">
     {
-      SKILLS.map((skill) => (
+      skills.map((skill) => (
         <>
           <span>{skill}</span>,
         </>
