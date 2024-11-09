@@ -1,0 +1,9 @@
+---
+interface Props {
+  token: string | undefined | null;
+}
+
+const { token } = Astro.props;
+---
+
+{token ? <meta name="google-site-verification" content={token} /> : null}

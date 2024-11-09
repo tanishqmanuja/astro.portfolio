@@ -13,6 +13,11 @@ export default defineConfig({
         context: "server",
         optional: true,
       }),
+      GOOGLE_SITE_VERIFICATION_TOKEN: envField.string({
+        access: "public",
+        context: "client",
+        optional: true,
+      }),
     },
   },
 });

@@ -6,6 +6,8 @@ import EmojiFavicon from "../components/EmojiFavicon.astro";
 import { AUTHOR, DESCRIPTION, TITLE } from "../site.config";
 import { AstroFont } from "astro-font";
 import type { ComponentProps } from "astro/types";
+import GoogleSiteVerification from "@/components/GoogleSiteVerification.astro";
+import { GOOGLE_SITE_VERIFICATION_TOKEN } from "astro:env/client";
 
 interface Props {
   title?: string;
@@ -69,6 +71,7 @@ const ogImageUrl = new URL("og.png", Astro.url.origin).href;
     <!-- Others -->
     <EmojiFavicon emoji="🧑🏻‍💻" />
     <AstroFont config={fontConfig} />
+    <GoogleSiteVerification token={GOOGLE_SITE_VERIFICATION_TOKEN} />
   </head>
   <body class={className}>
     <slot />
