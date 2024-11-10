@@ -34,3 +34,43 @@ body {
   margin-inline: auto;
   width: min(var(--layout-max-width), 100% - 2 * var(--layout-padding));
 }
+
+/* Scrollbar */
+
+html {
+  scrollbar-gutter: stable;
+}
+
+/* width */
+::-webkit-scrollbar {
+  width: 12px;
+}
+
+/* Track */
+::-webkit-scrollbar-track {
+  background-color: var(--clr-background);
+}
+
+/* Handle */
+::-webkit-scrollbar-thumb {
+  /* fallback */
+  background-color: var(--clr-text-secondary);
+
+  background-color: color-mix(
+    in srgb,
+    var(--clr-text-primary),
+    var(--clr-background) 80%
+  );
+}
+
+/* Handle (hover) */
+::-webkit-scrollbar-thumb:hover {
+  /* fallback */
+  background-color: var(--clr-text-secondary);
+
+  background-color: color-mix(
+    in srgb,
+    var(--clr-text-primary),
+    var(--clr-background) 70%
+  );
+}
