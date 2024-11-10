@@ -18,3 +18,14 @@ import Header from "./_components/Header.astro";
   </main>
   <Footer />
 </Layout>
+
+<style>
+  main {
+    --section-gap: 2.5rem;
+
+    display: flex;
+    flex-direction: column;
+    gap: var(--section-gap);
+    padding-block: var(--section-gap);
+  }
+</style>
