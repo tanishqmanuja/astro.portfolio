@@ -5,6 +5,10 @@ const octokit = new Octokit({
   auth: GITHUB_TOKEN,
 });
 
+export function isGitHubRepoUrl(url: string): boolean {
+  return url.startsWith("https://github.com/");
+}
+
 function parseRepoUrl(url: string): { owner: string; repo: string } {
   const match = url.match(/github\.com\/([^\/]+)\/([^\/]+)/);
   if (match) {

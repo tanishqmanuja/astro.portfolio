@@ -2,7 +2,8 @@
 import type { CollectionEntry } from "astro:content";
 import { render } from "astro:content";
 
-import { getStars } from "./utils/github";
+import { getStars, isGitHubRepoUrl } from "./utils/github";
+import { cached } from "@/utils/cache";
 
 interface Props {
   project: CollectionEntry<"project">;
@@ -11,10 +12,14 @@ interface Props {
 const { project } = Astro.props;
 const { Content } = await render(project);
 
-const stars =
-  import.meta.env.PROD && project.data.link
-    ? await getStars(project.data.link)
-    : 99;
+const { link } = project.data;
+
+let stars;
+if (link && isGitHubRepoUrl(link)) {
+  stars = await cached(`stars/${link.slice(link.lastIndexOf("/"))}`, () =>
+    getStars(link)
+  );
+}
 ---
 
 <article class="project-card">

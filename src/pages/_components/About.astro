@@ -3,12 +3,13 @@ import { GITHUB_USERNAME } from "@/site.config";
 import Section from "@/components/Section.astro";
 import Socials from "./Socials.astro";
 import { getTotalPublicRepos, getTotalStars } from "./utils/github";
+import { cached } from "@/utils/cache";
 
-const publicRepos = import.meta.env.PROD
-  ? await getTotalPublicRepos(GITHUB_USERNAME)
-  : 99;
+const publicRepos = await cached("total-public-repos", () =>
+  getTotalPublicRepos(GITHUB_USERNAME)
+);
 
-const stars = import.meta.env.PROD ? await getTotalStars(GITHUB_USERNAME) : 99;
+const stars = await cached("total-stars", () => getTotalStars(GITHUB_USERNAME));
 ---
 
 <Section title="About">
