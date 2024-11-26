@@ -1,35 +1,37 @@
 ---
+import Section from "@/components/Section.astro";
 import { SOCIALS } from "@/site.config";
 ---
 
-<div class="socials">
-  <span class="decor" aria-hidden="true"># SOCIALS = [</span>
-  {
-    SOCIALS.map((social, i) => (
-      <div class="social-link">
-        <a
-          href={social.href}
-          target="_blank"
-          rel="noopener noreferrer"
-          title={social.title}
-        >
-          {social.name}
-        </a>
+<Section title="Socials">
+  <div class="socials">
+    <span class="decor" aria-hidden="true">[</span>
+    {
+      SOCIALS.map((social, i) => (
+        <div class="social-link">
+          <a
+            href={social.href}
+            target="_blank"
+            rel="noopener noreferrer"
+            title={social.title}
+          >
+            {social.name}
+          </a>
 
-        {i < SOCIALS.length - 1 && (
-          <span class="decor" aria-hidden="true">
-            ,
-          </span>
-        )}
-      </div>
-    ))
-  }
-  <span class="decor" aria-hidden="true">]</span>
-</div>
+          {i < SOCIALS.length - 1 && (
+            <span class="decor" aria-hidden="true">
+              ,
+            </span>
+          )}
+        </div>
+      ))
+    }
+    <span class="decor" aria-hidden="true">]</span>
+  </div>
+</Section>
 
 <style>
   .socials {
-    padding-top: var(--size-2);
     display: flex;
     flex-wrap: wrap;
     column-gap: 1.5ch;
@@ -37,7 +39,7 @@ import { SOCIALS } from "@/site.config";
 
     & .decor {
       color: var(--clr-text-secondary);
-      opacity: 0.7;
+      opacity: 0.3;
       white-space: nowrap;
     }
   }
