@@ -2,6 +2,9 @@
 import type { CollectionEntry } from "astro:content";
 import { render } from "astro:content";
 
+import StarIcon from "@astropub/icons/StarFilled";
+import LinkIcon from "@astropub/icons/Link2";
+
 import { getStars, isGitHubRepoUrl } from "./utils/github";
 import { cached } from "@/utils/cache";
 
@@ -38,22 +41,19 @@ if (link && isGitHubRepoUrl(link)) {
     project.data.link && (
       <div class="project-card__info">
         {stars ? (
-          <>
-            <div class="project-card__stars">
-              <span>{stars} stars</span>
-            </div>
-            <span class="decor" aria-hidden="true">
-              |
-            </span>
-          </>
+          <div class="project-info__stars">
+            <StarIcon size="12" fill="gold" />
+            <span>{stars} stars</span>
+          </div>
         ) : null}
-        <div class="project-card__link">
+        <div class="project-info__link">
           <a
             href={project.data.link}
             title="Visit Repository"
             target="_blank"
             rel="noopener noreferrer"
           >
+            <LinkIcon size="12" />
             Repo
           </a>
         </div>
@@ -89,44 +89,57 @@ if (link && isGitHubRepoUrl(link)) {
     }
 
     &__info {
+      --info-flex-gap: 1ch;
+
       margin-top: 8px;
       margin-left: 1px;
       display: flex;
       align-items: center;
-      gap: 1ch;
+      gap: var(--info-flex-gap);
       font-size: var(--font-size-0);
       font-family: var(--ff-pixel);
+
+      & > * + * {
+        display: flex;
+        flex-direction: row;
+        align-items: center;
+
+        &::before {
+          content: " | ";
+          margin-inline-end: var(--info-flex-gap);
+          opacity: 0.2;
+        }
+      }
     }
 
-    &__stars {
-      display: flex;
-      align-items: center;
-      column-gap: 0.5ch;
-      word-spacing: 0.5ch;
-      text-transform: uppercase;
-    }
-
-    &__link {
-      transition: color 0.2s;
-
-      &:has(a:hover, a:active, a:focus-within) {
-        color: var(--clr-text-highlight);
-      }
-
-      &::after {
-        content: ">";
-        padding-left: 0.25ch;
-      }
-
-      & > a {
-        color: var(--clr-text-primary);
-        text-decoration: none;
+    .project-info {
+      &__stars {
+        display: flex;
+        align-items: center;
+        column-gap: var(--info-flex-gap);
         text-transform: uppercase;
+      }
+
+      &__link {
         transition: color 0.2s;
 
-        &:is(:hover, :active, :focus-within) {
+        &:has(a:hover, a:active, a:focus-within) {
           color: var(--clr-text-highlight);
-          text-underline-offset: 0.5em;
+        }
+
+        & > a {
+          display: flex;
+          align-items: center;
+          column-gap: 1ch;
+          color: var(--clr-text-primary);
+          text-decoration: none;
+          text-transform: uppercase;
+          transition: color 0.2s;
+
+          &:is(:hover, :active, :focus-within) {
+            color: var(--clr-text-highlight);
+            text-underline-offset: 0.5em;
+          }
         }
       }
     }
