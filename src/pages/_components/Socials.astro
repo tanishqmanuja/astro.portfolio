@@ -3,7 +3,7 @@ import { SOCIALS } from "@/site.config";
 ---
 
 <div class="socials">
-  <span class="decor" aria-hidden="true">Socials = [</span>
+  <span class="decor" aria-hidden="true"># SOCIALS = [</span>
   {
     SOCIALS.map((social, i) => (
       <div class="social-link">
@@ -44,11 +44,12 @@ import { SOCIALS } from "@/site.config";
 
   .social-link {
     & > .decor {
+      font-family: var(--ff-pixel);
       margin-left: 2px;
     }
 
     & > a {
-      font-family: var(--ff-pixel);
+      font-family: var(--ff-pixel-variant);
       font-size: var(--font-size-0);
       text-decoration: none;
       text-transform: uppercase;
