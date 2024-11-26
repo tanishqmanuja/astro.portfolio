@@ -37,6 +37,18 @@ const fontConfig = [
     display: "swap",
     fallback: "monospace",
   },
+  {
+    name: "Departure Mono",
+    src: [
+      {
+        style: "normal",
+        path: join(process.cwd(), FONTS_DIR, "departure-mono-regular.woff2"),
+      },
+    ],
+    preload: true,
+    display: "swap",
+    fallback: "monospace",
+  },
 ] satisfies ComponentProps<typeof AstroFont>["config"];
 
 const canonicalUrl = new URL(Astro.url.pathname, Astro.site).href;

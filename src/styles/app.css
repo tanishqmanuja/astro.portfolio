@@ -11,7 +11,8 @@
 
   --ff-base: ui-monospace, SFMono-Regular, SF Mono, Menlo, Consolas,
     Liberation Mono, monospace;
-  --ff-nothing: "Nothing", ui-monospace, monospace;
+  --ff-pixel: "Departure Mono", "Nothing", ui-monospace, monospace;
+  --ff-pixel-variant: "Nothing", "Departure Mono", ui-monospace, monospace;
 }
 
 html {
@@ -22,8 +23,6 @@ html {
 
 body {
   min-height: 100svh;
-  /* display: flex;
-  flex-direction: column; */
   text-wrap: pretty;
 }
 
