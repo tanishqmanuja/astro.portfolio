@@ -5,7 +5,7 @@ import { SOCIALS } from "@/site.config";
 
 <Section title="Socials">
   <div class="socials">
-    <span class="decor" aria-hidden="true">[</span>
+    <span class="decoration">[</span>
     {
       SOCIALS.map((social, i) => (
         <div class="social-link">
@@ -19,33 +19,36 @@ import { SOCIALS } from "@/site.config";
           </a>
 
           {i < SOCIALS.length - 1 && (
-            <span class="decor" aria-hidden="true">
+            <span class="decoration" aria-hidden="true">
               ,
             </span>
           )}
         </div>
       ))
     }
-    <span class="decor" aria-hidden="true">]</span>
+    <span class="decoration">]</span>
   </div>
 </Section>
 
 <style>
+  .decoration {
+    color: var(--clr-text-subdued);
+    user-select: none;
+  }
+
   .socials {
     display: flex;
     flex-wrap: wrap;
     column-gap: 1.5ch;
     align-items: center;
 
-    & .decor {
-      color: var(--clr-text-secondary);
-      opacity: 0.3;
-      white-space: nowrap;
+    .decoration {
+      font-family: var(--ff-pixelated);
     }
   }
 
   .social-link {
-    & > .decor {
+    & > .decoration {
       font-family: var(--ff-pixelated);
       margin-left: 2px;
     }
