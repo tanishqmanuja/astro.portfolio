@@ -1,22 +1,7 @@
-:root {
-  --clr-orange: oklch(66.22% 0.2377 39.25);
-  --clr-text-highlight: white;
-  --clr-text-primary: #e1e1e1;
-  --clr-text-secondary: #a1a1a1;
-
-  --clr-background: #121212;
-
-  --padding-sides: 24px;
-  --width-content: 800px;
-
-  --ff-base: ui-monospace, SFMono-Regular, SF Mono, Menlo, Consolas,
-    Liberation Mono, monospace;
-  --ff-pixel: "Departure Mono", "Nothing", ui-monospace, monospace;
-  --ff-pixel-variant: "Nothing", "Departure Mono", ui-monospace, monospace;
-}
+@import url(./scrollbar.css);
 
 html {
-  font-family: var(--ff-base);
+  font-family: var(--ff-monospace);
   background: var(--clr-background);
   color: var(--clr-text-primary);
 }
@@ -27,49 +12,9 @@ body {
 }
 
 .base-layout {
-  --layout-max-width: 800px;
-  --layout-padding: 24px;
+  --layout-max-width: var(--content-width);
+  --layout-padding-inline: var(--content-padding-inline);
 
   margin-inline: auto;
-  width: min(var(--layout-max-width), 100% - 2 * var(--layout-padding));
-}
-
-/* Scrollbar */
-
-html {
-  scrollbar-gutter: stable;
-}
-
-/* width */
-::-webkit-scrollbar {
-  width: 12px;
-}
-
-/* Track */
-::-webkit-scrollbar-track {
-  background-color: var(--clr-background);
-}
-
-/* Handle */
-::-webkit-scrollbar-thumb {
-  /* fallback */
-  background-color: var(--clr-text-secondary);
-
-  background-color: color-mix(
-    in srgb,
-    var(--clr-text-primary),
-    var(--clr-background) 80%
-  );
-}
-
-/* Handle (hover) */
-::-webkit-scrollbar-thumb:hover {
-  /* fallback */
-  background-color: var(--clr-text-secondary);
-
-  background-color: color-mix(
-    in srgb,
-    var(--clr-text-primary),
-    var(--clr-background) 70%
-  );
+  width: min(var(--layout-max-width), 100% - 2 * var(--layout-padding-inline));
 }
