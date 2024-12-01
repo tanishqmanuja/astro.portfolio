@@ -1,0 +1,26 @@
+name: Redeploy Cloudflare Pages
+
+on:
+  # Runs on manual trigger
+  workflow_dispatch:
+
+  # Runs at 12:00 AM UTC every sunday
+  schedule:
+    - cron: "0 0 * * 0"
+
+jobs:
+  redeploy:
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+
+    env:
+      ACCOUNT_ID: ${{ secrets.CLOUDFLARE_ACCOUNT_ID }}
+      PROJECT_NAME: tqman
+
+    steps:
+      - name: Trigger Cloudflare Pages Redeployment
+        run: |
+          curl -X POST "https://api.cloudflare.com/client/v4/accounts/$ACCOUNT_ID/pages/projects/$PROJECT_NAME/deployments" \
+            -H "Authorization: Bearer ${{ secrets.CLOUDFLARE_API_TOKEN }}" \
+            -H "Content-Type: application/json" \
+            --data '{"deploy_hooks":[{"type":"rebuild"}]}'
