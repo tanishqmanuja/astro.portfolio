@@ -26,10 +26,12 @@ if (link && isGitHubRepoUrl(link)) {
 ---
 
 <article class="project-card">
-  <span class="project-card__title">** {project.data.title} **</span>
+  <span class="project-card__title">{project.data.title}</span>
   {
     project.data.subtitle && (
-      <span class="project-card__subtitle">--- {project.data.subtitle}</span>
+      <span class="project-card__subtitle">
+        {"{ " + project.data.subtitle + " }"}
+      </span>
     )
   }
 
@@ -68,19 +70,19 @@ if (link && isGitHubRepoUrl(link)) {
     flex-direction: column;
 
     &__title {
+      font-family: var(--ff-pixelated);
       width: fit-content;
       font-weight: normal;
-      font-weight: bold;
     }
 
     &__subtitle {
       margin-top: 4px;
       margin-bottom: 8px;
       text-transform: uppercase;
+      font-family: var(--ff-pixelated);
       font-size: var(--font-size-0);
       line-height: 1;
-      color: var(--clr-text-secondary);
-      opacity: 0.75;
+      color: color-mix(in srgb, var(--clr-text-secondary), transparent 30%);
     }
 
     &__description {
@@ -147,6 +149,16 @@ if (link && isGitHubRepoUrl(link)) {
     .decor {
       opacity: 0.2;
       white-space: nowrap;
+    }
+
+    > * {
+      @media (prefers-reduced-motion: no-preference) {
+        view-timeline-name: --item-timeline;
+        animation-name: slide-fade-in;
+        animation-fill-mode: both;
+        animation-timeline: --item-timeline;
+        animation-range: cover 0% cover 15%;
+      }
     }
   }
 </style>

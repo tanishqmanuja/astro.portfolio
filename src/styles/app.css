@@ -18,3 +18,10 @@ body {
   margin-inline: auto;
   width: min(var(--layout-max-width), 100% - 2 * var(--layout-padding-inline));
 }
+
+@keyframes slide-fade-in {
+  from {
+    opacity: 0;
+    translate: 0 min(25px, 5vh);
+  }
+}

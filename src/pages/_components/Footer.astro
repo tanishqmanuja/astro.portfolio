@@ -1,17 +1,30 @@
 <footer>
+  <span class="decoration">{"<!--"}</span>
   <span>Created with ❤️ by Tanishq Manuja</span>
+  <span class="decoration">{"-->"}</span>
 </footer>
 
 <style>
   footer {
+    display: flex;
+    width: 100%;
+    align-items: center;
+    justify-content: center;
+    gap: 2ch;
     font-family: var(--ff-pixelated);
     font-size: var(--font-size-0);
+    color: var(--clr-text-secondary);
     text-align: center;
+    padding-block: 0 2rem;
 
     & > span {
       word-spacing: 0.5ch;
       display: block;
-      padding-block: 1rem;
+    }
+
+    .decoration {
+      white-space: nowrap;
+      color: var(--clr-text-subdued);
     }
   }
 </style>

@@ -1,5 +1,5 @@
 ---
-title: vRYjs
+title: Valorant Rank Yoinker
 subtitle: Open Source
 link: https://github.com/tanishqmanuja/valorant-rank-yoinker-js
 ---

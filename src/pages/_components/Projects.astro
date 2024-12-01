@@ -27,6 +27,7 @@ const projects = await getCollection("project");
 <style lang="scss">
   .project-list {
     margin: 0;
+    margin-top: 1rem;
     display: flex;
     flex-direction: column;
     gap: 1rem;
@@ -47,6 +48,14 @@ const projects = await getCollection("project");
       white-space: nowrap;
 
       translate: 0 2px;
+
+      @media (prefers-reduced-motion: no-preference) {
+        view-timeline-name: --item-timeline;
+        animation-name: slide-fade-in;
+        animation-fill-mode: both;
+        animation-timeline: --item-timeline;
+        animation-range: cover 0% cover 10%;
+      }
     }
   }
 </style>
