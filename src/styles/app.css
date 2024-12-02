@@ -22,6 +22,6 @@ body {
 @keyframes slide-fade-in {
   from {
     opacity: 0;
-    translate: 0 min(25px, 5vh);
+    translate: 0 5vh;
   }
 }
