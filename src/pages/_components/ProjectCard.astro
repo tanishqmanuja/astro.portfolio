@@ -2,11 +2,12 @@
 import type { CollectionEntry } from "astro:content";
 import { render } from "astro:content";
 
-import StarIcon from "@astropub/icons/StarFilled";
 import LinkIcon from "@astropub/icons/Link2";
+import StarIcon from "@astropub/icons/StarFilled";
 
-import { getStars, isGitHubRepoUrl } from "./utils/github";
 import { cached } from "@/utils/cache";
+import { isGithubUrl, parseGithubUrl } from "@/utils/github/helpers";
+import { getStars } from "./utils/github";
 
 interface Props {
   project: CollectionEntry<"project">;
@@ -15,12 +16,16 @@ interface Props {
 const { project } = Astro.props;
 const { Content } = await render(project);
 
-const { link } = project.data;
+const {
+  links: { repository },
+} = project.data;
 
-let stars;
-if (link && isGitHubRepoUrl(link)) {
-  stars = await cached(`stars/${link.slice(link.lastIndexOf("/"))}`, () =>
-    getStars(link)
+let stars: number | null = null;
+if (repository && isGithubUrl(repository)) {
+  const { owner, repo } = parseGithubUrl(repository);
+  stars = await cached(
+    `stars/${repository.slice(repository.lastIndexOf("/"))}`,
+    () => getStars(owner, repo)
   );
 }
 ---
@@ -40,7 +45,7 @@ if (link && isGitHubRepoUrl(link)) {
   </div>
 
   {
-    project.data.link && (
+    repository && (
       <div class="project-card__info">
         {stars ? (
           <div class="project-info__stars">
@@ -50,7 +55,7 @@ if (link && isGitHubRepoUrl(link)) {
         ) : null}
         <div class="project-info__link">
           <a
-            href={project.data.link}
+            href={repository}
             title="Visit Repository"
             target="_blank"
             rel="noopener noreferrer"
@@ -149,16 +154,6 @@ if (link && isGitHubRepoUrl(link)) {
     .decor {
       opacity: 0.2;
       white-space: nowrap;
-    }
-
-    > * {
-      @media (prefers-reduced-motion: no-preference) {
-        view-timeline-name: --item-timeline;
-        animation-name: slide-fade-in;
-        animation-fill-mode: both;
-        animation-timeline: --item-timeline;
-        animation-range: cover 0% cover 15%;
-      }
     }
   }
 </style>

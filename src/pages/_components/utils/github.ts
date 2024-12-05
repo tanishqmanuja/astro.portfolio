@@ -1,34 +1,15 @@
-import { GITHUB_TOKEN } from "astro:env/server";
-import { Octokit } from "@octokit/rest";
+import { octokit } from "@/utils/github/client";
 
-const octokit = new Octokit({
-  auth: GITHUB_TOKEN,
-});
-
-export function isGitHubRepoUrl(url: string): boolean {
-  return url.startsWith("https://github.com/");
-}
-
-function parseRepoUrl(url: string): { owner: string; repo: string } {
-  const match = url.match(/github\.com\/([^\/]+)\/([^\/]+)/);
-  if (match) {
-    return { owner: match[1], repo: match[2] };
-  }
-
-  throw new Error(`Invalid GitHub repository URL: ${url}`);
-}
-
-export async function getStars(repoUrl: string) {
-  return Promise.resolve(repoUrl)
-    .then(parseRepoUrl)
-    .then(({ owner, repo }) => octokit.repos.get({ owner, repo }))
-    .then(({ data }) => data.stargazers_count)
-    .catch(() => null);
+export async function getStars(owner: string, repo: string) {
+  return octokit.repos
+    .get({ owner, repo })
+    .then(({ data }) => data.stargazers_count);
 }
 
 export async function getTotalPublicRepos(username: string) {
-  const user = await octokit.users.getByUsername({ username });
-  return user.data.public_repos;
+  return octokit.users
+    .getByUsername({ username })
+    .then(({ data }) => data.public_repos);
 }
 
 export async function getTotalStars(username: string) {

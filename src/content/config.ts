@@ -1,11 +1,15 @@
 import { defineCollection, z } from "astro:content";
 
 const project = defineCollection({
-  // loader: glob({ pattern: "*.md", base: "src/content/projects" }),
   schema: z.object({
     title: z.string(),
     subtitle: z.string().optional(),
-    link: z.string().url().optional(),
+    links: z
+      .object({
+        repository: z.string().url().optional(),
+        deployment: z.string().url().optional(),
+      })
+      .default({}),
   }),
 });
 

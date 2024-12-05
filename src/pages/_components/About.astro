@@ -1,9 +1,8 @@
 ---
-import { GITHUB_USERNAME } from "@/site.config";
 import Section from "@/components/Section.astro";
-import Socials from "./Socials.astro";
-import { getTotalPublicRepos, getTotalStars } from "./utils/github";
+import { GITHUB_USERNAME } from "@/site.config";
 import { cached } from "@/utils/cache";
+import { getTotalPublicRepos, getTotalStars } from "./utils/github";
 
 const publicRepos = await cached("total-public-repos", () =>
   getTotalPublicRepos(GITHUB_USERNAME)
@@ -28,5 +27,11 @@ const stars = await cached("total-stars", () => getTotalStars(GITHUB_USERNAME));
     font-size: 0.78em;
     font-weight: bold;
     color: var(--clr-text-highlight);
+  }
+
+  p {
+    @media screen and (max-width: 600px) {
+      text-wrap: balance;
+    }
   }
 </style>
