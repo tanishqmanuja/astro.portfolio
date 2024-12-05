@@ -91,4 +91,10 @@
   const header = document.getElementById("header")!;
   header.addEventListener("pointerenter", scramble);
   header.addEventListener("focus", scramble);
+
+  if (import.meta.env.PROD) {
+    window.onload = () => {
+      scramble({ target: header });
+    };
+  }
 </script>
