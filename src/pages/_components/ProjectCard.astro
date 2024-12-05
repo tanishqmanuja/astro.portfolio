@@ -114,7 +114,23 @@ if (repository && isGithubUrl(repository)) {
         &::before {
           content: " | ";
           margin-inline-end: var(--info-flex-gap);
-          opacity: 0.2;
+          color: var(--clr-text-subdued);
+          opacity: 0.75;
+        }
+      }
+
+      &:has(a[href]) {
+        &:last-child::after {
+          content: " > ";
+          margin-inline-start: 0.5ch;
+          color: var(--clr-text-subdued);
+          transition: color 0.2s ease-in-out;
+        }
+      }
+
+      &:has(a[href]:hover, a[href]:active, a[href]:focus-within) {
+        &:last-child::after {
+          color: var(--clr-text-primary);
         }
       }
     }
@@ -149,11 +165,6 @@ if (repository && isGithubUrl(repository)) {
           }
         }
       }
-    }
-
-    .decor {
-      opacity: 0.2;
-      white-space: nowrap;
     }
   }
 </style>
