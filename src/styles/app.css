@@ -11,6 +11,11 @@ body {
   text-wrap: pretty;
 }
 
+::selection {
+  background-color: hsl(0, 0%, 90%);
+  color: hsl(0, 0%, 10%);
+}
+
 .base-layout {
   --layout-max-width: var(--content-width);
   --layout-padding-inline: var(--content-padding-inline);
