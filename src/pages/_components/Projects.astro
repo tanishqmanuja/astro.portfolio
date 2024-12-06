@@ -1,25 +1,28 @@
 ---
-import { getCollection } from "astro:content";
+import { getCollection, type CollectionEntry } from "astro:content";
 
 import Section from "@/components/Section.astro";
 import ProjectCard from "./ProjectCard.astro";
 
 const projects = await getCollection("project");
+
+type Project = CollectionEntry<"project">;
+const sorter = (a: Project, b: Project) =>
+  (b.data.isFeatured === a.data.isFeatured ? 0 : a.data.isFeatured ? -1 : 1) ||
+  a.id.localeCompare(b.id);
 ---
 
-<Section title="Projects">
+<Section title="Projects" featured>
   <ul class="project-list" role="list">
     {
-      projects
-        .sort((a, b) => a.id.localeCompare(b.id))
-        .map((project, i) => (
-          <li class="project-list-item">
-            <span class="project-list-item__marker">
-              {i.toString().padStart(2, "0")}
-            </span>
-            <ProjectCard project={project} />
-          </li>
-        ))
+      projects.sort(sorter).map((project, i) => (
+        <li class="project-list-item" data-featured={project.data.isFeatured}>
+          <span class="project-list-item__marker">
+            {i.toString().padStart(2, "0")}
+          </span>
+          <ProjectCard project={project} />
+        </li>
+      ))
     }
   </ul>
 </Section>
@@ -27,17 +30,31 @@ const projects = await getCollection("project");
 <style lang="scss">
   .project-list {
     margin: 0;
+    padding: 0;
     margin-top: 1rem;
     display: flex;
     flex-direction: column;
-    gap: 1rem;
-    padding-inline-start: 1ch;
+    row-gap: 1.125rem;
+    // padding-inline-start: 1ch;
   }
+
+  // @media screen and (min-width: 768px) {
+  //   .project-list {
+  //     display: grid;
+  //     grid-template-columns: repeat(2, 1fr);
+  //     column-gap: 2rem;
+  //   }
+
+  //   .project-list-item[data-featured="true"] {
+  //     grid-column: span 2;
+  //   }
+  // }
 
   .project-list-item {
     display: flex;
     flex-direction: row;
     gap: 2ch;
+    padding-inline-start: 1ch;
 
     &__marker {
       height: fit-content;
