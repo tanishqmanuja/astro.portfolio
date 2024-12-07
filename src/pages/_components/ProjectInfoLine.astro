@@ -1,0 +1,84 @@
+---
+import { cached } from "@/utils/cache";
+import { isGithubUrl, parseGithubUrl } from "@/utils/github/helpers";
+import type { CollectionEntry } from "astro:content";
+import { getStars } from "./utils/github";
+import StarIcon from "@astropub/icons/StarFilled";
+import GithubIcon from "@astropub/icons/GitHubLogo";
+
+interface Props {
+  project: CollectionEntry<"project">;
+}
+
+const { project } = Astro.props;
+
+const {
+  links: { repository },
+} = project.data;
+
+let stars: number | null = null;
+if (repository && isGithubUrl(repository)) {
+  const { owner, repo } = parseGithubUrl(repository);
+  stars = await cached(
+    `stars/${repository.slice(repository.lastIndexOf("/"))}`,
+    () => getStars(owner, repo)
+  );
+}
+---
+
+<div class="info">
+  <div class="info__subtitle">
+    {project.data.subtitle}
+  </div>
+  {
+    stars && (
+      <div class="divider">|</div>
+      <div class="info__stars">
+        <StarIcon size="12" class="amber" />
+        <span>{stars} stars</span>
+      </div>
+    )
+  }
+  {
+    repository && (
+      <div class="divider">|</div>
+      <a href={repository} title="Visit Repository" class="info__repository">
+        <GithubIcon size="12" />
+        <span>Github</span>
+      </a>
+    )
+  }
+</div>
+
+<style lang="scss">
+  a[href] {
+    text-decoration: none;
+  }
+
+  .info {
+    --info-flex-gap: 1ch;
+
+    display: flex;
+    align-items: center;
+    gap: var(--info-flex-gap);
+    margin-bottom: 1rem;
+    padding-block: 0.675rem;
+
+    font-size: 11px;
+    font-family: var(--ff-pixelated);
+    text-transform: uppercase;
+
+    border-block: 1px dashed var(--clr-text-subdued);
+
+    & > * {
+      display: flex;
+      align-items: center;
+      gap: 1ch;
+    }
+  }
+
+  .divider {
+    color: var(--clr-text-subdued);
+    opacity: 0.75;
+  }
+</style>

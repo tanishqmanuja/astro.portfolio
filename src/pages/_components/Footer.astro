@@ -1,12 +1,12 @@
 <footer>
   <hr />
-  <span>Created with ❤️ by Tanishq Manuja</span>
+  <span>Created with <span class="heart">♥</span> by Tanishq Manuja</span>
 </footer>
 
 <style>
   footer {
     font-family: var(--ff-pixelated);
-    font-size: var(--font-size-0);
+    font-size: 11px;
     text-align: center;
 
     hr {
@@ -15,10 +15,18 @@
       border-style: dashed;
     }
 
-    span {
-      display: block;
-      padding-block: 1rem 1.125rem;
+    & > span {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 1.5ch;
+      padding-block: 0.875rem 1.125rem;
       word-spacing: 0.5ch;
+    }
+
+    .heart {
+      color: var(--pink-6);
+      font-size: 1.5em;
     }
   }
 </style>

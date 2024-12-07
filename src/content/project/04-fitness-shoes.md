@@ -7,3 +7,9 @@ isFeatured: true
 ---
 
 A shoe that features a built-in locking mechanism, designed to provide added security and convenience for the wearer. The shoe also includes integrated fitness tracking capabilities, encouraging users to stay active and meet their daily fitness goals. _Patent Number: 202111041609_
+
+<video width="100%"  controls>
+  <source src="https://github.com/tanishqmanuja/static/raw/refs/heads/main/assets/fitness-shoes/demo.mp4" type="video/mp4">
+</video>
+
+Above video demo showcases a custom web-based test bench to track the sensor values. The values are then displayed as a graph which helps in fine-tuning the step counting algorithm's parameters.

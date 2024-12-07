@@ -1,5 +1,6 @@
 :root {
   --clr-orange: oklch(66.22% 0.2377 39.25);
+  --clr-amber: #ffa133;
 
   --clr-text-highlight: white;
   --clr-text-primary: #e1e1e1;

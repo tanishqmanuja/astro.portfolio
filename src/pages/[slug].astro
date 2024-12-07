@@ -1,0 +1,47 @@
+---
+import Header from "@/components/Header.astro";
+import Layout from "@/layouts/Layout.astro";
+import { slugify } from "@/utils/slug";
+import { getCollection, render } from "astro:content";
+import Footer from "./_components/Footer.astro";
+
+import ProjectInfoLine from "./_components/ProjectInfoLine.astro";
+
+export async function getStaticPaths() {
+  const projects = await getCollection("project");
+  return projects.map((project) => ({
+    params: { slug: slugify(project.slug) },
+    props: { project },
+  }));
+}
+
+const { project } = Astro.props;
+const { Content } = await render(project);
+---
+
+<Layout class="base-layout">
+  <Header backUrl="/#projects">{project.data.title}</Header>
+  <main>
+    <ProjectInfoLine project={project} />
+
+    <div class="markdown">
+      <Content />
+    </div>
+  </main>
+  <Footer />
+</Layout>
+
+<style>
+  .markdown {
+    margin-block: 1rem;
+
+    * + * {
+      margin-block-start: 1rem;
+    }
+
+    video {
+      border: 1px dashed var(--clr-text-subdued);
+      padding: 0.675rem;
+    }
+  }
+</style>

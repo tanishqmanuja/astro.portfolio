@@ -72,6 +72,11 @@ ol[role="list"] {
   list-style: none;
 }
 
+a[class] {
+  text-decoration: none;
+  color: currentColor;
+}
+
 a:not([class]) {
   text-decoration-skip-ink: auto;
   color: currentColor;

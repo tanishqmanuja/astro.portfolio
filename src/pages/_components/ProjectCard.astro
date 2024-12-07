@@ -1,12 +1,12 @@
 ---
 import type { CollectionEntry } from "astro:content";
-import { render } from "astro:content";
 
 import LinkIcon from "@astropub/icons/Link2";
 import StarIcon from "@astropub/icons/StarFilled";
 
 import { cached } from "@/utils/cache";
 import { isGithubUrl, parseGithubUrl } from "@/utils/github/helpers";
+import { slugify } from "@/utils/slug";
 import { getStars } from "./utils/github";
 
 interface Props {
@@ -14,7 +14,6 @@ interface Props {
 }
 
 const { project } = Astro.props;
-const { Content } = await render(project);
 
 const {
   links: { repository },
@@ -31,7 +30,9 @@ if (repository && isGithubUrl(repository)) {
 ---
 
 <article class="project-card">
-  <span class="project-card__title">{project.data.title}</span>
+  <a class="project-card__title" href={`/${slugify(project.slug)}`}>
+    {project.data.title}<span aria-hidden="true" class="symbol">↱</span>
+  </a>
   {
     project.data.subtitle && (
       <span class="project-card__subtitle">
@@ -42,7 +43,6 @@ if (repository && isGithubUrl(repository)) {
 
   <div class="project-card__description">
     {project.data.description}
-    <!-- <Content /> -->
   </div>
 
   {
@@ -50,7 +50,7 @@ if (repository && isGithubUrl(repository)) {
       <div class="project-card__info">
         {stars ? (
           <div class="project-info__stars">
-            <StarIcon size="12" fill="gold" />
+            <StarIcon size="12" class="amber" />
             <span>{stars} stars</span>
           </div>
         ) : null}
@@ -76,9 +76,44 @@ if (repository && isGithubUrl(repository)) {
     flex-direction: column;
 
     &__title {
+      position: relative;
       font-family: var(--ff-pixelated);
       width: fit-content;
       font-weight: normal;
+      overflow: hidden;
+
+      &::after {
+        background: none repeat scroll 0 0 transparent;
+        content: "";
+        position: absolute;
+        height: 1px;
+        width: calc(100% - 2ch);
+        bottom: 1px;
+        left: 0;
+        background: var(--clr-text-highlight);
+        opacity: 0;
+        transition:
+          opacity 0.2s,
+          transform 0.2s;
+        transform: translate3d(-100%, 0, 0);
+      }
+
+      & > .symbol {
+        margin-left: 1ch;
+        transition: color 0.2s ease-in-out;
+      }
+
+      &:is(:hover, :focus-within) {
+        color: var(--clr-text-highlight);
+        &::after {
+          opacity: 1;
+          transform: translate3d(0, 0, 0);
+        }
+
+        .symbol {
+          color: var(--clr-text-subdued);
+        }
+      }
     }
 
     &__subtitle {
