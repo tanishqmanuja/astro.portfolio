@@ -1,8 +1,9 @@
 {
+  "editor.formatOnSave": true,
+  "prettier.documentSelectors": ["**/*.astro"],
   "[astro]": {
-    "editor.defaultFormatter": "astro-build.astro-vscode"
+    "editor.defaultFormatter": "esbenp.prettier-vscode"
   },
-
   "cssvar.ignore": [],
   "cssvar.files": [
     "./node_modules/open-props/open-props.min.css",

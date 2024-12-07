@@ -5,7 +5,7 @@ import { cached } from "@/utils/cache";
 import { getTotalPublicRepos, getTotalStars } from "./utils/github";
 
 const publicRepos = await cached("total-public-repos", () =>
-  getTotalPublicRepos(GITHUB_USERNAME)
+  getTotalPublicRepos(GITHUB_USERNAME),
 );
 
 const stars = await cached("total-stars", () => getTotalStars(GITHUB_USERNAME));

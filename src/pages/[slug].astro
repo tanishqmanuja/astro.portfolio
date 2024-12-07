@@ -1,13 +1,13 @@
 ---
+import { getCollection, render } from "astro:content";
+
 import Header from "@/components/Header.astro";
 import Layout from "@/layouts/Layout.astro";
+import { AUTHOR } from "@/site.config";
 import { slugify } from "@/utils/slug";
-import { getCollection, render } from "astro:content";
 import Footer from "./_components/Footer.astro";
-
 import ProjectInfoLine from "./_components/ProjectInfoLine.astro";
 import ProjectStack from "./_components/ProjectStack.astro";
-import { AUTHOR } from "@/site.config";
 import ProjectTags from "./_components/ProjectTags.astro";
 
 export async function getStaticPaths() {

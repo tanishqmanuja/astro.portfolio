@@ -55,6 +55,7 @@
 
 <script>
   import { gsap } from "gsap";
+
   import { ScrambleTextPlugin } from "@/lib/gsap/ScrambleTextPlugin";
 
   gsap.registerPlugin(ScrambleTextPlugin);
@@ -63,7 +64,7 @@
     "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789";
 
   function scramble<Event extends PointerEvent | FocusEvent>(
-    event: Pick<Event, "target">
+    event: Pick<Event, "target">,
   ) {
     const target = event.target as HTMLElement;
 

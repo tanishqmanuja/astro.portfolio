@@ -1,4 +1,5 @@
 import { createStorage, type StorageValue } from "unstorage";
+
 import { fsCacheDriver } from "./unstorage/driver/fs-cache";
 
 const CACHE_DIR = ".cache";
@@ -9,7 +10,7 @@ export const cache = createStorage({
 
 export async function cached<T extends StorageValue>(
   key: string,
-  fn: () => Promise<T>
+  fn: () => Promise<T>,
 ): Promise<T> {
   if (import.meta.env.PROD) {
     return fn();

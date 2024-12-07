@@ -1,10 +1,12 @@
 ---
+import type { CollectionEntry } from "astro:content";
+
+import GithubIcon from "@astropub/icons/GitHubLogo";
+import StarIcon from "@astropub/icons/StarFilled";
+
 import { cached } from "@/utils/cache";
 import { isGithubUrl, parseGithubUrl } from "@/utils/github/helpers";
-import type { CollectionEntry } from "astro:content";
 import { getStars } from "./utils/github";
-import StarIcon from "@astropub/icons/StarFilled";
-import GithubIcon from "@astropub/icons/GitHubLogo";
 
 interface Props {
   project: CollectionEntry<"project">;
@@ -21,7 +23,7 @@ if (repository && isGithubUrl(repository)) {
   const { owner, repo } = parseGithubUrl(repository);
   stars = await cached(
     `stars/${repository.slice(repository.lastIndexOf("/"))}`,
-    () => getStars(owner, repo)
+    () => getStars(owner, repo),
   );
 }
 ---
@@ -32,20 +34,24 @@ if (repository && isGithubUrl(repository)) {
   </div>
   {
     stars && (
-      <div class="divider">|</div>
-      <div class="info__stars">
-        <StarIcon size="12" class="amber" />
-        <span>{stars} stars</span>
-      </div>
+      <>
+        <div class="divider">|</div>
+        <div class="info__stars">
+          <StarIcon size="12" class="amber" />
+          <span>{stars} stars</span>
+        </div>
+      </>
     )
   }
   {
     repository && (
-      <div class="divider">|</div>
-      <a href={repository} title="Visit Repository" class="info__repository">
-        <GithubIcon size="12" />
-        <span>Github</span>
-      </a>
+      <>
+        <div class="divider">|</div>
+        <a href={repository} title="Visit Repository" class="info__repository">
+          <GithubIcon size="12" />
+          <span>Github</span>
+        </a>
+      </>
     )
   }
 </div>

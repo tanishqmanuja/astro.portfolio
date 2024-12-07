@@ -1,4 +1,5 @@
 import { defineConfig, envField } from "astro/config";
+
 import sitemap from "@astrojs/sitemap";
 
 import { URL } from "./src/site.config";

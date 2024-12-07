@@ -5,12 +5,13 @@ import { join } from "node:path";
 
 import type { ComponentProps } from "astro/types";
 import { GOOGLE_SITE_VERIFICATION_TOKEN } from "astro:env/client";
+import { ClientRouter } from "astro:transitions";
+
 import { AstroFont } from "astro-font";
 
-import { AUTHOR, DESCRIPTION, TITLE } from "@/site.config";
 import EmojiFavicon from "@/components/EmojiFavicon.astro";
 import GoogleSiteVerification from "@/components/GoogleSiteVerification.astro";
-import { ClientRouter } from "astro:transitions";
+import { AUTHOR, DESCRIPTION, TITLE } from "@/site.config";
 
 interface Props {
   title?: string;

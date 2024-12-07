@@ -24,7 +24,7 @@ if (repository && isGithubUrl(repository)) {
   const { owner, repo } = parseGithubUrl(repository);
   stars = await cached(
     `stars/${repository.slice(repository.lastIndexOf("/"))}`,
-    () => getStars(owner, repo)
+    () => getStars(owner, repo),
   );
 }
 ---

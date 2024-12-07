@@ -1,4 +1,5 @@
 import type { APIRoute } from "astro";
+
 import { URL as SITE_URL } from "@/site.config";
 
 const text = `

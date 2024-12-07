@@ -1,20 +1,18 @@
-import ReactIcon from "@/icons/react.svg";
 import AngularIcon from "@/icons/angular.svg";
-import IonicIcon from "@/icons/ionic.svg";
+import ArduinoIcon from "@/icons/arduino.svg";
+import AxiosIcon from "@/icons/axios.svg";
+import BearIcon from "@/icons/bear.svg";
+import BunIcon from "@/icons/bun.svg";
+import CplusplusIcon from "@/icons/c-plus-plus.svg";
 import CapacitorIcon from "@/icons/capacitor.svg";
+import ElysiaIcon from "@/icons/elysia.svg";
+import GoIcon from "@/icons/go.svg";
+import IonicIcon from "@/icons/ionic.svg";
 import NodeIcon from "@/icons/node-js.svg";
 import PdfIcon from "@/icons/pdf.svg";
-import BunIcon from "@/icons/bun.svg";
-import ElysiaIcon from "@/icons/elysia.svg";
-import BearIcon from "@/icons/bear.svg";
-import ArduinoIcon from "@/icons/arduino.svg";
-import GoIcon from "@/icons/go.svg";
-import CplusplusIcon from "@/icons/c-plus-plus.svg";
+import ReactIcon from "@/icons/react.svg";
 import RxjsIcon from "@/icons/rxjs.svg";
-import AxiosIcon from "@/icons/axios.svg";
 import ViteIcon from "@/icons/vite.svg";
-import HttpIcon from "@/icons/http.svg";
-import InternetIcon from "@/icons/internet.svg";
 
 export const STACK_LINK_MAP: Record<string, string> = {
   react: "https://react.dev/",
