@@ -12,6 +12,8 @@ const project = defineCollection({
       })
       .default({}),
     isFeatured: z.boolean().default(false),
+    tags: z.array(z.string()).default([]),
+    stack: z.array(z.string()).default([]),
   }),
 });
 

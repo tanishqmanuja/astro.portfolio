@@ -6,6 +6,7 @@ import { getCollection, render } from "astro:content";
 import Footer from "./_components/Footer.astro";
 
 import ProjectInfoLine from "./_components/ProjectInfoLine.astro";
+import ProjectStack from "./_components/ProjectStack.astro";
 
 export async function getStaticPaths() {
   const projects = await getCollection("project");
@@ -23,6 +24,7 @@ const { Content } = await render(project);
   <Header backUrl="/#projects">{project.data.title}</Header>
   <main>
     <ProjectInfoLine project={project} />
+    {project.data.stack && <ProjectStack stack={project.data.stack} />}
 
     <div class="markdown">
       <Content />
@@ -40,6 +42,10 @@ const { Content } = await render(project);
     }
 
     video {
+      --video-margin-block: 1.2rem;
+      display: block;
+      margin-top: var(--video-margin-block);
+      margin-bottom: calc(var(--video-margin-block) - 1px);
       border: 1px dashed var(--clr-text-subdued);
       padding: 0.675rem;
     }

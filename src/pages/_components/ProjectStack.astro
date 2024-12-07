@@ -1,0 +1,87 @@
+---
+import {
+  STACK_ICON_MAP,
+  STACK_LINK_MAP,
+  type IconComponent,
+} from "./utils/stack";
+
+interface Props {
+  stack: string[];
+}
+
+function getStackLink(stackItem: string): string {
+  return STACK_LINK_MAP[stackItem.toLowerCase()];
+}
+
+function hasIcon(stackItem: string): boolean {
+  return Object.keys(STACK_ICON_MAP).includes(stackItem.toLowerCase());
+}
+
+function getStackIcon(stackItem: string): [{ Component: IconComponent }] | [] {
+  const Component = STACK_ICON_MAP[stackItem.toLowerCase()];
+  if (!Component) {
+    return [];
+  }
+  return [{ Component }];
+}
+
+const { stack } = Astro.props;
+---
+
+<h3>[+] Tech Stack</h3>
+<div class="stack">
+  {
+    stack
+      .sort((a, b) => (hasIcon(b) === hasIcon(a) ? 0 : hasIcon(b) ? 1 : -1))
+      .map((item, index) => (
+        <>
+          <a href={getStackLink(item)} class="stack-item">
+            {getStackIcon(item).map(({ Component }) => (
+              <Component size="12" />
+            ))}
+            <span class="stack-item__name">{item}</span>
+            {index < stack.length - 1 && (
+              <span aria-hidden="true" class="stack-item__separator">
+                ,
+              </span>
+            )}
+          </a>
+        </>
+      ))
+  }
+</div>
+
+<style lang="scss">
+  h3 {
+    margin-top: 1.25rem;
+    margin-bottom: var(--size-2);
+    color: var(--clr-amber);
+    font-size: 11px;
+    font-family: var(--ff-pixelated);
+    text-transform: uppercase;
+  }
+
+  .stack {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.25ch;
+  }
+
+  .stack-item {
+    display: flex;
+    align-items: center;
+    gap: 0.25ch;
+    text-transform: capitalize;
+
+    &__name {
+      margin-left: 0.5ch;
+      margin-right: 0.25ch;
+    }
+
+    &__separator {
+      margin-right: 0.75ch;
+      color: var(--clr-text-subdued);
+      opacity: 0.75;
+    }
+  }
+</style>
