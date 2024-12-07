@@ -10,6 +10,9 @@ import BearIcon from "@/icons/bear.svg";
 import ArduinoIcon from "@/icons/arduino.svg";
 import GoIcon from "@/icons/go.svg";
 import CplusplusIcon from "@/icons/c-plus-plus.svg";
+import RxjsIcon from "@/icons/rxjs.svg";
+import AxiosIcon from "@/icons/axios.svg";
+import ViteIcon from "@/icons/vite.svg";
 import HttpIcon from "@/icons/http.svg";
 import InternetIcon from "@/icons/internet.svg";
 
@@ -27,6 +30,9 @@ export const STACK_LINK_MAP: Record<string, string> = {
   zustand: "https://zustand.docs.pmnd.rs/",
   arduino: "https://www.arduino.cc/",
   go: "https://go.dev/",
+  rxjs: "https://rxjs.dev/",
+  axios: "https://axios-http.com/",
+  vite: "https://vitejs.dev/",
   "c++": "https://isocpp.org/",
 };
 
@@ -43,5 +49,8 @@ export const STACK_ICON_MAP: Record<string, IconComponent> = {
   zustand: BearIcon,
   arduino: ArduinoIcon,
   go: GoIcon,
+  rxjs: RxjsIcon,
+  axios: AxiosIcon,
+  vite: ViteIcon,
   "c++": CplusplusIcon,
 };

@@ -1,0 +1,74 @@
+---
+interface Props {
+  tags: string[];
+}
+
+const { tags } = Astro.props;
+---
+
+<h3>[+] Tags</h3>
+<div class="tags">
+  {
+    tags.map((item, index) => (
+      <>
+        <a class="tag">
+          <span class="tag__name">
+            <span class="hash">#</span>
+            {item}
+          </span>
+          {index < tags.length - 1 && (
+            <span aria-hidden="true" class="tag__separator">
+              ,
+            </span>
+          )}
+        </a>
+      </>
+    ))
+  }
+</div>
+
+<style lang="scss">
+  h3 {
+    margin-top: 1.25rem;
+    margin-bottom: var(--size-2);
+    color: var(--clr-text-secondary);
+    font-size: 11px;
+    font-family: var(--ff-pixelated);
+    text-transform: uppercase;
+  }
+
+  .tags {
+    display: flex;
+  }
+
+  .tag {
+    display: flex;
+    align-items: center;
+    gap: 0.25ch;
+    text-transform: capitalize;
+
+    &__name {
+      display: flex;
+      align-items: center;
+      gap: 0.5ch;
+      font-family: var(--ff-dotmatrix);
+      font-size: 0.75rem;
+      text-transform: uppercase;
+      margin-left: 0.5ch;
+      margin-right: 0.25ch;
+
+      .hash {
+        font-weight: bold;
+        font-size: 1.2em;
+        font-family: var(--ff-pixelated);
+        color: var(--clr-text-subdued);
+      }
+    }
+
+    &__separator {
+      margin-right: 0.75ch;
+      color: var(--clr-text-subdued);
+      opacity: 0.75;
+    }
+  }
+</style>

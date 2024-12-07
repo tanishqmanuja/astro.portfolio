@@ -8,6 +8,7 @@ import Footer from "./_components/Footer.astro";
 import ProjectInfoLine from "./_components/ProjectInfoLine.astro";
 import ProjectStack from "./_components/ProjectStack.astro";
 import { AUTHOR } from "@/site.config";
+import ProjectTags from "./_components/ProjectTags.astro";
 
 export async function getStaticPaths() {
   const projects = await getCollection("project");
@@ -28,16 +29,26 @@ const description = project.data.description;
   <Header backUrl="/#projects">{project.data.title}</Header>
   <main>
     <ProjectInfoLine project={project} />
-    {project.data.stack && <ProjectStack stack={project.data.stack} />}
+    {
+      project.data.stack.length > 0 && (
+        <ProjectStack stack={project.data.stack} />
+      )
+    }
 
     <div class="markdown">
       <Content />
     </div>
+
+    {project.data.tags.length > 0 && <ProjectTags tags={project.data.tags} />}
   </main>
   <Footer />
 </Layout>
 
 <style>
+  main {
+    padding-bottom: 1rem;
+  }
+
   .markdown {
     margin-block: 1rem;
 

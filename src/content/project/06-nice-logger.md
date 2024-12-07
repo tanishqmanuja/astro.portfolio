@@ -8,6 +8,10 @@ links:
 stack:
   - bun
   - elysia
+
+tags:
+  - logger
+  - npm
 ---
 
 A minimal, user-friendly yet customizable logger for Elysia i.e. web framework for Bun.

@@ -8,8 +8,13 @@ links:
 stack:
   - react
   - elysia
-  - bun
   - zustand
+  - vite
+  - bun
+
+tags:
+  - fullstack
+  - demo
 ---
 
 A simple starter fullstack todos app built with React and ElysiaJS using bunJS. This project is purposefully kept minimal so that it can be used as a starting point for beginners-intermediate level developers.

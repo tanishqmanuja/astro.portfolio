@@ -10,6 +10,11 @@ isFeatured: true
 stack:
   - bun
   - cheerio
+
+tags:
+  - web-scraping
+  - cli
+  - npm
 ---
 
 A CLI tool and npm library to download apps from APKMirror programmatically with ease. Uses web scrapping using tools like Cheerio.
