@@ -91,7 +91,7 @@ const ogImageUrl = new URL("og.png", Astro.url.origin).href;
     <AstroFont config={fontConfig} />
     <GoogleSiteVerification token={GOOGLE_SITE_VERIFICATION_TOKEN} />
   </head>
-  <body class={className}>
+  <body class={className ?? "base-layout"}>
     <slot />
   </body>
 </html>

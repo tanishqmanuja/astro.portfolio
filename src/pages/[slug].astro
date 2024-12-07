@@ -7,6 +7,7 @@ import Footer from "./_components/Footer.astro";
 
 import ProjectInfoLine from "./_components/ProjectInfoLine.astro";
 import ProjectStack from "./_components/ProjectStack.astro";
+import { AUTHOR } from "@/site.config";
 
 export async function getStaticPaths() {
   const projects = await getCollection("project");
@@ -18,9 +19,12 @@ export async function getStaticPaths() {
 
 const { project } = Astro.props;
 const { Content } = await render(project);
+
+const title = `${project.data.title} | ${AUTHOR}`;
+const description = project.data.description;
 ---
 
-<Layout class="base-layout">
+<Layout title={title} description={description}>
   <Header backUrl="/#projects">{project.data.title}</Header>
   <main>
     <ProjectInfoLine project={project} />
