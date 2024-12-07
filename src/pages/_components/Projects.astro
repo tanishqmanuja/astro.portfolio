@@ -2,13 +2,14 @@
 import { getCollection, type CollectionEntry } from "astro:content";
 
 import Section from "@/components/Section.astro";
+import { booleanCompare } from "@/utils/sorting";
 import ProjectCard from "./ProjectCard.astro";
 
 const projects = await getCollection("project");
 
 type Project = CollectionEntry<"project">;
 const sorter = (a: Project, b: Project) =>
-  (b.data.isFeatured === a.data.isFeatured ? 0 : a.data.isFeatured ? -1 : 1) ||
+  booleanCompare(a.data.isFeatured, b.data.isFeatured) ||
   a.id.localeCompare(b.id);
 ---
 

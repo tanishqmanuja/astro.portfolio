@@ -1,4 +1,7 @@
 ---
+import { boolean } from "astro:schema";
+
+import { booleanCompare } from "@/utils/sorting";
 import {
   STACK_ICON_MAP,
   STACK_LINK_MAP,
@@ -32,7 +35,7 @@ const { stack } = Astro.props;
 <div class="stack">
   {
     stack
-      .sort((a, b) => (hasIcon(b) === hasIcon(a) ? 0 : hasIcon(b) ? 1 : -1))
+      .sort((a, b) => booleanCompare(hasIcon(a), hasIcon(b)))
       .map((item, index) => (
         <>
           <a href={getStackLink(item)} class="stack-item">
