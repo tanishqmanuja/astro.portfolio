@@ -5,6 +5,7 @@ import BearIcon from "@/icons/bear.svg";
 import BunIcon from "@/icons/bun.svg";
 import CplusplusIcon from "@/icons/c-plus-plus.svg";
 import CapacitorIcon from "@/icons/capacitor.svg";
+import DrizzleIcon from "@/icons/drizzle.svg";
 import ElysiaIcon from "@/icons/elysia.svg";
 import GoIcon from "@/icons/go.svg";
 import IonicIcon from "@/icons/ionic.svg";
@@ -31,6 +32,7 @@ export const STACK_LINK_MAP: Record<string, string> = {
   rxjs: "https://rxjs.dev/",
   axios: "https://axios-http.com/",
   vite: "https://vitejs.dev/",
+  drizzle: "https://orm.drizzle.team/",
   "c++": "https://isocpp.org/",
 };
 
@@ -50,5 +52,6 @@ export const STACK_ICON_MAP: Record<string, IconComponent> = {
   rxjs: RxjsIcon,
   axios: AxiosIcon,
   vite: ViteIcon,
+  drizzle: DrizzleIcon,
   "c++": CplusplusIcon,
 };

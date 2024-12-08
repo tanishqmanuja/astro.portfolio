@@ -11,7 +11,7 @@ import { AstroFont } from "astro-font";
 
 import EmojiFavicon from "@/components/EmojiFavicon.astro";
 import GoogleSiteVerification from "@/components/GoogleSiteVerification.astro";
-import { AUTHOR, DESCRIPTION, TITLE } from "@/site.config";
+import { AUTHOR, TITLE } from "@/site.config";
 
 interface Props {
   title?: string;
@@ -19,11 +19,7 @@ interface Props {
   class?: string;
 }
 
-const {
-  title = TITLE,
-  description = DESCRIPTION,
-  class: className,
-} = Astro.props;
+const { title = TITLE, description = "", class: className } = Astro.props;
 
 const FONTS_DIR = "public/fonts";
 const fontConfig = [

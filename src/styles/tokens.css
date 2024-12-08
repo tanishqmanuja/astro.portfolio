@@ -19,6 +19,6 @@
 
   --ff-monospace: ui-monospace, SFMono-Regular, SF Mono, Menlo, Consolas,
     Liberation Mono, monospace;
-  --ff-pixelated: "Departure Mono", "Nothing", ui-monospace, monospace;
-  --ff-dotmatrix: "Nothing", "Departure Mono", ui-monospace, monospace;
+  --ff-pixelated: "Departure Mono", ui-monospace, monospace;
+  --ff-dotmatrix: "Nothing", ui-monospace, monospace;
 }
