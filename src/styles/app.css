@@ -20,13 +20,12 @@ body {
   --layout-max-width: var(--content-width);
   --layout-padding-inline: var(--content-padding-inline);
 
+  min-height: 100vh;
   margin-inline: auto;
   width: min(var(--layout-max-width), 100% - 2 * var(--layout-padding-inline));
 
   display: flex;
   flex-direction: column;
-
-  min-height: 100svh;
 
   & > main {
     flex-grow: 1;
