@@ -1,0 +1,85 @@
+---
+import { getCollection } from "astro:content";
+
+import Footer from "@/components/Footer.astro";
+import Header from "@/components/Header.astro";
+import Layout from "@/layouts/Layout.astro";
+import { AUTHOR } from "@/site.config";
+import { getTagsFromProjects } from "./utils";
+
+const title = `Tags | ${AUTHOR}`;
+
+const projects = await getCollection("project");
+const tags = getTagsFromProjects(projects);
+---
+
+<Layout title={title}>
+  <Header back>Tags</Header>
+  <main>
+    <ul class="tags">
+      {
+        tags
+          .sort((a, b) => a.localeCompare(b))
+          .map((tag) => (
+            <li>
+              <a href={`/tags/${tag}/`} class="tag">
+                <span class="tag__name">
+                  <span class="hash">#</span>
+                  {tag}
+                </span>
+              </a>
+            </li>
+          ))
+      }
+    </ul>
+  </main>
+  <Footer />
+  <Layout />
+</Layout>
+
+<style lang="scss">
+  .tags {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 1rem;
+
+    margin: 0;
+    padding: 0;
+
+    list-style: none;
+  }
+
+  .tag {
+    display: flex;
+    align-items: center;
+    gap: 0.25ch;
+    text-transform: capitalize;
+    transition: color 0.1s ease-in-out;
+
+    &__name {
+      display: flex;
+      align-items: center;
+      gap: 0.5ch;
+      font-family: var(--ff-dotmatrix);
+      font-size: 0.75rem;
+      text-transform: uppercase;
+      margin-left: 0.5ch;
+      margin-right: 0.25ch;
+
+      .hash {
+        font-size: 1.2em;
+        font-family: var(--ff-pixelated);
+        color: var(--clr-text-subdued);
+        transition: color 0.2s ease-in-out;
+      }
+    }
+
+    &:is(:hover, :focus-within) {
+      color: var(--clr-text-highlight);
+
+      .hash {
+        color: var(--clr-text-highlight);
+      }
+    }
+  }
+</style>

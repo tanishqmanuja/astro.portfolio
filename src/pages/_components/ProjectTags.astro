@@ -6,12 +6,12 @@ interface Props {
 const { tags } = Astro.props;
 ---
 
-<h3>[+] Tags</h3>
+<h3><a href="/tags/" title="All Tags">[+] Tags</a></h3>
 <div class="tags">
   {
     tags.map((item, index) => (
       <>
-        <a class="tag">
+        <a href={`/tags/${item}/`} class="tag">
           <span class="tag__name">
             <span class="hash">#</span>
             {item}
@@ -29,12 +29,22 @@ const { tags } = Astro.props;
 
 <style lang="scss">
   h3 {
+    max-width: fit-content;
     margin-top: var(--size-8);
     margin-bottom: var(--size-2);
     color: var(--clr-text-secondary);
     font-size: 11px;
     font-family: var(--ff-pixelated);
     text-transform: uppercase;
+    transition: color 0.2s ease-in-out;
+
+    a {
+      text-decoration: none;
+    }
+
+    &:is(:hover, :active, :focus-within) {
+      color: var(--clr-text-highlight);
+    }
   }
 
   .tags {
@@ -57,12 +67,20 @@ const { tags } = Astro.props;
       text-transform: uppercase;
       margin-left: 0.5ch;
       margin-right: 0.25ch;
+      transition: color 0.1s ease-in-out;
 
       .hash {
-        font-weight: bold;
         font-size: 1.2em;
         font-family: var(--ff-pixelated);
         color: var(--clr-text-subdued);
+        transition: color 0.1s ease-in-out;
+      }
+
+      &:is(:hover, :focus-within) {
+        color: var(--clr-text-highlight);
+        .hash {
+          color: var(--clr-text-highlight);
+        }
       }
     }
 

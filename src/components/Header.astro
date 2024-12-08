@@ -1,14 +1,32 @@
 ---
 interface Props {
-  backUrl?: string;
+  back?: string | true;
+  home?: boolean;
 }
+
+const { back, home = true } = Astro.props;
+
+const backHref = back === true ? "javascript:history.back()" : back;
 ---
 
 <header>
-  <a href={Astro.props.backUrl} class="header__back">
-    <span class="symbol">&lsaquo;</span>
-    <span>Go Back</span>
-  </a>
+  <div class="buttons">
+    {
+      back && (
+        <a href={backHref} class="back">
+          <span class="symbol">&lsaquo;</span>
+          <span>Go Back</span>
+        </a>
+      )
+    }
+    {
+      home && (
+        <a href="/" class="home">
+          <span>Home</span>
+        </a>
+      )
+    }
+  </div>
   <h1 class="header__title">
     <slot />
   </h1>
@@ -19,32 +37,49 @@ interface Props {
     margin-top: clamp(30px, 7vw, 6rem);
   }
 
-  .header__back {
-    max-width: fit-content;
+  .buttons {
     display: flex;
     align-items: center;
-    gap: 1ch;
+    justify-content: space-between;
+    gap: 1.5ch;
 
-    padding-block: 0.25rem;
-    padding-inline: 0.575rem;
-    color: var(--clr-background);
-    background-color: var(--clr-text-primary);
-    font-family: var(--ff-pixelated);
-    font-weight: bold;
-    font-size: 11px;
-    text-transform: uppercase;
-    border-radius: 1px;
+    a {
+      height: 26.5px;
+      max-width: fit-content;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      gap: 1ch;
 
-    .symbol {
-      font-size: 1.125em;
-    }
+      padding-block: 0.25rem;
+      padding-inline: 0.575rem;
+      color: var(--clr-background);
+      background-color: var(--clr-text-primary);
+      font-family: var(--ff-pixelated);
+      font-weight: bold;
+      font-size: 11px;
+      text-transform: uppercase;
+      border-radius: 1px;
 
-    span:not(.symbol) {
-      padding-right: 0.5ch;
-    }
+      &.back {
+        .symbol {
+          font-size: 1.125em;
+        }
 
-    &:is(:hover, :focus-within) {
-      background-color: var(--clr-text-highlight);
+        span:not(.symbol) {
+          padding-right: 0.5ch;
+        }
+
+        &:is(:hover, :focus-within) {
+          background-color: var(--clr-text-highlight);
+        }
+      }
+
+      &.home {
+        color: var(--clr-background);
+        background-color: var(--clr-amber);
+        border: 2px solid var(--clr-amber);
+      }
     }
   }
 

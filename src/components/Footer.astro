@@ -1,14 +1,11 @@
 <footer>
+  <slot />
   <hr />
   <span>Created with <span class="heart">♥</span> by Tanishq Manuja</span>
 </footer>
 
 <style>
   footer {
-    font-family: var(--ff-pixelated);
-    font-size: 11px;
-    text-align: center;
-
     hr {
       margin: 0;
       border-color: var(--clr-text-subdued);
@@ -16,6 +13,9 @@
     }
 
     & > span {
+      font-family: var(--ff-pixelated);
+      font-size: 11px;
+      text-align: center;
       display: flex;
       align-items: center;
       justify-content: center;

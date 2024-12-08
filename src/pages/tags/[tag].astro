@@ -1,0 +1,82 @@
+---
+import { getCollection } from "astro:content";
+
+import Footer from "@/components/Footer.astro";
+import Header from "@/components/Header.astro";
+import Layout from "@/layouts/Layout.astro";
+import { AUTHOR } from "@/site.config";
+import { titlecase } from "@/utils/text";
+import ProjectCard from "../_components/ProjectCard.astro";
+import { getTagsFromProjects } from "./utils";
+
+export async function getStaticPaths() {
+  const projects = await getCollection("project");
+  const tags = getTagsFromProjects(projects);
+
+  return tags.map((tag) => ({
+    params: { tag },
+    props: { tag },
+  }));
+}
+
+const { tag } = Astro.props;
+const title = `#${titlecase(tag)} | ${AUTHOR}`;
+
+const projects = await getCollection("project");
+const filteredProjects = projects
+  .filter((project) => project.data.tags.includes(tag))
+  .sort((a, b) => a.id.localeCompare(b.id));
+---
+
+<Layout title={title}>
+  <Header back>{`#${titlecase(tag)}`}</Header>
+  <main>
+    <ul class="project-list" role="list">
+      {
+        filteredProjects.map((project) => (
+          <li class="project-list-item">
+            <ProjectCard project={project} />
+          </li>
+        ))
+      }
+    </ul>
+  </main>
+  <Footer>
+    <div class="link-box">
+      <a href="/tags/">[ View All Tags ]</a>
+    </div>
+  </Footer>
+</Layout>
+
+<style>
+  .project-list {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 1rem;
+
+    margin: 0;
+    padding: 0;
+
+    list-style: none;
+  }
+
+  .link-box {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding-block: 1rem;
+
+    a {
+      font-size: 11px;
+      font-family: var(--ff-pixelated);
+      color: var(--clr-text-secondary);
+      text-decoration: none;
+      text-transform: uppercase;
+      transition: color 0.2s ease-in-out;
+
+      &:is(:hover, :active, :focus-within) {
+        color: var(--clr-text-highlight);
+      }
+    }
+  }
+</style>
