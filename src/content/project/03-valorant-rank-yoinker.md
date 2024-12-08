@@ -8,7 +8,7 @@ links:
 isFeatured: true
 
 stack:
-  - bun
+  - node
   - RxJS
   - go
   - axios
