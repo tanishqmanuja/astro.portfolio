@@ -1,32 +1,42 @@
-/* https://piccalil.li/blog/a-more-modern-css-reset */
+/* Read more at
+1. https://piccalil.li/blog/a-more-modern-css-reset
+2. https://www.joshwcomeau.com/css/custom-css-reset/
+*/
 
+/* Predictable box sizing */
 *,
 *::before,
 *::after {
   box-sizing: border-box;
 }
 
+/* Remove default margin */
+* {
+  margin: 0;
+}
+
+/* Prevent font size inflation */
 html {
   -moz-text-size-adjust: none;
   -webkit-text-size-adjust: none;
   text-size-adjust: none;
 }
 
+/* Smooth scroll effect */
 html:focus-within {
   scroll-behavior: smooth;
 }
 
-body,
-h1,
-h2,
-h3,
-h4,
-p,
-figure,
-blockquote,
-dl,
-dd {
-  margin: 0;
+/* Anything that has been anchored to should have extra scroll margin */
+:target {
+  scroll-margin-block: 5ex;
+}
+
+body {
+  min-height: 100vh;
+  line-height: 1.5;
+  text-rendering: optimizeSpeed;
+  --webkit-font-smoothing: antialiased;
 }
 
 h1,
@@ -34,6 +44,16 @@ h2,
 h3,
 h4 {
   text-wrap: balance;
+}
+
+p,
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+  overflow-wrap: break-word;
 }
 
 h1,
@@ -46,17 +66,18 @@ label {
   line-height: 1.1;
 }
 
-body {
-  margin: 0;
-  min-height: 100vh;
-  line-height: 1.5;
-  text-rendering: optimizeSpeed;
+p {
+  text-wrap: pretty;
+  hyphens: auto;
 }
 
 img,
-picture {
-  max-width: 100%;
+picture,
+video,
+canvas,
+svg {
   display: block;
+  max-width: 100%;
 }
 
 input,
@@ -67,23 +88,21 @@ select {
   font-size: inherit;
 }
 
-ul[role="list"],
-ol[role="list"] {
+ul,
+ol {
+  padding: 0;
+  text-indent: 0;
   list-style: none;
 }
 
 a[class] {
-  text-decoration: none;
   color: currentColor;
+  text-decoration: none;
 }
 
 a:not([class]) {
-  text-decoration-skip-ink: auto;
   color: currentColor;
-}
-
-:target {
-  scroll-margin-block: 5ex;
+  text-decoration-skip-ink: auto;
 }
 
 @media (prefers-reduced-motion: reduce) {

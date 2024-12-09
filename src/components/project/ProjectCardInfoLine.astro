@@ -1,0 +1,61 @@
+---
+import LinkIcon from "@astropub/icons/Link2";
+import StarIcon from "@astropub/icons/StarFilled";
+
+interface Props {
+  stars?: number;
+  repository?: string;
+}
+
+const { stars, repository } = Astro.props;
+---
+
+<div class="infoline | cluster">
+  {
+    stars && stars > 0 && (
+      <div class="infoline__item stars">
+        <StarIcon size="12" class="amber" />
+        <span>{stars} stars</span>
+      </div>
+    )
+  }
+
+  {
+    repository && (
+      <a
+        class="infoline__item repository | primary-selectable"
+        href={repository}
+        title="Visit Repository"
+        target="_blank"
+        rel="noopener noreferrer"
+      >
+        <LinkIcon size="12" />
+        <span>Repository</span>
+      </a>
+    )
+  }
+</div>
+
+<style lang="scss">
+  .infoline {
+    gap: 1ch;
+
+    text-transform: uppercase;
+    font-family: var(--ff-pixelated);
+    font-size: var(--fs-pixelated-small);
+
+    &__item {
+      display: flex;
+      align-items: center;
+      gap: 1ch;
+    }
+
+    &__item + &__item {
+      &::before {
+        content: "|";
+        color: var(--clr-text-subdued);
+        opacity: 0.75;
+      }
+    }
+  }
+</style>

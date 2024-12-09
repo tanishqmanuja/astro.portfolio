@@ -10,7 +10,7 @@ const backHref = back === true ? "javascript:history.back()" : back;
 ---
 
 <header>
-  <div class="buttons">
+  <nav>
     {
       back && (
         <a href={backHref} class="back">
@@ -26,8 +26,8 @@ const backHref = back === true ? "javascript:history.back()" : back;
         </a>
       )
     }
-  </div>
-  <h1 class="header__title">
+  </nav>
+  <h1>
     <slot />
   </h1>
 </header>
@@ -37,7 +37,7 @@ const backHref = back === true ? "javascript:history.back()" : back;
     margin-top: clamp(30px, 7vw, 6rem);
   }
 
-  .buttons {
+  nav {
     display: flex;
     align-items: center;
     justify-content: space-between;
@@ -79,11 +79,15 @@ const backHref = back === true ? "javascript:history.back()" : back;
         color: var(--clr-background);
         background-color: var(--clr-amber);
         border: 2px solid var(--clr-amber);
+
+        &:is(:hover, :focus-within) {
+          background-color: lch(from var(--clr-amber) calc(l + 5) c h);
+        }
       }
     }
   }
 
-  .header__title {
+  h1 {
     margin-block: 1.275rem 1.6rem;
     width: fit-content;
     color: var(--clr-text-highlight);

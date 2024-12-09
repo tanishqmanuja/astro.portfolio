@@ -1,0 +1,43 @@
+---
+import type { CollectionEntry } from "astro:content";
+
+import { getStars } from "@/pages/_components/utils/github";
+import { cached } from "@/utils/cache";
+import { isGithubUrl, parseGithubUrl } from "@/utils/github/helpers";
+import ProjectCardHeader from "./ProjectCardHeader.astro";
+import ProjectCardInfoLine from "./ProjectCardInfoLine.astro";
+
+interface Props {
+  project: CollectionEntry<"project">;
+}
+
+const { project } = Astro.props;
+
+const {
+  links: { repository },
+} = project.data;
+
+let stars: number | undefined;
+if (repository && isGithubUrl(repository)) {
+  const { owner, repo } = parseGithubUrl(repository);
+
+  const cachekey = `stars/${repository.slice(repository.lastIndexOf("/"))}`;
+  stars = await cached(cachekey, () => getStars(owner, repo)).catch(
+    () => undefined,
+  );
+}
+---
+
+<article>
+  <ProjectCardHeader slug={project.slug} {...project.data} />
+  <p>{project.data.description}</p>
+  <ProjectCardInfoLine stars={stars} repository={repository} />
+</article>
+
+<style lang="scss">
+  p {
+    margin-block: 0.5rem;
+    max-width: 65ch;
+    color: var(--clr-text-secondary);
+  }
+</style>

@@ -1,5 +1,5 @@
 ---
-title: Todos, React + Elysia
+title: Todos - React + Elysia
 subtitle: Demo, Open Source
 description: A beginner friendly fullstack todos app built with React - Elysia with Bun as the runtime.
 links:

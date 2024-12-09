@@ -7,46 +7,29 @@ interface Props {
 const { company, designation } = Astro.props;
 ---
 
-<div class="card">
-  <span class="symbol">++</span>
-  <div class="stack">
-    <span class="company">{company}</span>
-    {designation && <span class="designation"> &lt; {designation} /&gt;</span>}
-  </div>
-</div>
+<article>
+  <h4 class="company">{company}</h4>
+  {designation && <span class="designation"> &lt; {designation} /&gt;</span>}
+</article>
 
 <style>
-  .card {
-    --gap: 2ch;
+  article {
+    container-type: inline-size;
 
-    padding-inline-start: 1ch;
     display: flex;
-    align-items: flex-start;
-    column-gap: var(--gap);
-
-    .symbol {
-      color: var(--clr-text-subdued);
-      font-family: var(--ff-dotmatrix);
-      font-weight: bold;
-      white-space: nowrap;
-
-      translate: 0 2px;
-    }
-
-    .stack {
-      display: flex;
-      column-gap: var(--gap);
-      flex-wrap: wrap;
-    }
+    align-items: center;
+    column-gap: 2ch;
+    flex-wrap: wrap;
 
     @container (max-width: 600px) {
-      .stack {
-        gap: unset;
+      & {
         flex-direction: column;
       }
     }
 
     .company {
+      line-height: 1.5;
+      font-weight: normal;
       white-space: nowrap;
       color: var(--clr-text-primary);
     }

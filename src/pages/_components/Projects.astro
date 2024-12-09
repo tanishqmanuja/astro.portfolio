@@ -1,9 +1,9 @@
 ---
 import { getCollection, type CollectionEntry } from "astro:content";
 
+import ProjectCard from "@/components/project/ProjectCard.astro";
 import Section from "@/components/Section.astro";
 import { booleanCompare } from "@/utils/sorting";
-import ProjectCard from "./ProjectCard.astro";
 
 const projects = await getCollection("project");
 
@@ -14,45 +14,39 @@ const sorter = (a: Project, b: Project) =>
 ---
 
 <Section title="Projects" featured>
-  <ul class="project-list" role="list">
+  <ol>
     {
       projects.sort(sorter).map((project, i) => (
-        <li class="project-list-item" data-featured={project.data.isFeatured}>
-          <span class="project-list-item__marker">
-            {i.toString().padStart(2, "0")}
-          </span>
+        <li>
+          <span class="marker">{i.toString().padStart(2, "0")}</span>
           <ProjectCard project={project} />
         </li>
       ))
     }
-  </ul>
+  </ol>
 </Section>
 
 <style lang="scss">
-  .project-list {
-    margin: 0;
-    padding: 0;
+  ol {
     margin-top: 1rem;
+    margin-left: 12px;
     display: flex;
     flex-direction: column;
     row-gap: 1.125rem;
   }
 
-  .project-list-item {
-    display: flex;
-    flex-direction: row;
-    gap: 2ch;
-    padding-inline-start: 1ch;
+  li {
+    display: grid;
+    grid-template-columns: 24px 1fr;
+    column-gap: 2ch;
 
-    &__marker {
-      height: fit-content;
+    .marker {
+      justify-self: center;
+      padding-top: 1.5px;
       color: var(--clr-text-subdued);
       font-family: var(--ff-dotmatrix);
-      line-height: 24px;
       font-weight: bold;
       white-space: nowrap;
-
-      translate: 0 2px;
 
       @media (prefers-reduced-motion: no-preference) {
         view-timeline-name: --item-timeline;

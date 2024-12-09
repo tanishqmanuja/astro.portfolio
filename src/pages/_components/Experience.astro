@@ -1,11 +1,49 @@
 ---
 import Section from "@/components/Section.astro";
 import ExperienceCard from "./ExperienceCard.astro";
+
+const experiences = [
+  {
+    company: "UniConverge Technologies",
+    designation: "FullStack Developer, Intern",
+  },
+];
 ---
 
 <Section title="Experience">
-  <ExperienceCard
-    company="UniConverge Technologies"
-    designation="FullStack Developer, Intern"
-  />
+  <ul>
+    {
+      experiences.map((experience) => (
+        <li>
+          <span class="marker">++</span>
+          <ExperienceCard {...experience} />
+        </li>
+      ))
+    }
+  </ul>
 </Section>
+
+<style lang="scss">
+  ul {
+    margin-top: 1rem;
+    margin-left: 12px;
+    display: flex;
+    flex-direction: column;
+    row-gap: 1.125rem;
+  }
+
+  li {
+    display: grid;
+    grid-template-columns: 24px 1fr;
+    column-gap: 2ch;
+
+    .marker {
+      padding-top: 1.5px;
+      justify-self: center;
+      color: var(--clr-text-subdued);
+      font-family: var(--ff-dotmatrix);
+      font-weight: bold;
+      white-space: nowrap;
+    }
+  }
+</style>

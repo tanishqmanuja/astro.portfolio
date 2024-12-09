@@ -47,7 +47,11 @@ if (repository && isGithubUrl(repository)) {
     repository && (
       <>
         <div class="divider">|</div>
-        <a href={repository} title="Visit Repository" class="info__repository">
+        <a
+          class="info__repository | primary-selectable"
+          href={repository}
+          title="Visit Repository"
+        >
           <GithubIcon size="12" />
           <span>Github</span>
         </a>
@@ -57,10 +61,6 @@ if (repository && isGithubUrl(repository)) {
 </div>
 
 <style lang="scss">
-  a[href] {
-    text-decoration: none;
-  }
-
   .info {
     --info-flex-gap: 1ch;
 

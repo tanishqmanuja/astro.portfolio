@@ -14,6 +14,12 @@
     transparent
   );
 
+  --clr-text-barely-visible: color-mix(
+    in lch,
+    var(--clr-text-secondary) 40%,
+    transparent
+  );
+
   --content-width: 800px;
   --content-padding-inline: 24px;
 
@@ -21,4 +27,8 @@
     Liberation Mono, monospace;
   --ff-pixelated: "Departure Mono", ui-monospace, monospace;
   --ff-dotmatrix: "Nothing", ui-monospace, monospace;
+
+  --fs-pixelated-small: 11px;
+  --fs-pixelated-medium: 16.5px;
+  --fs-pixelated-large: 22px;
 }

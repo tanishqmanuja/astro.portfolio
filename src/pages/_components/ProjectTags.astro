@@ -6,26 +6,23 @@ interface Props {
 const { tags } = Astro.props;
 ---
 
-<h3><a href="/tags/" title="All Tags">[+] Tags</a></h3>
-<div class="tags">
+<h3 id="tags-title"><a href="/tags/" title="All Tags">[+] Tags</a></h3>
+<section class="tags | cluster" aria-labelledby="tags-title">
   {
     tags.map((item, index) => (
       <>
-        <a href={`/tags/${item}/`} class="tag">
-          <span class="tag__name">
-            <span class="hash">#</span>
-            {item}
-          </span>
-          {index < tags.length - 1 && (
-            <span aria-hidden="true" class="tag__separator">
-              ,
-            </span>
-          )}
+        <a href={`/tags/${item}/`} class="tag | primary-selectable">
+          {item}
         </a>
+        {index < tags.length - 1 && (
+          <span class="separator" aria-hidden="true">
+            ,
+          </span>
+        )}
       </>
     ))
   }
-</div>
+</section>
 
 <style lang="scss">
   h3 {
@@ -48,46 +45,37 @@ const { tags } = Astro.props;
   }
 
   .tags {
-    display: flex;
-    flex-wrap: wrap;
+    font-family: var(--ff-dotmatrix);
+    font-size: 0.75rem;
   }
 
   .tag {
+    text-transform: capitalize;
     display: flex;
     align-items: center;
-    gap: 0.25ch;
-    text-transform: capitalize;
+    gap: 0.5ch;
+    text-transform: uppercase;
+    margin-left: 0.5ch;
+    margin-right: 0.25ch;
 
-    &__name {
-      display: flex;
-      align-items: center;
-      gap: 0.5ch;
-      font-family: var(--ff-dotmatrix);
-      font-size: 0.75rem;
-      text-transform: uppercase;
-      margin-left: 0.5ch;
-      margin-right: 0.25ch;
-      transition: color 0.1s ease-in-out;
-
-      .hash {
-        font-size: 1.2em;
-        font-family: var(--ff-pixelated);
-        color: var(--clr-text-subdued);
-        transition: color 0.1s ease-in-out;
-      }
-
-      &:is(:hover, :focus-within) {
-        color: var(--clr-text-highlight);
-        .hash {
-          color: var(--clr-text-highlight);
-        }
-      }
-    }
-
-    &__separator {
-      margin-right: 0.75ch;
+    &::before {
+      content: "#";
+      font-size: 1.2em;
+      font-family: var(--ff-pixelated);
       color: var(--clr-text-subdued);
-      opacity: 0.75;
+      transition: color 0.1s ease-in-out;
     }
+
+    &:is(:hover, :focus-within) {
+      &::before {
+        color: var(--clr-text-highlight);
+      }
+    }
+  }
+
+  .separator {
+    margin-left: 0.5ch;
+    margin-right: 1ch;
+    color: var(--clr-text-barely-visible);
   }
 </style>

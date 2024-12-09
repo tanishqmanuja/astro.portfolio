@@ -3,10 +3,10 @@ import { getCollection } from "astro:content";
 
 import Footer from "@/components/Footer.astro";
 import Header from "@/components/Header.astro";
+import ProjectCard from "@/components/project/ProjectCard.astro";
 import Layout from "@/layouts/Layout.astro";
 import { AUTHOR } from "@/site.config";
 import { titlecase } from "@/utils/text";
-import ProjectCard from "../_components/ProjectCard.astro";
 import { getTagsFromProjects } from "./utils";
 
 export async function getStaticPaths() {
@@ -21,6 +21,7 @@ export async function getStaticPaths() {
 
 const { tag } = Astro.props;
 const title = `#${titlecase(tag)} | ${AUTHOR}`;
+const description = `Projects tagged with #${tag}`;
 
 const projects = await getCollection("project");
 const filteredProjects = projects
@@ -28,7 +29,7 @@ const filteredProjects = projects
   .sort((a, b) => a.id.localeCompare(b.id));
 ---
 
-<Layout title={title}>
+<Layout title={title} description={description}>
   <Header back>{`#${titlecase(tag)}`}</Header>
   <main>
     <ul class="project-list" role="list">
@@ -42,41 +43,36 @@ const filteredProjects = projects
     </ul>
   </main>
   <Footer>
-    <div class="link-box">
-      <a href="/tags/">[ View All Tags ]</a>
-    </div>
+    <nav>
+      <a class="secondary-selectable" href="/tags/">[ View All Tags ]</a>
+      <nav></nav>
+    </nav>
   </Footer>
-</Layout>
 
-<style>
-  .project-list {
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-    gap: 1rem;
+  <style>
+    .project-list {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+      row-gap: 1.125rem;
+      column-gap: 1rem;
 
-    margin: 0;
-    padding: 0;
+      margin: 0;
+      padding: 0;
 
-    list-style: none;
-  }
+      list-style: none;
+    }
 
-  .link-box {
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    padding-block: 1rem;
+    nav {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      padding-block: 1rem;
 
-    a {
-      font-size: 11px;
-      font-family: var(--ff-pixelated);
-      color: var(--clr-text-secondary);
-      text-decoration: none;
-      text-transform: uppercase;
-      transition: color 0.2s ease-in-out;
-
-      &:is(:hover, :active, :focus-within) {
-        color: var(--clr-text-highlight);
+      a {
+        font-family: var(--ff-pixelated);
+        font-size: var(--fs-pixelated-small);
+        text-transform: uppercase;
       }
     }
-  }
-</style>
+  </style>
+</Layout>

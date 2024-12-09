@@ -1,3 +1,21 @@
 .amber {
   color: var(--clr-amber);
 }
+
+.primary-selectable {
+  color: var(--clr-text-primary);
+  transition: color 0.2s var(--ease-in-out-1);
+
+  &:is(:hover, :active, :focus-within) {
+    color: var(--clr-text-highlight);
+  }
+}
+
+.secondary-selectable {
+  color: var(--clr-text-secondary);
+  transition: color 0.2s var(--ease-in-out-1);
+
+  &:is(:hover, :active, :focus-within) {
+    color: var(--clr-text-highlight);
+  }
+}

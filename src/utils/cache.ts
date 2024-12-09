@@ -18,7 +18,7 @@ export async function cached<T extends StorageValue>(
 
   const cachedValue = await cache.getItem<T>(key);
 
-  if (cachedValue) {
+  if (cachedValue !== null) {
     return cachedValue;
   }
 
