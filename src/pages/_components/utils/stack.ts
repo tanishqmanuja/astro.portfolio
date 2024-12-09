@@ -10,6 +10,7 @@ import ElysiaIcon from "@/icons/elysia.svg";
 import GoIcon from "@/icons/go.svg";
 import IonicIcon from "@/icons/ionic.svg";
 import NodeIcon from "@/icons/node-js.svg";
+import PackageIcon from "@/icons/package.svg";
 import PdfIcon from "@/icons/pdf.svg";
 import ReactIcon from "@/icons/react.svg";
 import RxjsIcon from "@/icons/rxjs.svg";
@@ -53,5 +54,6 @@ export const STACK_ICON_MAP: Record<string, IconComponent> = {
   axios: AxiosIcon,
   vite: ViteIcon,
   drizzle: DrizzleIcon,
+  cheerio: PackageIcon,
   "c++": CplusplusIcon,
 };
