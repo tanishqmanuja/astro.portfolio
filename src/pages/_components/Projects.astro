@@ -4,7 +4,6 @@ import { getCollection, type CollectionEntry } from "astro:content";
 import ProjectCard from "@/components/project/ProjectCard.astro";
 import ProjectCardHeader from "@/components/project/ProjectCardHeader.astro";
 import Section from "@/components/Section.astro";
-import { booleanCompare } from "@/utils/sorting";
 
 const projects = await getCollection("project");
 
@@ -29,7 +28,7 @@ const alphabeticSort = (a: Project, b: Project) => a.id.localeCompare(b.id);
     <li>
       <span class="marker">++</span>
       <ProjectCardHeader
-        slug="projects"
+        slug="projects/1"
         title="All Projects"
         subtitle="Yes, there are more :)"
       />
