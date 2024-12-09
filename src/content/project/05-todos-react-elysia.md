@@ -5,6 +5,8 @@ description: A beginner friendly fullstack todos app built with React - Elysia w
 links:
   repository: https://github.com/tanishqmanuja/todos-react-elysia
 
+isFeatured: true
+
 stack:
   - react
   - elysia

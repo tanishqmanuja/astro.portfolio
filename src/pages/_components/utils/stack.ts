@@ -7,14 +7,17 @@ import CplusplusIcon from "@/icons/c-plus-plus.svg";
 import CapacitorIcon from "@/icons/capacitor.svg";
 import DrizzleIcon from "@/icons/drizzle.svg";
 import ElysiaIcon from "@/icons/elysia.svg";
+import EspressifIcon from "@/icons/espressif.svg";
 import GoIcon from "@/icons/go.svg";
 import IonicIcon from "@/icons/ionic.svg";
+import MatterIcon from "@/icons/matter.svg";
 import NodeIcon from "@/icons/node-js.svg";
 import PackageIcon from "@/icons/package.svg";
 import PdfIcon from "@/icons/pdf.svg";
 import ReactIcon from "@/icons/react.svg";
 import RxjsIcon from "@/icons/rxjs.svg";
 import ViteIcon from "@/icons/vite.svg";
+import ZodIcon from "@/icons/zod.svg";
 
 export const STACK_LINK_MAP: Record<string, string> = {
   react: "https://react.dev/",
@@ -34,6 +37,10 @@ export const STACK_LINK_MAP: Record<string, string> = {
   axios: "https://axios-http.com/",
   vite: "https://vitejs.dev/",
   drizzle: "https://orm.drizzle.team/",
+  zod: "https://zod.dev/",
+  matter: "https://csa-iot.org/all-solutions/matter/",
+  espressif: "https://www.espressif.com/",
+  esp32: "https://www.espressif.com/en/products/socs/esp32",
   "c++": "https://isocpp.org/",
 };
 
@@ -55,5 +62,9 @@ export const STACK_ICON_MAP: Record<string, IconComponent> = {
   vite: ViteIcon,
   drizzle: DrizzleIcon,
   cheerio: PackageIcon,
+  zod: ZodIcon,
+  matter: MatterIcon,
+  espressif: EspressifIcon,
+  esp32: EspressifIcon,
   "c++": CplusplusIcon,
 };

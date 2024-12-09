@@ -2,27 +2,38 @@
 import { getCollection, type CollectionEntry } from "astro:content";
 
 import ProjectCard from "@/components/project/ProjectCard.astro";
+import ProjectCardHeader from "@/components/project/ProjectCardHeader.astro";
 import Section from "@/components/Section.astro";
 import { booleanCompare } from "@/utils/sorting";
 
 const projects = await getCollection("project");
 
 type Project = CollectionEntry<"project">;
-const sorter = (a: Project, b: Project) =>
-  booleanCompare(a.data.isFeatured, b.data.isFeatured) ||
-  a.id.localeCompare(b.id);
+const isFeatured = (project: Project) => project.data.isFeatured;
+const alphabeticSort = (a: Project, b: Project) => a.id.localeCompare(b.id);
 ---
 
 <Section title="Projects" featured>
   <ol>
     {
-      projects.sort(sorter).map((project, i) => (
-        <li>
-          <span class="marker">{i.toString().padStart(2, "0")}</span>
-          <ProjectCard project={project} />
-        </li>
-      ))
+      projects
+        .filter(isFeatured)
+        .sort(alphabeticSort)
+        .map((project, i) => (
+          <li>
+            <span class="marker">{i.toString().padStart(2, "0")}</span>
+            <ProjectCard project={project} />
+          </li>
+        ))
     }
+    <li>
+      <span class="marker">++</span>
+      <ProjectCardHeader
+        slug="projects"
+        title="All Projects"
+        subtitle="Yes, there are more :)"
+      />
+    </li>
   </ol>
 </Section>
 

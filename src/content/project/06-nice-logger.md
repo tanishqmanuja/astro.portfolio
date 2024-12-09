@@ -1,9 +1,11 @@
 ---
 title: Nice Logger
 subtitle: Open Source
-description: A minimal, user-friendly yet customizable logger for Elysia i.e. web framework for Bun
+description: A minimal, user-friendly yet customizable logger for Elysia i.e. web framework for Bun.
 links:
   repository: https://github.com/tanishqmanuja/nice-logger
+
+isFeatured: true
 
 stack:
   - bun
