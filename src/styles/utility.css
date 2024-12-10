@@ -19,3 +19,28 @@
     color: var(--clr-text-highlight);
   }
 }
+
+.no-scrollbar-on-mobile {
+  &::-webkit-scrollbar {
+    width: 4px;
+    height: 4px;
+  }
+
+  @media (hover: none) and (pointer: coarse) {
+    -ms-overflow-style: none;
+    scrollbar-width: none;
+
+    &::-webkit-scrollbar {
+      width: 0;
+    }
+
+    &::-webkit-scrollbar-track {
+      background-color: transparent;
+    }
+
+    &::-webkit-scrollbar-thumb {
+      border: none;
+      background-color: transparent;
+    }
+  }
+}

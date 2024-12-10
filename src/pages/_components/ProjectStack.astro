@@ -1,29 +1,11 @@
 ---
+import BrandLogo from "@/components/brand/BrandLogo.astro";
+import { getBrandLink } from "@/components/brand/links";
+import { hasIcon } from "@/components/brand/logos";
 import { booleanCompare } from "@/utils/sorting";
-import {
-  STACK_ICON_MAP,
-  STACK_LINK_MAP,
-  type IconComponent,
-} from "./utils/stack";
 
 interface Props {
   stack: string[];
-}
-
-function getStackLink(stackItem: string): string {
-  return STACK_LINK_MAP[stackItem.toLowerCase()];
-}
-
-function hasIcon(stackItem: string): boolean {
-  return Object.keys(STACK_ICON_MAP).includes(stackItem.toLowerCase());
-}
-
-function getStackIcon(stackItem: string): [{ Component: IconComponent }] | [] {
-  const Component = STACK_ICON_MAP[stackItem.toLowerCase()];
-  if (!Component) {
-    return [];
-  }
-  return [{ Component }];
 }
 
 const { stack } = Astro.props;
@@ -34,13 +16,11 @@ const { stack } = Astro.props;
   {
     stack
       .sort((a, b) => booleanCompare(hasIcon(a), hasIcon(b)))
-      .map((item, index) => (
+      .map((brand, index) => (
         <li class="stack-item">
-          <a class="primary-selectable" href={getStackLink(item)}>
-            {getStackIcon(item).map(({ Component }) => (
-              <Component size="12" />
-            ))}
-            <span class="name">{item}</span>
+          <a class="primary-selectable" href={getBrandLink(brand)}>
+            <BrandLogo brand={brand} size={12} />
+            <span class="name">{brand}</span>
           </a>
           {index < stack.length - 1 && (
             <span class="separator" aria-hidden="true">

@@ -16,3 +16,7 @@ tags:
   - npm
   - valorant
 ---
+
+VAPIC is a type safe implementation of an api client for VALORANT. It includes functional wrapper to call all community known endpoints provided by.
+
+It is an all-in-one package with support for HTTP and WebSocket communication, cookie handling, response parsing and validation using Zod.

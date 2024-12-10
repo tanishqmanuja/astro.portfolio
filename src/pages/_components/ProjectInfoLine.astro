@@ -28,63 +28,76 @@ if (repository && isGithubUrl(repository)) {
 }
 ---
 
-<div class="info">
-  <div class="info__subtitle">
-    {project.data.subtitle}
-  </div>
+<ul class="info | no-scrollbar-on-mobile">
+  <li>
+    <span>
+      {project.data.subtitle}
+    </span>
+  </li>
   {
     stars && (
-      <>
-        <div class="divider">|</div>
-        <div class="info__stars">
-          <StarIcon size="12" class="amber" />
-          <span>{stars} stars</span>
-        </div>
-      </>
+      <li>
+        <StarIcon size="12" class="amber" />
+        <span>{stars} stars</span>
+      </li>
     )
   }
   {
     repository && (
-      <>
-        <div class="divider">|</div>
+      <li>
         <a
-          class="info__repository | primary-selectable"
+          class="primary-selectable"
           href={repository}
           title="Visit Repository"
         >
           <GithubIcon size="12" />
           <span>Github</span>
         </a>
-      </>
+      </li>
     )
   }
-</div>
+</ul>
 
 <style lang="scss">
-  .info {
-    --info-flex-gap: 1ch;
-
+  ul {
     display: flex;
     align-items: center;
-    gap: var(--info-flex-gap);
+    gap: 1ch;
     margin-bottom: 1rem;
     padding-block: 0.675rem;
 
-    font-size: 11px;
     font-family: var(--ff-pixelated);
+    font-size: var(--fs-pixelated-small);
     text-transform: uppercase;
 
     border-block: 1px dashed var(--clr-text-subdued);
 
-    & > * {
+    overflow-x: scroll;
+    overscroll-behavior-x: contain;
+
+    scroll-snap-type: x mandatory;
+    scroll-padding: 0 2ch;
+  }
+
+  li {
+    min-width: fit-content;
+    display: flex;
+    align-items: center;
+    white-space: nowrap;
+    gap: 1ch;
+
+    scroll-snap-align: start;
+
+    & > a {
       display: flex;
       align-items: center;
       gap: 1ch;
     }
-  }
 
-  .divider {
-    color: var(--clr-text-subdued);
-    opacity: 0.75;
+    & + &::before {
+      content: "|";
+      color: var(--clr-text-subdued);
+      padding-inline: 0.5ch;
+    }
   }
 </style>

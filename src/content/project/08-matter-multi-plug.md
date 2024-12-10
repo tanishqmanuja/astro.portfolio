@@ -7,7 +7,7 @@ links:
 
 stack:
   - c++
-  - esp32
+  - espressif
   - matter
 
 tags:

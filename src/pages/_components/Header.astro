@@ -6,8 +6,25 @@
 </header>
 
 <style>
+  @keyframes header--leaveview {
+    to {
+      opacity: 0;
+      translate: 0 20px;
+    }
+  }
+
   header {
     margin-top: clamp(30px, 7vw, 6rem);
+
+    @media (prefers-reduced-motion: no-preference) {
+      @supports (animation-timeline: scroll()) {
+        & {
+          animation: header--leaveview linear both;
+          animation-timeline: scroll();
+          animation-range: 0 10vh;
+        }
+      }
+    }
   }
 
   .header__title {

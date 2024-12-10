@@ -1,0 +1,20 @@
+---
+import { MANUAL_LOGO_MAP } from "./logos";
+
+type AstroSVGModule = typeof import("*.svg");
+
+interface Props {
+  brand: string;
+  size?: number;
+}
+
+const { brand, size } = Astro.props;
+
+const logo = MANUAL_LOGO_MAP[brand] ?? brand;
+const module: AstroSVGModule | null = await import(
+  `../../logos/${logo.toLowerCase()}.svg`
+).catch(() => null);
+const Component = module?.default;
+---
+
+{Component && <Component size={size} title={brand} />}
