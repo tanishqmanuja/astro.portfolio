@@ -80,11 +80,11 @@ if (repository && isGithubUrl(repository)) {
   }
 
   li {
-    min-width: fit-content;
     display: flex;
     align-items: center;
     white-space: nowrap;
     gap: 1ch;
+    flex-shrink: 0;
 
     scroll-snap-align: start;
 
@@ -97,7 +97,7 @@ if (repository && isGithubUrl(repository)) {
     & + &::before {
       content: "|";
       color: var(--clr-text-subdued);
-      padding-inline: 0.5ch;
+      padding-inline: 0.25ch;
     }
   }
 </style>
