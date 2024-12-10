@@ -33,7 +33,7 @@ const description = `Projects tagged with #${tag}`;
           .sort((a, b) => a.id.localeCompare(b.id))
           .map((project) => (
             <li class="project-list-item">
-              <ProjectCard project={project} />
+              <ProjectCard project={project} fullsize />
             </li>
           ))
       }

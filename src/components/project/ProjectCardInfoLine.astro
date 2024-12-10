@@ -2,12 +2,15 @@
 import LinkIcon from "@astropub/icons/Link2";
 import StarIcon from "@astropub/icons/StarFilled";
 
+import { slugify } from "@/utils/slug";
+
 interface Props {
   stars?: number;
   repository?: string;
+  slug?: string | boolean;
 }
 
-const { stars, repository } = Astro.props;
+const { stars, repository, slug } = Astro.props;
 ---
 
 <div class="infoline | cluster">
@@ -34,6 +37,19 @@ const { stars, repository } = Astro.props;
       </a>
     )
   }
+
+  {
+    !(repository || stars) && typeof slug === "string" && (
+      <a
+        class="infoline__item more | primary-selectable"
+        href={`/${slugify(slug)}/`}
+        title="Read more"
+      >
+        <span>More Info</span>
+        <span class="symbol">»</span>
+      </a>
+    )
+  }
 </div>
 
 <style lang="scss">
@@ -48,6 +64,17 @@ const { stars, repository } = Astro.props;
       display: flex;
       align-items: center;
       gap: 1ch;
+
+      .symbol {
+        color: var(--clr-text-subdued);
+        transition: color 0.2s ease-in-out;
+      }
+
+      &:is(:hover, :active, :focus-within) {
+        .symbol {
+          color: var(--clr-text-secondary);
+        }
+      }
     }
 
     &__item + &__item {

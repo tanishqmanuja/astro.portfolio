@@ -9,9 +9,10 @@ import ProjectCardInfoLine from "./ProjectCardInfoLine.astro";
 
 interface Props {
   project: CollectionEntry<"project">;
+  fullsize?: boolean;
 }
 
-const { project } = Astro.props;
+const { project, fullsize = false } = Astro.props;
 
 const {
   links: { repository },
@@ -31,7 +32,11 @@ if (repository && isGithubUrl(repository)) {
 <article>
   <ProjectCardHeader slug={project.slug} {...project.data} />
   <p>{project.data.description}</p>
-  <ProjectCardInfoLine stars={stars} repository={repository} />
+  <ProjectCardInfoLine
+    slug={fullsize && project.slug}
+    stars={stars}
+    repository={repository}
+  />
 </article>
 
 <style lang="scss">
