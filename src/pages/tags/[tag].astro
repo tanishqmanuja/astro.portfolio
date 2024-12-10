@@ -13,20 +13,15 @@ export async function getStaticPaths() {
   const projects = await getCollection("project");
   const tags = getTagsFromProjects(projects);
 
-  return tags.map((tag) => ({
+  return tags.map(({ tag, projects }) => ({
     params: { tag },
-    props: { tag },
+    props: { tag, projects },
   }));
 }
 
-const { tag } = Astro.props;
+const { tag, projects } = Astro.props;
 const title = `#${titlecase(tag)} | ${AUTHOR}`;
 const description = `Projects tagged with #${tag}`;
-
-const projects = await getCollection("project");
-const filteredProjects = projects
-  .filter((project) => project.data.tags.includes(tag))
-  .sort((a, b) => a.id.localeCompare(b.id));
 ---
 
 <Layout title={title} description={description}>
@@ -34,11 +29,13 @@ const filteredProjects = projects
   <main>
     <ul class="project-list" role="list">
       {
-        filteredProjects.map((project) => (
-          <li class="project-list-item">
-            <ProjectCard project={project} />
-          </li>
-        ))
+        projects
+          .sort((a, b) => a.id.localeCompare(b.id))
+          .map((project) => (
+            <li class="project-list-item">
+              <ProjectCard project={project} />
+            </li>
+          ))
       }
     </ul>
   </main>

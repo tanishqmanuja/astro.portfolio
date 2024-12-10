@@ -19,13 +19,14 @@ const tags = getTagsFromProjects(projects);
     <ul class="tags">
       {
         tags
-          .sort((a, b) => a.localeCompare(b))
-          .map((tag) => (
+          .sort((a, b) => a.tag.localeCompare(b.tag))
+          .map(({ tag, count }) => (
             <li>
               <a href={`/tags/${tag}/`} class="tag">
                 <span class="tag__name">
                   <span class="hash">#</span>
                   {tag}
+                  <span class="count">( {count} )</span>
                 </span>
               </a>
             </li>
@@ -71,6 +72,10 @@ const tags = getTagsFromProjects(projects);
         font-family: var(--ff-pixelated);
         color: var(--clr-text-subdued);
         transition: color 0.2s ease-in-out;
+      }
+
+      .count {
+        color: var(--clr-text-subdued);
       }
     }
 
