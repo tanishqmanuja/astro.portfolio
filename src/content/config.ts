@@ -9,6 +9,7 @@ const project = defineCollection({
       .object({
         repository: z.string().url().optional(),
         deployment: z.string().url().optional(),
+        npm: z.string().url().optional(),
       })
       .default({}),
     isFeatured: z.boolean().default(false),

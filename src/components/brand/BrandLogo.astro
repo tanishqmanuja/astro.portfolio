@@ -5,7 +5,7 @@ type AstroSVGModule = typeof import("*.svg");
 
 interface Props {
   brand: string;
-  size?: number;
+  size?: string | number;
 }
 
 const { brand, size } = Astro.props;

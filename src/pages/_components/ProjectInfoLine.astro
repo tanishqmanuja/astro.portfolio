@@ -4,6 +4,7 @@ import type { CollectionEntry } from "astro:content";
 import GithubIcon from "@astropub/icons/GitHubLogo";
 import StarIcon from "@astropub/icons/StarFilled";
 
+import BrandLogo from "@/components/brand/BrandLogo.astro";
 import { cached } from "@/utils/cache";
 import { isGithubUrl, parseGithubUrl } from "@/utils/github/helpers";
 import { getStars } from "./utils/github";
@@ -15,7 +16,7 @@ interface Props {
 const { project } = Astro.props;
 
 const {
-  links: { repository },
+  links: { repository, npm },
 } = project.data;
 
 let stars: number | null = null;
@@ -52,6 +53,22 @@ if (repository && isGithubUrl(repository)) {
         >
           <GithubIcon size="12" />
           <span>Github</span>
+        </a>
+      </li>
+    )
+  }
+  {
+    npm && (
+      <li>
+        <a
+          class="primary-selectable"
+          href={npm}
+          title="Visit NPM"
+          target="_blank"
+          rel="noopener noreferrer"
+        >
+          <BrandLogo brand="npm" size="12" />
+          <span>NPM</span>
         </a>
       </li>
     )

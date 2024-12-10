@@ -4,6 +4,7 @@ subtitle: Open Source
 description: A minimal, user-friendly yet customizable logger for Elysia i.e. web framework for Bun.
 links:
   repository: https://github.com/tanishqmanuja/nice-logger
+  npm: https://www.npmjs.com/package/@tqman/nice-logger
 
 isFeatured: true
 
