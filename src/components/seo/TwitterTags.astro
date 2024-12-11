@@ -1,0 +1,55 @@
+---
+interface Props {
+  card?: "summary" | "summary_large_image" | "app" | "player";
+  site?: string;
+  title: string;
+  description?: string;
+  image?: URL | string;
+  imageAlt?: string;
+  /*
+   * Twitter username of the creator.
+   * @example `@astrodotbuild`
+   */
+  creator?: `@${string}`;
+}
+
+const { card, site, title, description, image, imageAlt, creator } =
+  Astro.props;
+
+if (title.length > 70) {
+  console.warn("[TwitterTags]: Title must be less than 70 characters long.");
+}
+
+if (description && description.length > 200) {
+  console.warn(
+    "[TwitterTags]: Description must be less than 200 characters long.",
+  );
+}
+
+if (image && !imageAlt) {
+  console.warn("[TwitterTags]: ImageAlt is recommended when using an image.");
+}
+
+if (imageAlt && imageAlt.length > 420) {
+  console.warn(
+    "[TwitterTags]: ImageAlt must be less than 420 characters long.",
+  );
+}
+---
+
+<meta property="twitter:title" content={title} />
+
+{
+  description ? (
+    <meta property="twitter:description" content={description} />
+  ) : null
+}
+
+{card ? <meta property="twitter:card" content={card} /> : null}
+
+{site ? <meta property="twitter:site" content={site} /> : null}
+
+{image ? <meta property="twitter:image" content={image} /> : null}
+{imageAlt ? <meta property="twitter:image:alt" content={imageAlt} /> : null}
+
+{creator ? <meta name="twitter:creator" content={creator} /> : null}

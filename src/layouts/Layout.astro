@@ -1,17 +1,15 @@
 ---
 import "../styles/global.css";
 
-import { join } from "node:path";
-
-import type { ComponentProps } from "astro/types";
 import { GOOGLE_SITE_VERIFICATION_TOKEN } from "astro:env/client";
 import { ClientRouter } from "astro:transitions";
 
-import { AstroFont } from "astro-font";
-
 import EmojiFavicon from "@/components/EmojiFavicon.astro";
+import Fonts from "@/components/Fonts.astro";
 import GoogleSiteVerification from "@/components/GoogleSiteVerification.astro";
-import { AUTHOR, TITLE } from "@/site.config";
+import OpengraphTags from "@/components/seo/OpenGraphTags.astro";
+import TwitterTags from "@/components/seo/TwitterTags.astro";
+import { AUTHOR, TWITTER_USERNAME } from "@/site.config";
 
 interface Props {
   title?: string;
@@ -19,35 +17,11 @@ interface Props {
   class?: string;
 }
 
-const { title = TITLE, description = "", class: className } = Astro.props;
-
-const FONTS_DIR = "public/fonts";
-const fontConfig = [
-  {
-    name: "Nothing",
-    src: [
-      {
-        style: "normal",
-        path: join(process.cwd(), FONTS_DIR, "ndot57.otf"),
-      },
-    ],
-    preload: true,
-    display: "swap",
-    fallback: "monospace",
-  },
-  {
-    name: "Departure Mono",
-    src: [
-      {
-        style: "normal",
-        path: join(process.cwd(), FONTS_DIR, "departure-mono-regular.woff2"),
-      },
-    ],
-    preload: true,
-    display: "swap",
-    fallback: "monospace",
-  },
-] satisfies ComponentProps<typeof AstroFont>["config"];
+const {
+  title = `${AUTHOR} | Portfolio`,
+  description,
+  class: className,
+} = Astro.props;
 
 const canonicalUrl = new URL(Astro.url.pathname, Astro.site).href;
 const ogImageUrl = new URL("og.png", Astro.url.origin).href;
@@ -64,28 +38,36 @@ const ogImageUrl = new URL("og.png", Astro.url.origin).href;
     <ClientRouter />
 
     <!-- General Meta Tags -->
-    <meta name="title" content=`${title}` />
     <title>{title}</title>
+    <meta name="title" content=`${title}` />
     <meta name="author" content=`${AUTHOR}` />
-    <meta name="description" content=`${description}` />
     <link rel="sitemap" href="/sitemap-index.xml" />
+    <link rel="canonical" href={canonicalUrl} />
+    {description ? <meta name="description" content={description} /> : null}
 
     <!-- Open Graph / Facebook -->
-    <meta property="og:title" content={title} />
-    <meta property="og:description" content={description} />
-    <meta property="og:url" content={canonicalUrl} />
-    <meta property="og:image" content={ogImageUrl} />
+    <OpengraphTags
+      title={title}
+      description={description}
+      image={ogImageUrl}
+      imageAlt={`${AUTHOR} | Portfolio`}
+      type="website"
+      url={canonicalUrl}
+    />
 
     <!-- Twitter -->
-    <meta property="twitter:title" content={title} />
-    <meta property="twitter:description" content={description} />
-    <meta property="twitter:url" content={canonicalUrl} />
-    <meta property="twitter:image" content={ogImageUrl} />
-    <meta property="twitter:card" content="summary_large_image" />
+    <TwitterTags
+      title={title}
+      description={description}
+      image={ogImageUrl}
+      imageAlt={`${AUTHOR} | Portfolio`}
+      card="summary_large_image"
+      creator={`@${TWITTER_USERNAME}`}
+    />
 
     <!-- Others -->
     <EmojiFavicon emoji="🧑🏻‍💻" />
-    <AstroFont config={fontConfig} />
+    <Fonts />
     <GoogleSiteVerification token={GOOGLE_SITE_VERIFICATION_TOKEN} />
   </head>
   <body class={className ?? "base-layout"}>

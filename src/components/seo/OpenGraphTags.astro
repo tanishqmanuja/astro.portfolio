@@ -1,0 +1,30 @@
+---
+interface Props {
+  title: string;
+  description?: string;
+  image: URL | string;
+  imageAlt?: string;
+  type: string;
+  /**
+   * Canonical URL
+   */
+  url?: string;
+}
+
+const { title, description, image, imageAlt, type, url } = Astro.props;
+
+if (image && !imageAlt) {
+  console.warn("[OpenGraphTags]: ImageAlt is recommended when using image");
+}
+---
+
+<meta property="og:title" content={title} />
+
+{description ? <meta property="og:description" content={description} /> : null}
+
+{image ? <meta property="og:image" content={image} /> : null}
+{imageAlt ? <meta property="og:image:alt" content={imageAlt} /> : null}
+
+{type ? <meta property="og:type" content={type} /> : null}
+
+{Astro.url ? <meta property="og:url" content={url} /> : null}

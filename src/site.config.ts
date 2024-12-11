@@ -1,10 +1,10 @@
 import type { Link } from "./types";
 
 export const URL = "https://tqman.pages.dev";
-export const TITLE = `Tanishq Manuja | Portfolio`;
 export const AUTHOR = "Tanishq Manuja";
 
 export const GITHUB_USERNAME = "tanishqmanuja";
+export const TWITTER_USERNAME = "tanishqmanuja";
 
 export const SKILLS = [
   "Javascript",
