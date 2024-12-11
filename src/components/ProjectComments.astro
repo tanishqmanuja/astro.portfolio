@@ -1,0 +1,23 @@
+---
+import type { HTMLAttributes } from "astro/types";
+
+interface Props extends HTMLAttributes<"section"> {}
+---
+
+<section class:list={["giscus", Astro.props.class]} {...Astro.props}></section>
+<script
+  src="https://giscus.app/client.js"
+  data-repo="tanishqmanuja/discussions.giscus"
+  data-repo-id="R_kgDONcINMQ"
+  data-category="Portfolio Comments"
+  data-category-id="DIC_kwDONcINMc4ClIUV"
+  data-mapping="url"
+  data-strict="0"
+  data-reactions-enabled="1"
+  data-emit-metadata="0"
+  data-input-position="bottom"
+  data-theme="transparent_dark"
+  data-lang="en"
+  data-loading="lazy"
+  crossorigin="anonymous"
+  async></script>

@@ -3,6 +3,7 @@ import { getCollection, render } from "astro:content";
 
 import Footer from "@/components/Footer.astro";
 import Header from "@/components/Header.astro";
+import ProjectComments from "@/components/ProjectComments.astro";
 import Layout from "@/layouts/Layout.astro";
 import { AUTHOR } from "@/site.config";
 import { slugify } from "@/utils/slug";
@@ -43,6 +44,7 @@ const description = project.data.description;
     <div class="tags">
       {project.data.tags.length > 0 && <ProjectTags tags={project.data.tags} />}
     </div>
+    <ProjectComments class="comments" />
   </Footer>
 </Layout>
 
@@ -69,5 +71,9 @@ const description = project.data.description;
 
   .tags {
     margin-bottom: 1rem;
+  }
+
+  .comments {
+    margin-block: 1rem;
   }
 </style>
