@@ -96,7 +96,8 @@ const title = `Projects | Page ${page.currentPage}`;
       text-transform: uppercase;
 
       &[aria-disabled="true"] {
-        user-select: none;
+        pointer-events: none;
+        cursor: not-allowed;
         color: var(--clr-text-secondary);
       }
     }
