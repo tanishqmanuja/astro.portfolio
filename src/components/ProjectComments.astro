@@ -2,6 +2,10 @@
 import type { HTMLAttributes } from "astro/types";
 
 interface Props extends HTMLAttributes<"section"> {}
+
+const theme = Astro.site
+  ? new URL("giscus/theme.css", Astro.site).href
+  : "transparent_dark";
 ---
 
 <section class:list={["giscus", Astro.props.class]} {...Astro.props}></section>
@@ -16,7 +20,7 @@ interface Props extends HTMLAttributes<"section"> {}
   data-reactions-enabled="1"
   data-emit-metadata="0"
   data-input-position="bottom"
-  data-theme={new URL("giscus/theme.css", Astro.url.origin).href}
+  data-theme={theme}
   data-lang="en"
   data-loading="lazy"
   crossorigin="anonymous"

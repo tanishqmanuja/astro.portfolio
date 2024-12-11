@@ -4,15 +4,23 @@
  * https://github.com/primer/primitives/blob/main/LICENSE
  */
 
+@font-face {
+  font-family: "Departure Mono";
+  src: url("https://tqman.pages.dev/fonts/departure-mono-regular.woff2")
+    format("woff2");
+  font-weight: normal;
+  font-style: normal;
+  font-display: swap;
+}
+
+:root {
+  --ff-monospace: ui-monospace, SFMono-Regular, SF Mono, Menlo, Consolas,
+    Liberation Mono, monospace;
+  --ff-departure-mono: "Departure Mono", var(--ff-monospace);
+}
+
 main {
-  font-family:
-    ui-monospace,
-    SFMono-Regular,
-    SF Mono,
-    Menlo,
-    Consolas,
-    Liberation Mono,
-    monospace;
+  font-family: var(--ff-monospace);
 
   --color-prettylights-syntax-comment: #8b949e;
   --color-prettylights-syntax-constant: #79c0ff;
@@ -131,4 +139,22 @@ main .pagination-loader-container {
 
 main .gsc-loading-image {
   background-image: url("https://github.githubassets.com/images/mona-loading-dark.gif");
+}
+
+.gsc-header {
+  font-family: var(--ff-departure-mono);
+  font-size: 11px;
+}
+
+.gsc-reactions-count {
+  display: none;
+}
+
+.gsc-comments-count {
+  text-transform: uppercase;
+}
+
+.gsc-left-header .text-sm {
+  font-size: inherit;
+  line-height: inherit;
 }
