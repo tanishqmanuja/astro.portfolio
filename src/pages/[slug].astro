@@ -30,11 +30,7 @@ const description = project.data.description;
   <Header back>{project.data.title}</Header>
   <main>
     <ProjectInfoLine project={project} />
-    {
-      project.data.stack.length > 0 && (
-        <ProjectStack stack={project.data.stack} />
-      )
-    }
+    <ProjectStack stack={project.data.stack} />
 
     <section class="content">
       <Content />
