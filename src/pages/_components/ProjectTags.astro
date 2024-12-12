@@ -1,51 +1,55 @@
 ---
-interface Props {
+import type { HTMLAttributes } from "astro/types";
+
+interface Props extends HTMLAttributes<"section"> {
   tags: string[];
 }
 
 const { tags } = Astro.props;
 ---
 
-<h3 id="tags-title"><a href="/tags/" title="All Tags">[+] Tags</a></h3>
-<section class="tags | cluster" aria-labelledby="tags-title">
-  {
-    tags.map((item, index) => (
-      <>
-        <a href={`/tags/${item}/`} class="tag | primary-selectable">
-          {item}
+{
+  tags.length > 0 && (
+    <section {...Astro.props}>
+      <h3>
+        <a
+          href="/tags/"
+          class="secondary-selectable"
+          title="All Tags"
+          aria-label="Tags"
+        >
+          [+] Tags
         </a>
-        {index < tags.length - 1 && (
-          <span class="separator" aria-hidden="true">
-            ,
-          </span>
-        )}
-      </>
-    ))
-  }
-</section>
+      </h3>
+      <ul class="tag-list | cluster" aria-labelledby="tags-title">
+        {tags.map((item) => (
+          <li>
+            <a href={`/tags/${item}/`} class="tag | primary-selectable">
+              {item}
+            </a>
+          </li>
+        ))}
+      </ul>
+    </section>
+  )
+}
 
 <style lang="scss">
-  h3 {
-    max-width: max-content;
-    margin-top: var(--size-8);
-    margin-bottom: var(--size-2);
-    color: var(--clr-text-secondary);
-    font-size: 11px;
-    font-family: var(--ff-pixelated);
-    text-transform: uppercase;
-    transition: color 0.2s ease-in-out;
-    white-space: nowrap;
-
-    a {
-      text-decoration: none;
-    }
-
-    &:is(:hover, :active, :focus-within) {
-      color: var(--clr-text-highlight);
-    }
+  section {
   }
 
-  .tags {
+  h3 {
+    max-width: max-content;
+    margin-bottom: var(--size-2);
+    color: var(--clr-text-secondary);
+    font-family: var(--ff-pixelated);
+    font-size: var(--fs-pixelated-small);
+    text-transform: uppercase;
+    white-space: nowrap;
+  }
+
+  .tag-list {
+    gap: 1ch;
     font-family: var(--ff-dotmatrix);
     font-size: 0.75rem;
   }
@@ -54,10 +58,8 @@ const { tags } = Astro.props;
     text-transform: capitalize;
     display: flex;
     align-items: center;
-    gap: 0.5ch;
+    gap: 0.25ch;
     text-transform: uppercase;
-    margin-left: 0.5ch;
-    margin-right: 0.25ch;
 
     &::before {
       content: "#";
@@ -72,11 +74,5 @@ const { tags } = Astro.props;
         color: var(--clr-text-highlight);
       }
     }
-  }
-
-  .separator {
-    margin-left: 0.5ch;
-    margin-right: 1ch;
-    color: var(--clr-text-barely-visible);
   }
 </style>

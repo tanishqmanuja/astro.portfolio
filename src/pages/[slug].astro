@@ -41,11 +41,8 @@ const description = project.data.description;
     </section>
   </main>
   <Footer>
-    <div class="tags">
-      {project.data.tags.length > 0 && <ProjectTags tags={project.data.tags} />}
-    </div>
-    <hr />
     <ProjectComments class="comments" />
+    <ProjectTags class="tags" tags={project.data.tags} />
   </Footer>
 </Layout>
 
@@ -71,10 +68,10 @@ const description = project.data.description;
   }
 
   .tags {
-    margin-bottom: 1rem;
+    margin-block: 1.5rem 1rem;
   }
 
   .comments {
-    margin-block: 1rem;
+    margin-block: 3rem 1rem;
   }
 </style>
