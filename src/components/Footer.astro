@@ -1,6 +1,14 @@
+---
+export interface Props {
+  border?: false | "thick" | "thin" | "none";
+}
+
+const { border = "thick" } = Astro.props;
+---
+
 <footer>
   <slot />
-  <hr />
+  {border && border !== "none" && <hr data-type={border} />}
   <span>Created with <span class="heart">♥</span> by Tanishq Manuja</span>
 </footer>
 
@@ -9,6 +17,11 @@
     hr {
       border-color: var(--clr-text-subdued);
       border-style: dashed;
+
+      &[data-type="thin"] {
+        border: none;
+        border-bottom: 1px dashed var(--clr-text-subdued);
+      }
     }
 
     & > span {

@@ -16,7 +16,7 @@
 
   --clr-text-barely-visible: color-mix(
     in lch,
-    var(--clr-text-secondary) 40%,
+    var(--clr-text-secondary) 30%,
     transparent
   );
 

@@ -68,7 +68,7 @@ label {
 
 p {
   text-wrap: pretty;
-  hyphens: auto;
+  /* hyphens: auto; */
 }
 
 img,

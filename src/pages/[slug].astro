@@ -13,13 +13,22 @@ import ProjectTags from "./_components/ProjectTags.astro";
 
 export async function getStaticPaths() {
   const projects = await getCollection("project");
-  return projects.map((project) => ({
+  return projects.map((project, index, projects) => ({
     params: { slug: slugify(project.slug) },
-    props: { project },
+    props: {
+      project,
+      url: {
+        prev: index === 0 ? undefined : `/${slugify(projects[index - 1].slug)}`,
+        next:
+          index === projects.length - 1
+            ? undefined
+            : `/${slugify(projects[index + 1].slug)}`,
+      },
+    },
   }));
 }
 
-const { project } = Astro.props;
+const { project, url } = Astro.props;
 const { Content } = await render(project);
 
 const title = `${project.data.title} | ${AUTHOR}`;
@@ -36,9 +45,18 @@ const description = project.data.description;
       <Content />
     </section>
   </main>
-  <Footer>
-    <ProjectComments class="comments" />
+  <Footer border="thin">
     <ProjectTags class="tags" tags={project.data.tags} />
+    <nav>
+      <a class="primary-selectable" href={url.prev} aria-disabled={!url.prev}>
+        {`<`} Prev
+      </a>
+      <a class="primary-selectable" href="/projects/1/">All Projects</a>
+      <a class="primary-selectable" href={url.next} aria-disabled={!url.next}>
+        Next {`>`}
+      </a>
+    </nav>
+    <ProjectComments class="comments" />
   </Footer>
 </Layout>
 
@@ -55,7 +73,7 @@ const description = project.data.description;
     }
 
     video {
-      --video-margin-block: 1.2rem;
+      --video-margin-block: 1.25rem;
       margin-top: var(--video-margin-block);
       margin-bottom: calc(var(--video-margin-block) - 1px);
       border: 1px dashed var(--clr-text-subdued);
@@ -64,10 +82,34 @@ const description = project.data.description;
   }
 
   .tags {
-    margin-block: 1.5rem 1rem;
+    margin-block: 3rem 1rem;
   }
 
   .comments {
-    margin-block: 3rem 1rem;
+    margin-block: 2rem 1rem;
+  }
+
+  nav {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-block: 2rem 1rem;
+    gap: 1.25rem;
+
+    padding-block: 0.425rem;
+    border-block: 1px dashed var(--clr-text-subdued);
+
+    a {
+      font-family: var(--ff-pixelated);
+      font-size: var(--fs-pixelated-small);
+      text-transform: uppercase;
+      padding: 0.25rem 0.575rem;
+      border-radius: 8px;
+
+      &[aria-disabled="true"] {
+        cursor: not-allowed;
+        color: var(--clr-text-subdued);
+      }
+    }
   }
 </style>
