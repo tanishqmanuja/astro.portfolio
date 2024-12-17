@@ -9,7 +9,6 @@
   @keyframes header--leaveview {
     to {
       opacity: 0;
-      translate: 0 20px;
     }
   }
 
@@ -17,11 +16,11 @@
     margin-top: clamp(30px, 7vw, 6rem);
 
     @media (prefers-reduced-motion: no-preference) {
-      @supports (animation-timeline: scroll()) {
+      @supports (animation-timeline: view()) {
         & {
           animation: header--leaveview linear both;
-          animation-timeline: scroll();
-          animation-range: 0 10vh;
+          animation-timeline: view();
+          animation-range: exit 0% exit 50%;
         }
       }
     }

@@ -12,7 +12,7 @@ const isFeatured = (project: Project) => project.data.isFeatured;
 const alphabeticSort = (a: Project, b: Project) => a.id.localeCompare(b.id);
 ---
 
-<Section title="Projects" featured>
+<Section title="Projects" href="/projects/1/" featured>
   <ol>
     {
       projects
@@ -57,6 +57,7 @@ const alphabeticSort = (a: Project, b: Project) => a.id.localeCompare(b.id);
       font-family: var(--ff-dotmatrix);
       font-weight: bold;
       white-space: nowrap;
+      transition: color 0.2s ease-in-out;
 
       @media (prefers-reduced-motion: no-preference) {
         view-timeline-name: --item-timeline;
@@ -64,6 +65,12 @@ const alphabeticSort = (a: Project, b: Project) => a.id.localeCompare(b.id);
         animation-fill-mode: both;
         animation-timeline: --item-timeline;
         animation-range: cover 0% cover 10%;
+      }
+    }
+
+    &:has(a:is(:hover, :active, :focus-within)) {
+      .marker {
+        color: var(--clr-text-primary);
       }
     }
   }

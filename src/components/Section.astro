@@ -2,15 +2,19 @@
 interface Props {
   title: string;
   featured?: boolean;
+  href?: string;
 }
 
-const { title, featured } = Astro.props;
+const { title, featured, href } = Astro.props;
 const id = title.toLowerCase().replaceAll(" ", "-");
 ---
 
 <section id={id}>
   <!-- prettier-ignore -->
-  <h3 class:list={{ featured }}>{title}</h3>
+  <h3 class:list={{ featured }}>{ href 
+      ? <a href={href} class="primary-selectable">{title}</a> 
+      : title
+    }</h3>
   <slot />
 </section>
 
@@ -35,6 +39,12 @@ const id = title.toLowerCase().replaceAll(" ", "-");
           color: var(--clr-text-subdued);
           padding-left: 0.25ch;
           letter-spacing: normal;
+          transition: letter-spacing 0.2s ease-in-out;
+        }
+
+        &:has(a:is(:hover, :focus))::after {
+          content: "_..";
+          letter-spacing: 0.25em;
         }
       }
 
