@@ -1,0 +1,43 @@
+---
+import type { HTMLAttributes } from "astro/types";
+
+interface Props extends HTMLAttributes<"video"> {
+  src: string;
+  type: "mp4" | "webm";
+}
+
+const { src, type } = Astro.props;
+---
+
+<div class="video-box">
+  <video {...Astro.props}>
+    <source src={src} type={`video/${type}`} />
+  </video>
+</div>
+
+<style lang="scss">
+  .video-box {
+    width: 100%;
+    display: grid;
+    place-items: center;
+
+    margin-inline: auto;
+    margin-block: 1.25rem;
+    padding: 0.675rem;
+    border: 1px dashed var(--clr-text-subdued);
+
+    &:has(.mobile) {
+      margin-block: 2rem;
+      border-radius: 0.875rem;
+      width: min(80%, 380px);
+    }
+  }
+
+  video {
+    width: 100%;
+
+    &.mobile {
+      border-radius: 0.5rem;
+    }
+  }
+</style>
