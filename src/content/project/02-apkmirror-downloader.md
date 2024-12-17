@@ -19,3 +19,7 @@ tags:
 ---
 
 A CLI tool and npm library to download apps from APKMirror programmatically with ease. Uses web scrapping using tools like Cheerio.
+
+<video width="100%" controls>
+  <source src="https://github.com/tanishqmanuja/static/raw/refs/heads/main/assets/apkmd/demo.webm" type="video/webm">
+</video>
