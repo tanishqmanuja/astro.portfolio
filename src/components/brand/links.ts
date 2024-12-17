@@ -21,6 +21,9 @@ export const BRAND_LINK_MAP: Record<string, string> = {
   espressif: "https://www.espressif.com/",
   esp32: "https://www.espressif.com/en/products/socs/esp32",
   "c++": "https://isocpp.org/",
+  docker: "https://www.docker.com/",
+  mongodb: "https://www.mongodb.com/",
+  redis: "https://redis.io/",
 };
 
 export function getBrandLink(brand: string): string {

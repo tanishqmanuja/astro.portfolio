@@ -17,11 +17,7 @@ interface Props {
   class?: string;
 }
 
-const {
-  title = `${AUTHOR} | Portfolio`,
-  description,
-  class: className,
-} = Astro.props;
+const { title = `${AUTHOR} | Portfolio`, description } = Astro.props;
 
 const canonicalUrl = new URL(Astro.url.pathname, Astro.site).href;
 const ogImageUrl = new URL("og.png", Astro.url.origin).href;
@@ -70,7 +66,7 @@ const ogImageUrl = new URL("og.png", Astro.url.origin).href;
     <Fonts />
     <GoogleSiteVerification token={GOOGLE_SITE_VERIFICATION_TOKEN} />
   </head>
-  <body class={className ?? "base-layout"}>
+  <body class={Astro.props.class ?? "base-layout"}>
     <slot />
   </body>
 </html>
