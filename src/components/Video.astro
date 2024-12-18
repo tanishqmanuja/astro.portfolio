@@ -4,9 +4,15 @@ import type { HTMLAttributes } from "astro/types";
 interface Props extends HTMLAttributes<"video"> {
   src: string;
   type: "mp4" | "webm";
+  "aspect-ratio"?: string | number | { h: number; w: number };
 }
 
 const { src, type } = Astro.props;
+
+const ratio =
+  typeof Astro.props["aspect-ratio"] === "object"
+    ? `${Astro.props["aspect-ratio"].w}/${Astro.props["aspect-ratio"].h}`
+    : (Astro.props["aspect-ratio"] ?? "initial");
 ---
 
 <div class="video-box">
@@ -15,7 +21,7 @@ const { src, type } = Astro.props;
   </video>
 </div>
 
-<style lang="scss">
+<style lang="scss" define:vars={{ ratio }}>
   .video-box {
     width: 100%;
     display: grid;
@@ -37,6 +43,7 @@ const { src, type } = Astro.props;
 
   video {
     width: 100%;
+    aspect-ratio: var(--ratio);
 
     &.mobile {
       border-radius: 6px;
