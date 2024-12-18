@@ -22,14 +22,14 @@ const { src, type } = Astro.props;
     place-items: center;
 
     margin-inline: auto;
-    margin-block: 1.25rem;
-    padding: 0.675rem;
-    border: 1px dashed var(--clr-text-subdued);
+    margin-block: var(--space-s-m);
+    padding: 10px;
+    border: 1px dashed var(--color-text-subdued);
 
     &:has(.mobile) {
-      margin-block: 2rem;
-      border-radius: 0.875rem;
       width: min(80%, 380px);
+      margin-block: var(--space-m-l);
+      border-radius: 12px;
     }
   }
 
@@ -37,7 +37,7 @@ const { src, type } = Astro.props;
     width: 100%;
 
     &.mobile {
-      border-radius: 0.5rem;
+      border-radius: 6px;
     }
   }
 </style>

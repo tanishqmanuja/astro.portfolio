@@ -1,0 +1,17 @@
+/* HMF stands for Header, Main, Footer */
+
+.h-m-f {
+  --hmf-max-width: var(--content-width);
+  --hmf-padding-inline: var(--gutter);
+
+  min-height: 100vh;
+  margin-inline: auto;
+  width: min(var(--hmf-max-width), 100% - 2 * var(--hmf-padding-inline));
+
+  display: flex;
+  flex-direction: column;
+
+  & > main {
+    flex-grow: 1;
+  }
+}

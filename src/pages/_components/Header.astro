@@ -1,8 +1,6 @@
 <header>
-  <h1 id="header" class="header__title" aria-label="Tanishq Manuja">
-    Tanishq Manuja
-  </h1>
-  <h2 class="header__subtitle">Software Developer</h2>
+  <h1 id="header" aria-label="Tanishq Manuja">Tanishq Manuja</h1>
+  <h2>Software Developer</h2>
 </header>
 
 <style>
@@ -13,7 +11,52 @@
   }
 
   header {
-    margin-top: clamp(30px, 7vw, 6rem);
+    --fs-fluid-header: clamp(2rem, 7vw, 3.5rem);
+    --fs-fluid-subheader: var(--font-size-fluid-1);
+
+    margin-top: var(--space-m-3xl);
+
+    h1 {
+      width: fit-content;
+      color: var(--color-text-highlight);
+      font-family: var(--ff-pixelated);
+      font-size: var(--fs-fluid-header);
+      font-weight: normal;
+      text-indent: -1px;
+      letter-spacing: var(--letter-spacing-fluid-header);
+
+      transition: opacity 0.2s;
+      opacity: 0.9;
+
+      &:is(:hover, :focus-within) {
+        opacity: 1;
+      }
+    }
+
+    h2 {
+      text-wrap: stable;
+      width: fit-content;
+      margin-top: 2px;
+      color: var(--color-text-secondary);
+      font-family: var(--ff-pixelated);
+      font-size: var(--fs-fluid-subheader);
+      font-weight: normal;
+
+      &::before,
+      &::after {
+        color: var(--color-text-subdued);
+      }
+
+      &::before {
+        content: "{";
+        padding-right: 1ch;
+      }
+
+      &::after {
+        content: "}";
+        padding-left: 1ch;
+      }
+    }
 
     @media (prefers-reduced-motion: no-preference) {
       @supports (animation-timeline: view()) {
@@ -23,48 +66,6 @@
           animation-range: exit 0% exit 50%;
         }
       }
-    }
-  }
-
-  .header__title {
-    width: fit-content;
-    color: var(--clr-text-highlight);
-    font-size: clamp(2rem, 7vw, 3.5rem);
-    font-family: var(--ff-pixelated);
-    font-weight: normal;
-    text-indent: -1px;
-    letter-spacing: clamp(0.75px, 0.2vw, 0.1rem);
-
-    transition: opacity 0.2s;
-    opacity: 0.9;
-
-    &:is(:hover, :focus-within) {
-      opacity: 1;
-    }
-  }
-
-  .header__subtitle {
-    text-wrap: stable;
-    width: fit-content;
-    margin-top: 2px;
-    color: var(--clr-text-secondary);
-    font-size: var(--font-size-fluid-1);
-    font-family: var(--ff-pixelated);
-    font-weight: normal;
-
-    &::before,
-    &::after {
-      color: var(--clr-text-subdued);
-    }
-
-    &::before {
-      content: "{";
-      padding-right: 1ch;
-    }
-
-    &::after {
-      content: "}";
-      padding-left: 1ch;
     }
   }
 </style>

@@ -21,39 +21,39 @@ const id = title.toLowerCase().replaceAll(" ", "-");
 <style style="scss">
   section {
     & > h3 {
-      margin-bottom: var(--size-2);
+      margin-bottom: var(--space-2xs);
 
-      font-size: var(--font-size-0);
       font-family: var(--ff-dotmatrix);
-      letter-spacing: 2px;
-      text-transform: uppercase;
+      font-size: var(--fs-small);
+
+      &:not(.featured) {
+        letter-spacing: 2px;
+        text-transform: uppercase;
+
+        &::before {
+          content: "//";
+          color: var(--color-orange);
+          padding-right: 1ch;
+          letter-spacing: normal;
+        }
+      }
 
       &.featured {
-        margin-bottom: var(--size-4);
-        text-transform: none;
+        margin-bottom: var(--space-s);
         font-family: var(--ff-pixelated);
-        font-size: clamp(1.2rem, 2.5vw, 1.75rem);
+        font-size: calc(var(--fs-fluid-2) * 0.8);
+        letter-spacing: var(--letter-spacing-fluid-header);
 
         &::after {
           content: "...";
-          color: var(--clr-text-subdued);
+          color: var(--color-text-subdued);
           padding-left: 0.25ch;
-          letter-spacing: normal;
           transition: letter-spacing 0.2s ease-in-out;
         }
 
         &:has(a:is(:hover, :focus))::after {
           content: "_..";
           letter-spacing: 0.25em;
-        }
-      }
-
-      &:not(.featured) {
-        &::before {
-          content: "//";
-          color: var(--clr-orange);
-          padding-right: 1ch;
-          letter-spacing: normal;
         }
       }
     }

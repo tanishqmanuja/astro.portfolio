@@ -1,34 +1,17 @@
+@import url(./tokens/spacing.css);
+@import url(./tokens/colors.css);
+@import url(./tokens/fonts.css);
+
 :root {
-  --clr-orange: oklch(66.22% 0.2377 39.25);
-  --clr-amber: #ffa133;
-
-  --clr-text-highlight: white;
-  --clr-text-primary: #e1e1e1;
-  --clr-text-secondary: #a1a1a1;
-
-  --clr-background: #121212;
-
-  --clr-text-subdued: color-mix(
-    in lch,
-    var(--clr-text-primary) 30%,
-    transparent
-  );
-
-  --clr-text-barely-visible: color-mix(
-    in lch,
-    var(--clr-text-secondary) 30%,
-    transparent
-  );
-
+  --gutter: var(--space-m);
   --content-width: 800px;
-  --content-padding-inline: 24px;
 
-  --ff-monospace: ui-monospace, SFMono-Regular, SF Mono, Menlo, Consolas,
-    Liberation Mono, monospace;
-  --ff-pixelated: "Departure Mono", ui-monospace, monospace;
-  --ff-dotmatrix: "Nothing", ui-monospace, monospace;
+  --color-background: var(--color-black);
+  --color-text-primary: var(--color-grayscale-300);
+  --color-text-secondary: var(--color-grayscale-600);
+  --color-text-highlight: var(--color-white);
+  --color-text-subdued: var(--color-grayscale-900);
+  --color-barely-visible: var(--color-grayscale-950);
 
-  --fs-pixelated-small: 11px;
-  --fs-pixelated-medium: 16.5px;
-  --fs-pixelated-large: 22px;
+  --letter-spacing-fluid-header: clamp(0.0469rem, 0.0284rem + 0.0924vw, 0.1rem);
 }

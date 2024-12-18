@@ -1,0 +1,24 @@
+/* @link https://utopia.fyi/type/calculator?c=320,16,1.2,1240,18,1.414,4,0,&s=0.75|0.5|0.25,1.5|2|3|4|6,s-l&g=s,l,xl,12 */
+
+:root {
+  --fs-fluid-0: clamp(1rem, 0.9565rem + 0.2174vw, 1.125rem);
+  --fs-fluid-1: clamp(1.2rem, 1.0641rem + 0.6796vw, 1.5908rem);
+  --fs-fluid-2: clamp(1.44rem, 1.1585rem + 1.4075vw, 2.2493rem);
+  --fs-fluid-3: clamp(1.728rem, 1.2228rem + 2.5262vw, 3.1805rem);
+  --fs-fluid-4: clamp(2.0736rem, 1.2306rem + 4.2151vw, 4.4973rem);
+}
+
+:root {
+  --ff-monospace: ui-monospace, SFMono-Regular, SF Mono, Menlo, Consolas,
+    Liberation Mono, monospace;
+  --ff-pixelated: "Departure Mono", ui-monospace, monospace;
+  --ff-dotmatrix: "Nothing", ui-monospace, monospace;
+
+  --fs-pixelated-small: 11px;
+  --fs-pixelated-medium: 16.5px;
+  --fs-pixelated-large: 22px;
+
+  --fs-small: 0.75rem;
+  --fs-medium: 1rem;
+  --fs-large: 1.25rem;
+}

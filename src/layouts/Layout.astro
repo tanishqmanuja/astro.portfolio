@@ -66,7 +66,7 @@ const ogImageUrl = new URL("og.png", Astro.url.origin).href;
     <Fonts />
     <GoogleSiteVerification token={GOOGLE_SITE_VERIFICATION_TOKEN} />
   </head>
-  <body class={Astro.props.class ?? "base-layout"}>
+  <body class={Astro.props.class ?? "h-m-f"}>
     <slot />
   </body>
 </html>

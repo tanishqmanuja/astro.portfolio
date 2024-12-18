@@ -13,44 +13,48 @@ interface Props {
 const { stars, repository, slug } = Astro.props;
 ---
 
-<div class="infoline | cluster">
+<ul class="infoline | cluster">
   {
     stars && stars > 0 && (
-      <div class="infoline__item stars">
+      <li class="infoline__item stars">
         <StarIcon size="12" class="amber" />
         <span>{stars} stars</span>
-      </div>
+      </li>
     )
   }
 
   {
     repository && (
-      <a
-        class="infoline__item repository | primary-selectable"
-        href={repository}
-        title="Visit Repository"
-        target="_blank"
-        rel="noopener noreferrer"
-      >
-        <LinkIcon size="12" />
-        <span>Repository</span>
-      </a>
+      <li class="infoline__item repository">
+        <a
+          class="primary-selectable"
+          href={repository}
+          title="Visit Repository"
+          target="_blank"
+          rel="noopener noreferrer"
+        >
+          <LinkIcon size="12" />
+          <span>Repository</span>
+        </a>
+      </li>
     )
   }
 
   {
     !(repository || stars) && typeof slug === "string" && (
-      <a
-        class="infoline__item more | primary-selectable"
-        href={`/${slugify(slug)}/`}
-        title="Read more"
-      >
-        <span>More Info</span>
-        <span class="symbol">»</span>
-      </a>
+      <li class="infoline__item">
+        <a
+          class="primary-selectable"
+          href={`/${slugify(slug)}/`}
+          title="Read more"
+        >
+          <span>More Info</span>
+          <span class="symbol">»</span>
+        </a>
+      </li>
     )
   }
-</div>
+</ul>
 
 <style lang="scss">
   .infoline {
@@ -61,18 +65,21 @@ const { stars, repository, slug } = Astro.props;
     font-size: var(--fs-pixelated-small);
 
     &__item {
-      display: flex;
-      align-items: center;
-      gap: 1ch;
+      &,
+      & > a {
+        display: flex;
+        align-items: center;
+        gap: 1ch;
+      }
 
       .symbol {
-        color: var(--clr-text-subdued);
+        color: var(--color-text-subdued);
         transition: color 0.2s ease-in-out;
       }
 
       &:is(:hover, :active, :focus-within) {
         .symbol {
-          color: var(--clr-text-secondary);
+          color: var(--color-text-secondary);
         }
       }
     }
@@ -80,7 +87,7 @@ const { stars, repository, slug } = Astro.props;
     &__item + &__item {
       &::before {
         content: "|";
-        color: var(--clr-text-subdued);
+        color: var(--color-text-subdued);
         opacity: 0.75;
       }
     }

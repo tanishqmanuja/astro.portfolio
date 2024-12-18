@@ -1,0 +1,22 @@
+:root {
+  --color-grayscale-50: hsl(0, 0%, 97.3%);
+  --color-grayscale-100: hsl(0, 0%, 95.7%);
+  --color-grayscale-200: hsl(0, 0%, 93.3%);
+  --color-grayscale-300: hsl(0, 0%, 89.8%);
+  --color-grayscale-400: hsl(0, 0%, 85.1%);
+  --color-grayscale-500: hsl(0, 0%, 77.3%);
+  --color-grayscale-600: hsl(0, 0%, 66.3%);
+  --color-grayscale-700: hsl(0, 0%, 55.3%);
+  --color-grayscale-800: hsl(0, 0%, 45.1%);
+  --color-grayscale-900: hsl(0, 0%, 35.3%);
+  --color-grayscale-950: hsl(0, 0%, 25.5%);
+  --color-grayscale-1000: hsl(0, 0%, 14.9%);
+}
+
+/* Custom Colors */
+:root {
+  --color-white: hsl(0, 0%, 100%);
+  --color-black: hsl(0, 0%, 7.5%);
+  --color-orange: oklch(66.22% 0.2377 39.25);
+  --color-amber: #ffa133;
+}

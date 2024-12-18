@@ -4,11 +4,11 @@ import { SOCIALS } from "@/site.config";
 ---
 
 <Section title="Socials">
-  <div class="socials">
-    <span class="decoration">[</span>
+  <ul>
+    <span class="decoration" aria-hidden="true">[</span>
     {
       SOCIALS.map((social, i) => (
-        <div class="social-link">
+        <li>
           <a
             href={social.href}
             target="_blank"
@@ -23,31 +23,36 @@ import { SOCIALS } from "@/site.config";
               ,
             </span>
           )}
-        </div>
+        </li>
       ))
     }
-    <span class="decoration">]</span>
-  </div>
+    <span class="decoration" aria-hidden="true">]</span>
+  </ul>
 </Section>
 
 <style>
   .decoration {
-    color: var(--clr-text-subdued);
+    color: var(--color-text-subdued);
     user-select: none;
   }
 
-  .socials {
+  ul {
     display: flex;
     flex-wrap: wrap;
     column-gap: 1.5ch;
     align-items: center;
+    font-size: var(--fs-fluid-0);
 
-    .decoration {
-      font-family: var(--ff-pixelated);
+    & > .decoration {
+      font-family: var(--ff-dotmatrix);
+      font-size: var(--fs-large);
     }
   }
 
-  .social-link {
+  li {
+    display: flex;
+    align-items: center;
+
     & > .decoration {
       font-family: var(--ff-pixelated);
       margin-left: 2px;
@@ -55,13 +60,13 @@ import { SOCIALS } from "@/site.config";
 
     & > a {
       font-family: var(--ff-dotmatrix);
-      font-size: var(--font-size-0);
+      font-size: var(--fs-small);
       text-decoration: none;
       text-transform: uppercase;
 
       &:is(:hover, :active, :focus-within) {
-        color: var(--clr-text-highlight);
-        text-underline-offset: 0.5em;
+        color: var(--color-text-highlight);
+        text-underline-offset: 2px;
         text-decoration: underline;
       }
     }

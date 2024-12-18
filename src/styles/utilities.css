@@ -1,31 +1,35 @@
+@import url(./utilities/cluster.css);
+
 .amber {
-  color: var(--clr-amber);
+  color: var(--color-amber);
 }
 
 .primary-selectable {
-  color: var(--clr-text-primary);
+  color: var(--color-text-primary);
   transition: color 0.2s var(--ease-in-out-1);
 
   &:is(:hover, :active, :focus-within) {
-    color: var(--clr-text-highlight);
+    color: var(--color-text-highlight);
   }
 }
 
 .secondary-selectable {
-  color: var(--clr-text-secondary);
+  color: var(--color-text-secondary);
   transition: color 0.2s var(--ease-in-out-1);
 
   &:is(:hover, :active, :focus-within) {
-    color: var(--clr-text-highlight);
+    color: var(--color-text-highlight);
   }
 }
 
-.no-scrollbar-on-mobile {
+.scrollbar-thin {
   &::-webkit-scrollbar {
     width: 4px;
     height: 4px;
   }
+}
 
+.scrollbar-hide-on-mobile {
   @media (hover: none) and (pointer: coarse) {
     -ms-overflow-style: none;
     scrollbar-width: none;

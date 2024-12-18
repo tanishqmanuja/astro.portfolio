@@ -70,20 +70,20 @@ const tags = getTagsFromProjects(projects);
       .hash {
         font-size: 1.2em;
         font-family: var(--ff-pixelated);
-        color: var(--clr-text-subdued);
+        color: var(--color-text-subdued);
         transition: color 0.2s ease-in-out;
       }
 
       .count {
-        color: var(--clr-text-subdued);
+        color: var(--color-text-subdued);
       }
     }
 
     &:is(:hover, :focus-within) {
-      color: var(--clr-text-highlight);
+      color: var(--color-text-highlight);
 
       .hash {
-        color: var(--clr-text-highlight);
+        color: var(--color-text-highlight);
       }
     }
   }

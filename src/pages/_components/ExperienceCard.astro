@@ -28,14 +28,15 @@ const { company, designation } = Astro.props;
     }
 
     .company {
+      font-family: var(--ff-pixelated);
+      font-size: var(--fs-pixelated-medium);
       line-height: 1.5;
       font-weight: normal;
       white-space: nowrap;
-      color: var(--clr-text-primary);
     }
 
     .designation {
-      color: color-mix(in srgb, var(--clr-text-secondary), transparent 40%);
+      color: color-mix(in srgb, var(--color-text-secondary), transparent 40%);
     }
   }
 </style>

@@ -18,11 +18,11 @@
     Liberation Mono, monospace;
   --ff-departure-mono: "Departure Mono", var(--ff-monospace);
 
-  --clr-text-primary: #e1e1e1;
-  --clr-text-secondary: #a1a1a1;
-  --clr-text-subdued: color-mix(
+  --color-text-primary: #e1e1e1;
+  --color-text-secondary: #a1a1a1;
+  --color-text-subdued: color-mix(
     in lch,
-    var(--clr-text-secondary) 30%,
+    var(--color-text-secondary) 30%,
     transparent
   );
 }
@@ -121,9 +121,9 @@ main {
   --color-social-reaction-bg-reacted-hover: var(--color-scale-blue-8);
 
   /*! Overrides */
-  --color-fg-default: var(--clr-text-primary, #c9d1d9);
-  --color-fg-muted: var(--clr-text-secondary, #8b949e);
-  --color-border-default: var(--clr-text-subdued, #30363d);
+  --color-fg-default: var(--color-text-primary, #c9d1d9);
+  --color-fg-muted: var(--color-text-secondary, #8b949e);
+  --color-border-default: var(--color-text-subdued, #30363d);
 }
 
 main .pagination-loader-container {

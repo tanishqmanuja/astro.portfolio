@@ -41,10 +41,10 @@ const { slug, title, subtitle } = Astro.props;
         content: "";
         position: absolute;
         height: 1px;
-        width: calc(100% - 0px);
+        width: 100%;
         left: 0;
         bottom: -1px;
-        background: var(--clr-text-highlight);
+        background: var(--color-text-highlight);
         opacity: 1;
         transition:
           opacity 0.2s var(--ease-in-out-4),
@@ -65,7 +65,7 @@ const { slug, title, subtitle } = Astro.props;
       }
 
       span {
-        color: var(--clr-text-subdued);
+        color: var(--color-text-subdued);
       }
     }
   }
@@ -75,6 +75,6 @@ const { slug, title, subtitle } = Astro.props;
     text-transform: uppercase;
     font-family: var(--ff-pixelated);
     font-size: var(--fs-pixelated-small);
-    color: color-mix(in srgb, var(--clr-text-secondary), transparent 30%);
+    color: color-mix(in srgb, var(--color-text-secondary), transparent 30%);
   }
 </style>

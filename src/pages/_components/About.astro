@@ -14,9 +14,9 @@ const stars = await cached("total-stars", () => getTotalStars(GITHUB_USERNAME));
 <Section title="About">
   <p>
     I am a passionate javascript developer who turns complex problems into
-    simple solutions using the right architecture. I have <span
+    simple solutions using the right architecture. I have over <span
       class="highlight">{publicRepos}</span
-    > plus public repositories and earned over
+    > public repositories and earned around
     <span class="highlight">{stars}</span> stars on github.
   </p>
 </Section>
@@ -26,10 +26,11 @@ const stars = await cached("total-stars", () => getTotalStars(GITHUB_USERNAME));
     font-family: var(--ff-pixelated);
     font-size: 0.78em;
     font-weight: bold;
-    color: var(--clr-text-highlight);
+    color: var(--color-text-highlight);
   }
 
   p {
+    font-size: var(--fs-fluid-0);
     @media screen and (max-width: 600px) {
       text-wrap: balance;
     }

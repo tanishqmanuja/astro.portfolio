@@ -29,7 +29,7 @@ if (repository && isGithubUrl(repository)) {
 }
 ---
 
-<ul class="info | no-scrollbar-on-mobile">
+<ul class="info | scrollbar-thin scrollbar-hide-on-mobile">
   <li>
     <span>
       {project.data.subtitle}
@@ -87,7 +87,7 @@ if (repository && isGithubUrl(repository)) {
     font-size: var(--fs-pixelated-small);
     text-transform: uppercase;
 
-    border-block: 1px dashed var(--clr-text-subdued);
+    border-block: 1px dashed var(--color-text-subdued);
 
     overflow-x: auto;
     overscroll-behavior-x: contain;
@@ -113,7 +113,7 @@ if (repository && isGithubUrl(repository)) {
 
     & + &::before {
       content: "|";
-      color: var(--clr-text-subdued);
+      color: var(--color-text-subdued);
       padding-inline: 0.25ch;
     }
   }
