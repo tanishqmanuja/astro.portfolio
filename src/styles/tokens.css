@@ -3,7 +3,7 @@
 @import url(./tokens/fonts.css);
 
 :root {
-  --gutter: var(--space-m);
+  --gutter: var(--space-fluid-m);
   --content-width: 800px;
 
   --color-background: var(--color-black);
