@@ -1,5 +1,6 @@
 /** @type {import("prettier").Config} */
 export default {
+  htmlWhitespaceSensitivity: "strict",
   plugins: ["prettier-plugin-astro", "@ianvs/prettier-plugin-sort-imports"],
   importOrder: [
     "<BUILTIN_MODULES>",

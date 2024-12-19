@@ -24,16 +24,20 @@ const { slug, title, subtitle } = Astro.props;
     display: flex;
     flex-direction: column;
     gap: var(--size-1);
+    overflow: hidden;
   }
 
   .title {
     width: fit-content;
     line-height: inherit;
-    overflow: hidden;
     letter-spacing: 0.05ch;
 
     a {
       position: relative;
+
+      &:focus {
+        outline: none;
+      }
 
       &::after {
         content: "";

@@ -14,7 +14,7 @@ import { SOCIALS } from "@/site.config";
             target="_blank"
             rel="noopener noreferrer"
             title={social.title}
-            class="ff-dotmatrix fs-small"
+            class="ff-dotmatrix"
           >
             {social.name}
           </a>
@@ -64,6 +64,8 @@ import { SOCIALS } from "@/site.config";
     & > a {
       text-decoration: none;
       text-transform: uppercase;
+
+      font-size: max(var(--fs-small), calc(0.8 * var(--fs-fluid-0)));
 
       &:is(:hover, :active, :focus-within) {
         color: var(--color-text-highlight);

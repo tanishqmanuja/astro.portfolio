@@ -1,7 +1,9 @@
 ---
+import GitHubIcon from "@astropub/icons/GitHubLogo";
 import LinkIcon from "@astropub/icons/Link2";
 import StarIcon from "@astropub/icons/StarFilled";
 
+import { isGithubUrl } from "@/utils/github/helpers";
 import { slugify } from "@/utils/slug";
 
 interface Props {
@@ -11,9 +13,11 @@ interface Props {
 }
 
 const { stars, repository, slug } = Astro.props;
+
+const RepoIcon = repository && isGithubUrl(repository) ? GitHubIcon : LinkIcon;
 ---
 
-<ul class="infoline | cluster | ff-pixelated fs-pixelated-small">
+<ul class="infoline | cluster | ff-pixelated fs-small">
   {
     stars && stars > 0 && (
       <li class="infoline__item stars">
@@ -33,7 +37,7 @@ const { stars, repository, slug } = Astro.props;
           target="_blank"
           rel="noopener noreferrer"
         >
-          <LinkIcon size="12" />
+          <RepoIcon size="12" />
           <span>Repository</span>
         </a>
       </li>

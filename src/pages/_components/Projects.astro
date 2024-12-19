@@ -12,7 +12,11 @@ const isFeatured = (project: Project) => project.data.isFeatured;
 const alphabeticSort = (a: Project, b: Project) => a.id.localeCompare(b.id);
 ---
 
-<Section title="Projects" href="/projects/1/" featured>
+<Section title="Projects">
+  <h3 slot="header">
+    <a href="/projects/1/" class="primary-selectable" set:text="Projects" /></h3
+  >
+
   <ol>
     {
       projects
@@ -39,6 +43,25 @@ const alphabeticSort = (a: Project, b: Project) => a.id.localeCompare(b.id);
 </Section>
 
 <style lang="scss">
+  h3 {
+    margin-bottom: var(--space-fluid-s);
+    font-family: var(--ff-pixelated);
+    font-size: calc(var(--fs-fluid-2) * 0.8);
+    letter-spacing: var(--letter-spacing-fluid-header);
+
+    &::after {
+      content: "...";
+      color: var(--color-text-subdued);
+      padding-left: 0.25ch;
+      transition: letter-spacing 0.2s ease-in-out;
+    }
+
+    &:has(a:is(:hover, :focus))::after {
+      content: "_..";
+      letter-spacing: 0.25em;
+    }
+  }
+
   ol {
     margin-left: 12px;
     display: flex;
@@ -61,21 +84,21 @@ const alphabeticSort = (a: Project, b: Project) => a.id.localeCompare(b.id);
 
       @media (--motionOK) {
         view-timeline-name: --item-timeline;
-        animation-name: slide-fade-in;
+        animation-name: marker--reveal;
         animation-fill-mode: both;
         animation-timeline: --item-timeline;
         animation-range: cover 0% cover 10%;
       }
     }
 
-    &:has(a:is(:hover, :active, :focus-within)) {
+    &:has(.title:is(:hover, :active, :focus-within)) {
       .marker {
         color: var(--color-text-primary);
       }
     }
   }
 
-  @keyframes slide-fade-in {
+  @keyframes marker--reveal {
     from {
       opacity: 0;
       translate: 0 5vh;

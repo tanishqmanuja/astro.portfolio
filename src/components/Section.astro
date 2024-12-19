@@ -3,20 +3,16 @@ import type { HTMLAttributes } from "astro/types";
 
 interface Props extends HTMLAttributes<"section"> {
   title: string;
-  featured?: boolean;
-  href?: string;
 }
 
-const { title, featured, href } = Astro.props;
+const { title } = Astro.props;
 const id = title.toLowerCase().replaceAll(" ", "-");
 ---
 
 <section id={id} {...Astro.props}>
-  <!-- prettier-ignore -->
-  <h3 class:list={{ featured }}>{ href 
-      ? <a href={href} class="primary-selectable">{title}</a> 
-      : title
-    }</h3>
+  <slot name="header">
+    <h3 set:text={title} />
+  </slot>
   <slot />
 </section>
 
@@ -28,35 +24,14 @@ const id = title.toLowerCase().replaceAll(" ", "-");
       font-family: var(--ff-dotmatrix);
       font-size: var(--fs-small);
 
-      &:not(.featured) {
-        letter-spacing: 2px;
-        text-transform: uppercase;
+      letter-spacing: 2px;
+      text-transform: uppercase;
 
-        &::before {
-          content: "//";
-          color: var(--color-orange);
-          padding-right: 1ch;
-          letter-spacing: normal;
-        }
-      }
-
-      &.featured {
-        margin-bottom: var(--space-fluid-s);
-        font-family: var(--ff-pixelated);
-        font-size: calc(var(--fs-fluid-2) * 0.8);
-        letter-spacing: var(--letter-spacing-fluid-header);
-
-        &::after {
-          content: "...";
-          color: var(--color-text-subdued);
-          padding-left: 0.25ch;
-          transition: letter-spacing 0.2s ease-in-out;
-        }
-
-        &:has(a:is(:hover, :focus))::after {
-          content: "_..";
-          letter-spacing: 0.25em;
-        }
+      &::before {
+        content: "//";
+        color: var(--color-orange);
+        padding-right: 1ch;
+        letter-spacing: normal;
       }
     }
   }
