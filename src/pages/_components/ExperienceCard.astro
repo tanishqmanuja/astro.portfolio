@@ -7,21 +7,18 @@ interface Props {
 const { company, designation } = Astro.props;
 ---
 
-<article>
+<article class="container:inline-size">
   <h4 class="company">{company}</h4>
   {designation && <span class="designation"> &lt; {designation} /&gt;</span>}
 </article>
 
 <style>
   article {
-    container-type: inline-size;
-
     display: flex;
-    align-items: center;
     column-gap: 2ch;
     flex-wrap: wrap;
 
-    @container (max-width: 600px) {
+    @container (width < 35rem) {
       & {
         flex-direction: column;
       }

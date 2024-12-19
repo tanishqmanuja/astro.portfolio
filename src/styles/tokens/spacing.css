@@ -8,5 +8,6 @@
     relativeTo: 'viewport',
     prefix: 'space-fluid',
     usePx: false,
+    relativeTo: 'viewport'
   });
 }

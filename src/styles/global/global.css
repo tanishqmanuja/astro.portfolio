@@ -1,11 +1,14 @@
 @import url(./scrollbar.css);
 @import url(./variables.css);
 
+html {
+  background: var(--color-background);
+  color: var(--color-text-primary);
+}
+
 body {
   font-family: var(--ff-monospace);
   font-size: var(--fs-medium);
-  background: var(--color-background);
-  color: var(--color-text-primary);
 }
 
 ::selection {

@@ -6,7 +6,8 @@
     maxTypeScale: 1.414,
     positiveSteps: 4,
     negativeSteps: 0,
-    prefix: 'fs-fluid'
+    prefix: 'fs-fluid',
+    relativeTo: 'container'
   });
 }
 

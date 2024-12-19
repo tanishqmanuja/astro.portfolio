@@ -29,9 +29,9 @@ if (repository && isGithubUrl(repository)) {
 }
 ---
 
-<article>
+<article class="container:inline-size">
   <ProjectCardHeader slug={project.slug} {...project.data} />
-  <p>{project.data.description}</p>
+  <p class="fs-fluid-0">{project.data.description}</p>
   <ProjectCardInfoLine
     slug={fullsize && project.slug}
     stars={stars}

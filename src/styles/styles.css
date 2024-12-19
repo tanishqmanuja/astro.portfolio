@@ -5,3 +5,4 @@
 
 @import url(./compositions/compositions.css) layer(compositions);
 @import url(./utilities/utilities.css) layer(utilities);
+@import url(./blocks/blocks.css) layer(blocks);

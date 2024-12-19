@@ -9,26 +9,25 @@ const { border = "thick" } = Astro.props;
 <footer>
   <slot />
   {border && border !== "none" && <hr data-type={border} />}
-  <span>Created with <span class="heart">♥</span> by Tanishq Manuja</span>
+  <span class="font-pixelated-small"
+    >Created with <span class="heart">♥</span> by Tanishq Manuja</span
+  >
 </footer>
 
 <style>
   footer {
     hr {
       border-color: var(--color-text-subdued);
-      border-style: dashed;
+      border-bottom: 1px dashed var(--color-text-subdued);
 
-      &[data-type="thin"] {
-        border: none;
-        border-bottom: 1px dashed var(--color-text-subdued);
+      &[data-type="thick"] {
+        border-style: dashed;
       }
     }
 
     & > span {
-      font-family: var(--ff-pixelated);
-      font-size: var(--fs-pixelated-small);
-      text-align: center;
       display: flex;
+      text-align: center;
       align-items: center;
       justify-content: center;
       gap: 1.5ch;

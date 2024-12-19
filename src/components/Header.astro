@@ -1,32 +1,16 @@
 ---
+import HeaderNav from "./HeaderNav.astro";
+
 interface Props {
-  back?: string | true;
+  back?: string | boolean;
   home?: boolean;
 }
 
-const { back, home = true } = Astro.props;
-
-const backHref = back === true ? "javascript:history.back()" : back;
+const { back = true, home = true } = Astro.props;
 ---
 
 <header>
-  <nav>
-    {
-      back && (
-        <a href={backHref} class="back">
-          <span class="symbol">&lsaquo;</span>
-          <span>Go Back</span>
-        </a>
-      )
-    }
-    {
-      home && (
-        <a href="/" class="home">
-          <span>Home</span>
-        </a>
-      )
-    }
-  </nav>
+  <HeaderNav back={back} home={home} />
   <h1>
     <slot />
   </h1>
@@ -35,55 +19,6 @@ const backHref = back === true ? "javascript:history.back()" : back;
 <style>
   header {
     margin-top: clamp(30px, 7vw, 6rem);
-  }
-
-  nav {
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-    gap: 1.5ch;
-
-    a {
-      height: 26.5px;
-      max-width: fit-content;
-      display: flex;
-      justify-content: center;
-      align-items: center;
-      gap: 1ch;
-
-      padding-block: var(--space-fluid-xs-s);
-      padding-inline: var(--space-fluid-2xs);
-      color: var(--color-background);
-      background-color: var(--color-text-primary);
-      font-family: var(--ff-pixelated);
-      font-size: var(--fs-pixelated-small);
-      font-weight: bold;
-      text-transform: uppercase;
-      border-radius: 1px;
-
-      &.back {
-        .symbol {
-          font-size: 1.125em;
-        }
-
-        span:not(.symbol) {
-          padding-right: 0.5ch;
-        }
-
-        &:is(:hover, :focus-within) {
-          background-color: var(--color-text-highlight);
-        }
-      }
-
-      &.home {
-        color: var(--color-background);
-        background-color: var(--color-amber);
-
-        &:is(:hover, :focus-within) {
-          background-color: lch(from var(--color-amber) calc(l + 5) c h);
-        }
-      }
-    }
   }
 
   h1 {

@@ -1,0 +1,80 @@
+---
+interface Props {
+  back?: string | boolean;
+  home?: boolean;
+}
+
+const { back, home = true } = Astro.props;
+
+const backHref = back === true ? "javascript:history.back()" : back || null;
+---
+
+<nav>
+  {
+    back && (
+      <button class="font-pixelated-small" role="navigation">
+        <a href={backHref} class="back">
+          <span class="symbol">&lsaquo;</span>
+          <span>Go Back</span>
+        </a>
+      </button>
+    )
+  }
+  {
+    home && (
+      <button
+        class="font-pixelated-small"
+        role="navigation"
+        data-variant="accent"
+      >
+        <a href="/" class="home">
+          <span>Home</span>
+        </a>
+      </button>
+    )
+  }
+</nav>
+
+<style>
+  nav {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+  }
+
+  button {
+    --bg-button: var(--color-text-primary);
+
+    border: none;
+
+    color: var(--color-background);
+    background-color: var(--bg-button);
+    text-transform: uppercase;
+    font-weight: bold;
+
+    transition: background-color 0.2s ease-in-out;
+
+    &:is(:hover, :focus-within) {
+      background-color: lch(from var(--bg-button) calc(l + 5) c h);
+    }
+
+    &[data-variant="accent"] {
+      --bg-button: var(--color-amber);
+    }
+
+    a {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 1ch;
+
+      padding-block: var(--space-fluid-2xs);
+      padding-inline: var(--space-fluid-xs-s);
+    }
+
+    a.back symbols {
+      line-height: 1cqh;
+      font-size: 1.125em;
+    }
+  }
+</style>

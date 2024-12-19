@@ -1,4 +1,6 @@
 @import url(./cluster.css);
+@import url(./fonts.css);
+@import url(./container.css);
 
 .amber {
   color: var(--color-amber);
@@ -29,8 +31,8 @@
   }
 }
 
-.scrollbar-hide-on-mobile {
-  @media (hover: none) and (pointer: coarse) {
+.touch\:scrollbar-hidden {
+  @media (--touch) {
     -ms-overflow-style: none;
     scrollbar-width: none;
 

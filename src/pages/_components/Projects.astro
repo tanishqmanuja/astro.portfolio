@@ -56,9 +56,9 @@ const alphabeticSort = (a: Project, b: Project) => a.id.localeCompare(b.id);
       font-family: var(--ff-dotmatrix);
       font-weight: bold;
       white-space: nowrap;
-      transition: color 0.2s ease-in-out;
+      transition: color 0.25s ease-in-out;
 
-      @media (prefers-reduced-motion: no-preference) {
+      @media (--motionOK) {
         view-timeline-name: --item-timeline;
         animation-name: slide-fade-in;
         animation-fill-mode: both;

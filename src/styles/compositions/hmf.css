@@ -4,6 +4,8 @@
   --hmf-max-width: var(--content-width);
   --hmf-padding-inline: var(--gutter);
 
+  container-type: inline-size;
+
   min-height: 100vh;
   margin-inline: auto;
   width: min(var(--hmf-max-width), 100% - 2 * var(--hmf-padding-inline));

@@ -36,12 +36,12 @@ const description = project.data.description;
 ---
 
 <Layout title={title} description={description}>
-  <Header back>{project.data.title}</Header>
+  <Header>{project.data.title}</Header>
   <main>
     <ProjectInfoLine project={project} />
     <ProjectStack stack={project.data.stack} />
 
-    <section class="content">
+    <section class="content | fs-fluid-0">
       <Content />
     </section>
   </main>

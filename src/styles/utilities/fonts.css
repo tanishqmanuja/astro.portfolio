@@ -1,0 +1,18 @@
+.font-pixelated-small {
+  font-family: var(--ff-pixelated);
+  font-size: var(--fs-pixelated-small);
+}
+
+.font-pixelated-medium {
+  font-family: var(--ff-pixelated);
+  font-size: var(--fs-pixelated-medium);
+}
+
+.font-pixelated-large {
+  font-family: var(--ff-pixelated);
+  font-size: var(--fs-pixelated-large);
+}
+
+.fs-fluid-0 {
+  font-size: var(--fs-fluid-0);
+}

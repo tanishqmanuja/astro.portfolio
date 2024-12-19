@@ -1,14 +1,23 @@
 {
   "editor.formatOnSave": true,
+
+  /* Astro */
   "prettier.documentSelectors": ["**/*.astro"],
   "[astro]": {
     "editor.defaultFormatter": "esbenp.prettier-vscode"
   },
+
+  /* CSS Variables */
   "cssvar.ignore": [],
   "cssvar.files": [
     "./node_modules/open-props/open-props.min.css",
     "./src/styles/global/variables.css",
     "./src/styles/tokens/*.css"
   ],
-  "cssvar.extensions": ["css", "astro"]
+  "cssvar.extensions": ["css", "astro"],
+
+  /* PostCSS */
+  "emmet.includeLanguages": {
+    "postcss": "css"
+  }
 }

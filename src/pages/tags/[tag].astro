@@ -25,9 +25,9 @@ const description = `Projects tagged with #${tag}`;
 ---
 
 <Layout title={title} description={description}>
-  <Header back>{`#${titlecase(tag)}`}</Header>
+  <Header>{`#${titlecase(tag)}`}</Header>
   <main>
-    <ul class="project-list" role="list">
+    <ul class="project-list | grid" role="list">
       {
         projects
           .sort((a, b) => a.id.localeCompare(b.id))
@@ -41,17 +41,17 @@ const description = `Projects tagged with #${tag}`;
   </main>
   <Footer>
     <nav>
-      <a class="secondary-selectable" href="/tags/">[ View All Tags ]</a>
+      <a class="secondary-selectable font-pixelated-small" href="/tags/"
+        >[ View All Tags ]</a
+      >
       <nav></nav>
     </nav>
   </Footer>
 
   <style>
     .project-list {
-      display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-      row-gap: 1.125rem;
-      column-gap: 1rem;
+      --gutter: 1.125rem 1rem;
+      --grid-min-item-size: 300px;
     }
 
     nav {
@@ -61,8 +61,6 @@ const description = `Projects tagged with #${tag}`;
       padding-block: 1rem;
 
       a {
-        font-family: var(--ff-pixelated);
-        font-size: var(--fs-pixelated-small);
         text-transform: uppercase;
       }
     }
