@@ -12,25 +12,17 @@ const backHref = back === true ? "javascript:history.back()" : back || null;
 <nav>
   {
     back && (
-      <button class="font-pixelated-small" role="navigation">
-        <a href={backHref} class="back">
-          <span class="symbol">&lsaquo;</span>
-          <span>Go Back</span>
-        </a>
-      </button>
+      <a href={backHref} class="back | font-pixelated-small">
+        <span class="symbol">&lsaquo;</span>
+        <span>Go Back</span>
+      </a>
     )
   }
   {
     home && (
-      <button
-        class="font-pixelated-small"
-        role="navigation"
-        data-variant="accent"
-      >
-        <a href="/" class="home">
-          <span>Home</span>
-        </a>
-      </button>
+      <a href="/" class="home | font-pixelated-small" data-variant="accent">
+        <span>Home</span>
+      </a>
     )
   }
 </nav>
@@ -42,10 +34,8 @@ const backHref = back === true ? "javascript:history.back()" : back || null;
     justify-content: space-between;
   }
 
-  button {
+  a {
     --bg-button: var(--color-text-primary);
-
-    border: none;
 
     color: var(--color-background);
     background-color: var(--bg-button);
@@ -61,20 +51,17 @@ const backHref = back === true ? "javascript:history.back()" : back || null;
     &[data-variant="accent"] {
       --bg-button: var(--color-amber);
     }
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 1ch;
 
-    a {
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      gap: 1ch;
+    padding-block: var(--space-fluid-2xs);
+    padding-inline: var(--space-fluid-xs-s);
+  }
 
-      padding-block: var(--space-fluid-2xs);
-      padding-inline: var(--space-fluid-xs-s);
-    }
-
-    a.back symbols {
-      line-height: 1cqh;
-      font-size: 1.125em;
-    }
+  a.back symbols {
+    line-height: 1cqh;
+    font-size: 1.125em;
   }
 </style>
