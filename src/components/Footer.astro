@@ -9,7 +9,7 @@ const { border = "thick" } = Astro.props;
 <footer>
   <slot />
   {border && border !== "none" && <hr data-type={border} />}
-  <span class="ff-pixelated fs-pixelated-small"
+  <span class="ff-pixelated"
     >Created with <span class="heart">♥</span> by Tanishq Manuja</span
   >
 </footer>
@@ -31,6 +31,7 @@ const { border = "thick" } = Astro.props;
       align-items: center;
       justify-content: center;
       gap: 1.5ch;
+      font-size: calc(var(--fs-small) * 1.05);
       padding-block: 0.875rem 1.125rem;
       word-spacing: 0.5ch;
     }
