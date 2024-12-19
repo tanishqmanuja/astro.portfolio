@@ -1,7 +1,3 @@
-@import url(./tokens/spacing.css);
-@import url(./tokens/colors.css);
-@import url(./tokens/fonts.css);
-
 :root {
   --gutter: var(--space-fluid-m);
   --content-width: 800px;

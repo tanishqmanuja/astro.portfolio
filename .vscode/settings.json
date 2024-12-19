@@ -7,8 +7,8 @@
   "cssvar.ignore": [],
   "cssvar.files": [
     "./node_modules/open-props/open-props.min.css",
-    "./src/styles/tokens/*.css",
-    "./src/styles/tokens.css"
+    "./src/styles/global/variables.css",
+    "./src/styles/tokens/*.css"
   ],
   "cssvar.extensions": ["css", "astro"]
 }
