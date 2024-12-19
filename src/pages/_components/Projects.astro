@@ -20,13 +20,15 @@ const alphabeticSort = (a: Project, b: Project) => a.id.localeCompare(b.id);
         .sort(alphabeticSort)
         .map((project, i) => (
           <li>
-            <span class="marker">{i.toString().padStart(2, "0")}</span>
+            <span class="marker | ff-dotmatrix">
+              {i.toString().padStart(2, "0")}
+            </span>
             <ProjectCard project={project} />
           </li>
         ))
     }
     <li>
-      <span class="marker">++</span>
+      <span class="marker | ff-dotmatrix">++</span>
       <ProjectCardHeader
         slug="projects/1"
         title="All Projects"
@@ -53,7 +55,6 @@ const alphabeticSort = (a: Project, b: Project) => a.id.localeCompare(b.id);
       justify-self: center;
       padding-top: 1.5px;
       color: var(--color-text-subdued);
-      font-family: var(--ff-dotmatrix);
       font-weight: bold;
       white-space: nowrap;
       transition: color 0.25s ease-in-out;

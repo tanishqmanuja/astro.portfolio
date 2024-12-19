@@ -15,7 +15,7 @@ const experiences = [
     {
       experiences.map((experience) => (
         <li>
-          <span class="marker">++</span>
+          <span class="marker | ff-dotmatrix">++</span>
           <ExperienceCard {...experience} />
         </li>
       ))
@@ -40,7 +40,6 @@ const experiences = [
       padding-top: 1.5px;
       justify-self: center;
       color: var(--color-text-subdued);
-      font-family: var(--ff-dotmatrix);
       font-weight: bold;
       white-space: nowrap;
     }

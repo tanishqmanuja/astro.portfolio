@@ -12,11 +12,11 @@ const { slug, title, subtitle } = Astro.props;
 ---
 
 <header class:list={Astro.props.class}>
-  <h4 class="title">
+  <h4 class="title | ff-pixelated fs-medium">
     <a class="primary-selectable" href={`/${slugify(slug)}/`}>{title}</a>
     <span aria-hidden="true">↱</span>
   </h4>
-  {subtitle && <h5 class="subtitle">{subtitle}</h5>}
+  {subtitle && <h5 class="subtitle | ff-pixelated fs-small">{subtitle}</h5>}
 </header>
 
 <style lang="scss">
@@ -28,11 +28,9 @@ const { slug, title, subtitle } = Astro.props;
 
   .title {
     width: fit-content;
-    font-weight: normal;
-    font-family: var(--ff-pixelated);
-    font-size: var(--fs-pixelated-medium);
-    line-height: 1.5;
+    line-height: inherit;
     overflow: hidden;
+    letter-spacing: 0.05ch;
 
     a {
       position: relative;
@@ -43,7 +41,7 @@ const { slug, title, subtitle } = Astro.props;
         height: 1px;
         width: 100%;
         left: 0;
-        bottom: -1px;
+        bottom: -3px;
         background: var(--color-text-highlight);
         opacity: 1;
         transition:
@@ -73,8 +71,6 @@ const { slug, title, subtitle } = Astro.props;
   .subtitle {
     line-height: 1;
     text-transform: uppercase;
-    font-family: var(--ff-pixelated);
-    font-size: var(--fs-pixelated-small);
     color: color-mix(in srgb, var(--color-text-secondary), transparent 30%);
   }
 </style>

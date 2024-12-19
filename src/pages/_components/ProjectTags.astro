@@ -11,7 +11,7 @@ const { tags } = Astro.props;
 {
   tags.length > 0 && (
     <section {...Astro.props}>
-      <h3>
+      <h3 id="tags-title" class="ff-pixelated fs-pixelated-small">
         <a
           href="/tags/"
           class="secondary-selectable"
@@ -21,7 +21,10 @@ const { tags } = Astro.props;
           [+] Tags
         </a>
       </h3>
-      <ul class="tag-list | cluster" aria-labelledby="tags-title">
+      <ul
+        class="tag-list | cluster | ff-dotmatrix fs-fluid--1"
+        aria-labelledby="tags-title"
+      >
         {tags.map((item) => (
           <li>
             <a href={`/tags/${item}/`} class="tag | primary-selectable">
@@ -42,20 +45,15 @@ const { tags } = Astro.props;
     max-width: max-content;
     margin-bottom: var(--size-2);
     color: var(--color-text-secondary);
-    font-family: var(--ff-pixelated);
-    font-size: var(--fs-pixelated-small);
     text-transform: uppercase;
     white-space: nowrap;
   }
 
   .tag-list {
-    gap: 1.25ch;
-    font-family: var(--ff-dotmatrix);
-    font-size: 0.75rem;
+    --gutter: 1.25ch;
   }
 
   .tag {
-    text-transform: capitalize;
     display: flex;
     align-items: center;
     gap: 0.25ch;
@@ -63,10 +61,13 @@ const { tags } = Astro.props;
 
     &::before {
       content: "#";
-      font-size: 1.2em;
+      font-size: 1.1em;
+      margin-bottom: 2px;
       font-family: var(--ff-pixelated);
+      font-size-adjust: var(--fs-adjust-pixelated);
       color: var(--color-text-subdued);
       transition: color 0.1s ease-in-out;
+      line-height: 1cqh;
     }
 
     &:is(:hover, :focus-within) {

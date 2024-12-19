@@ -16,7 +16,7 @@ const tags = getTagsFromProjects(projects);
 <Layout title={title}>
   <Header>Tags</Header>
   <main>
-    <ul class="tags">
+    <ul class="tags | cluster">
       {
         tags
           .sort((a, b) => a.tag.localeCompare(b.tag))
@@ -40,21 +40,14 @@ const tags = getTagsFromProjects(projects);
 
 <style lang="scss">
   .tags {
-    display: flex;
-    flex-wrap: wrap;
-    gap: 1rem;
-
-    margin: 0;
-    padding: 0;
-
-    list-style: none;
+    --gutter: 1rem;
   }
 
   .tag {
     display: flex;
     align-items: center;
     gap: 0.25ch;
-    text-transform: capitalize;
+    text-transform: uppercase;
     transition: color 0.1s ease-in-out;
 
     &__name {

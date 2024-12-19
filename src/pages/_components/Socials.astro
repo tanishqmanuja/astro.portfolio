@@ -4,7 +4,7 @@ import { SOCIALS } from "@/site.config";
 ---
 
 <Section title="Socials">
-  <ul>
+  <ul class="fs-fluid-0">
     <span class="decoration" aria-hidden="true">[</span>
     {
       SOCIALS.map((social, i) => (
@@ -14,12 +14,16 @@ import { SOCIALS } from "@/site.config";
             target="_blank"
             rel="noopener noreferrer"
             title={social.title}
+            class="ff-dotmatrix fs-small"
           >
             {social.name}
           </a>
 
           {i < SOCIALS.length - 1 && (
-            <span class="decoration" aria-hidden="true">
+            <span
+              class="decoration | ff-pixelated fs-pixelated-small"
+              aria-hidden="true"
+            >
               ,
             </span>
           )}
@@ -41,11 +45,11 @@ import { SOCIALS } from "@/site.config";
     flex-wrap: wrap;
     column-gap: 1.5ch;
     align-items: center;
-    font-size: var(--fs-fluid-0);
 
     & > .decoration {
       font-family: var(--ff-dotmatrix);
       font-size: var(--fs-large);
+      font-size-adjust: var(--fs-adjust-dotmatrix);
     }
   }
 
@@ -54,13 +58,10 @@ import { SOCIALS } from "@/site.config";
     align-items: center;
 
     & > .decoration {
-      font-family: var(--ff-pixelated);
       margin-left: 2px;
     }
 
     & > a {
-      font-family: var(--ff-dotmatrix);
-      font-size: var(--fs-small);
       text-decoration: none;
       text-transform: uppercase;
 

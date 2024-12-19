@@ -25,7 +25,9 @@ const title = `Projects | Page ${page.currentPage}`;
 <Layout title={title}>
   <Header>Projects</Header>
   <main>
-    <h3>Page {page.currentPage} of {page.lastPage}</h3>
+    <h3 class="ff-pixelated fs-pixelated-small">
+      Page {page.currentPage} of {page.lastPage}
+    </h3>
     <ul class="project-list | grid" role="list">
       {
         projects.map((project) => (
@@ -39,7 +41,7 @@ const title = `Projects | Page ${page.currentPage}`;
   <Footer>
     {
       page.lastPage > 1 && (
-        <nav>
+        <nav class="ff-pixelated fs-small">
           <a
             class="primary-selectable"
             href={page.url.prev}
@@ -68,8 +70,6 @@ const title = `Projects | Page ${page.currentPage}`;
     margin-bottom: 1.5rem;
     padding-block: 0.675rem;
 
-    font-size: 11px;
-    font-family: var(--ff-pixelated);
     text-transform: uppercase;
 
     border-block: 1px dashed var(--color-text-subdued);
@@ -90,8 +90,6 @@ const title = `Projects | Page ${page.currentPage}`;
     gap: 2rem;
 
     a {
-      font-family: var(--ff-pixelated);
-      font-size: var(--fs-pixelated-small);
       text-transform: uppercase;
 
       &[aria-disabled="true"] {

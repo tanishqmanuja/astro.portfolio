@@ -8,7 +8,7 @@ const { company, designation } = Astro.props;
 ---
 
 <article class="container:inline-size">
-  <h4 class="company">{company}</h4>
+  <h4 class="company | ff-pixelated fs-pixelated-medium">{company}</h4>
   {designation && <span class="designation"> &lt; {designation} /&gt;</span>}
 </article>
 
@@ -25,11 +25,11 @@ const { company, designation } = Astro.props;
     }
 
     .company {
-      font-family: var(--ff-pixelated);
-      font-size: var(--fs-pixelated-medium);
-      line-height: 1.5;
+      line-height: inherit;
       font-weight: normal;
       white-space: nowrap;
+      font-weight: bold;
+      letter-spacing: 0.05ch;
     }
 
     .designation {

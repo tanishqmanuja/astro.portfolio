@@ -9,10 +9,10 @@ const { back, home = true } = Astro.props;
 const backHref = back === true ? "javascript:history.back()" : back || null;
 ---
 
-<nav>
+<nav class="ff-pixelated fs-small">
   {
     back && (
-      <a href={backHref} class="back | font-pixelated-small">
+      <a href={backHref} class="back">
         <span class="symbol">&lsaquo;</span>
         <span>Go Back</span>
       </a>
@@ -20,7 +20,7 @@ const backHref = back === true ? "javascript:history.back()" : back || null;
   }
   {
     home && (
-      <a href="/" class="home | font-pixelated-small" data-variant="accent">
+      <a href="/" class="home" data-variant="accent">
         <span>Home</span>
       </a>
     )

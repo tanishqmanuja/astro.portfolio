@@ -1,0 +1,16 @@
+.quoted {
+  &::before,
+  &::after {
+    color: var(--color-text-subdued);
+  }
+
+  &::before {
+    content: open-quote;
+    margin-right: var(--quote-margin, 0.25ch);
+  }
+
+  &::after {
+    content: close-quote;
+    margin-left: var(--quote-margin, 0.25ch);
+  }
+}

@@ -29,7 +29,9 @@ if (repository && isGithubUrl(repository)) {
 }
 ---
 
-<ul class="info | scrollbar-thin touch:scrollbar-hidden">
+<ul
+  class="info | scrollbar-thin touch:scrollbar-hidden | fs-pixelated fs-pixelated-small"
+>
   <li>
     <span>
       {project.data.subtitle}
@@ -83,8 +85,6 @@ if (repository && isGithubUrl(repository)) {
     margin-bottom: 1rem;
     padding-block: 0.675rem;
 
-    font-family: var(--ff-pixelated);
-    font-size: var(--fs-pixelated-small);
     text-transform: uppercase;
 
     border-block: 1px dashed var(--color-text-subdued);

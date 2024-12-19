@@ -15,17 +15,16 @@ const stars = await cached("total-stars", () => getTotalStars(GITHUB_USERNAME));
   <p class="fs-fluid-0">
     I am a passionate javascript developer who turns complex problems into
     simple solutions using the right architecture. I have over <span
-      class="highlight">{publicRepos}</span
+      class="quoted highlight">{publicRepos}</span
     > public repositories and earned around
-    <span class="highlight">{stars}</span> stars on github.
+    <span class="quoted highlight">{stars}</span> stars on github.
   </p>
 </Section>
 
 <style>
   .highlight {
     font-family: var(--ff-pixelated);
-    font-size: 0.78em;
-    font-weight: bold;
+    font-size-adjust: var(--fs-adjust-pixelated);
     color: var(--color-text-highlight);
   }
 

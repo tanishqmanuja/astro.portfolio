@@ -47,7 +47,7 @@ const description = project.data.description;
   </main>
   <Footer border="thin">
     <ProjectTags class="tags" tags={project.data.tags} />
-    <nav>
+    <nav class="ff-pixelated fs-small">
       <a class="primary-selectable" href={url.prev} aria-disabled={!url.prev}>
         {`<`} Prev
       </a>
@@ -92,8 +92,6 @@ const description = project.data.description;
     border-block: 1px dashed var(--color-text-subdued);
 
     a {
-      font-family: var(--ff-pixelated);
-      font-size: var(--fs-pixelated-small);
       text-transform: uppercase;
       padding: 0.25rem 0.575rem;
       border-radius: 8px;

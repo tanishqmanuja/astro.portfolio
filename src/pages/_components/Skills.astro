@@ -4,7 +4,7 @@ import { SKILLS } from "@/site.config";
 ---
 
 <Section title="Skills">
-  <p class="skills">
+  <p class="skills | fs-fluid-0">
     {
       SKILLS.map((skill) => (
         <>
@@ -18,7 +18,6 @@ import { SKILLS } from "@/site.config";
 
 <style>
   .skills {
-    font-size: var(--fs-fluid-0);
     color: var(--color-text-subdued);
 
     & > span {

@@ -13,7 +13,7 @@ interface Props {
 const { stars, repository, slug } = Astro.props;
 ---
 
-<ul class="infoline | cluster">
+<ul class="infoline | cluster | ff-pixelated fs-pixelated-small">
   {
     stars && stars > 0 && (
       <li class="infoline__item stars">
@@ -58,11 +58,9 @@ const { stars, repository, slug } = Astro.props;
 
 <style lang="scss">
   .infoline {
-    gap: 1ch;
+    --gutter: 1ch;
 
     text-transform: uppercase;
-    font-family: var(--ff-pixelated);
-    font-size: var(--fs-pixelated-small);
 
     &__item {
       &,
