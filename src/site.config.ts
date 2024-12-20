@@ -1,9 +1,9 @@
-import BlueSkyIcon from "@/logos/socials/bluesky.svg";
-import DiscordIcon from "@/logos/socials/discord.svg";
-import GitHubIcon from "@/logos/socials/github.svg";
-import GMailIcon from "@/logos/socials/gmail.svg";
-import LinkedInIcon from "@/logos/socials/linkedin.svg";
-import XIcon from "@/logos/socials/x.svg";
+import BlueSkyIcon from "./logos/socials/bluesky.svg";
+import DiscordIcon from "./logos/socials/discord.svg";
+import GitHubIcon from "./logos/socials/github.svg";
+import GMailIcon from "./logos/socials/gmail.svg";
+import LinkedInIcon from "./logos/socials/linkedin.svg";
+import XIcon from "./logos/socials/x.svg";
 import type { Social } from "./types";
 
 export const URL = "https://tqman.pages.dev";
@@ -55,7 +55,7 @@ export const SOCIALS: Social[] = [
     Icon: BlueSkyIcon,
   },
   {
-    name: "Mail",
+    name: "GMail",
     href: "mailto:tanishqmanuja@gmail.com",
     title: `Send an email to ${AUTHOR}`,
     Icon: GMailIcon,
