@@ -14,3 +14,10 @@
     margin-left: var(--quote-margin, 0.25ch);
   }
 }
+
+.quoted[data-quote-mark] {
+  &::before,
+  &::after {
+    content: attr(data-quote-mark);
+  }
+}

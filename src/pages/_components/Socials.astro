@@ -1,77 +1,32 @@
 ---
-import Section from "@/components/Section.astro";
 import { SOCIALS } from "@/site.config";
 ---
 
-<Section title="Socials">
-  <ul class="fs-fluid-0">
-    <span class="decoration" aria-hidden="true">[</span>
-    {
-      SOCIALS.map((social, i) => (
-        <li>
-          <a
-            href={social.href}
-            target="_blank"
-            rel="noopener noreferrer"
-            title={social.title}
-            class="ff-dotmatrix"
-          >
-            {social.name}
-          </a>
-
-          {i < SOCIALS.length - 1 && (
-            <span
-              class="decoration | ff-pixelated fs-pixelated-small"
-              aria-hidden="true"
-            >
-              ,
-            </span>
-          )}
-        </li>
-      ))
-    }
-    <span class="decoration" aria-hidden="true">]</span>
-  </ul>
-</Section>
+<ul class="cluster">
+  {
+    SOCIALS.map(({ href, name, title, Icon }) => (
+      <li>
+        <a href={href} title={title}>
+          <Icon size="100%" fill="currentColor" class="icon" />
+          <span class="visually-hidden">{name}</span>
+        </a>
+      </li>
+    ))
+  }
+</ul>
 
 <style>
-  .decoration {
-    color: var(--color-text-subdued);
-    user-select: none;
-  }
-
-  ul {
-    display: flex;
-    flex-wrap: wrap;
-    column-gap: 1.5ch;
-    align-items: center;
-
-    & > .decoration {
-      font-family: var(--ff-dotmatrix);
-      font-size: var(--fs-large);
-      font-size-adjust: var(--fs-adjust-dotmatrix);
-    }
-  }
-
   li {
-    display: flex;
-    align-items: center;
+    height: var(--space-fluid-m);
+    aspect-ratio: 1;
+  }
 
-    & > .decoration {
-      margin-left: 2px;
-    }
+  .icon {
+    color: var(--color-text-secondary);
+    transition: color 0.2s ease-in-out;
 
-    & > a {
-      text-decoration: none;
-      text-transform: uppercase;
-
-      font-size: max(var(--fs-small), calc(0.8 * var(--fs-fluid-0)));
-
-      &:is(:hover, :active, :focus-within) {
-        color: var(--color-text-highlight);
-        text-underline-offset: 2px;
-        text-decoration: underline;
-      }
+    &:is(:hover, :active, :focus-within) {
+      color: var(--color-text-highlight);
     }
   }
 </style>

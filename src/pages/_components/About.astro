@@ -2,6 +2,7 @@
 import Section from "@/components/Section.astro";
 import { GITHUB_USERNAME } from "@/site.config";
 import { cached } from "@/utils/cache";
+import Socials from "./Socials.astro";
 import { getTotalPublicRepos, getTotalStars } from "./utils/github";
 
 const publicRepos = await cached("total-public-repos", () =>
@@ -11,17 +12,25 @@ const publicRepos = await cached("total-public-repos", () =>
 const stars = await cached("total-stars", () => getTotalStars(GITHUB_USERNAME));
 ---
 
-<Section title="About" class="container:inline-size">
+<Section title="About" class="container:inline-size | flow">
   <p class="fs-fluid-0">
     I am a passionate javascript developer who turns complex problems into
     simple solutions using the right architecture. I have over <span
-      class="quoted highlight">{publicRepos}</span
+      class="quoted highlight"
+      data-quote-mark="_">{publicRepos}</span
     > public repositories and earned around
-    <span class="quoted highlight">{stars}</span> stars on github.
+    <span class="quoted highlight" data-quote-mark="_">{stars}</span> stars on github.
   </p>
+
+  <p> Connect with me on ... </p>
+  <Socials />
 </Section>
 
 <style>
+  .flow {
+    --flow-space: var(--space-fluid-xs);
+  }
+
   .highlight {
     font-family: var(--ff-pixelated);
     font-size-adjust: var(--fs-adjust-pixelated);
