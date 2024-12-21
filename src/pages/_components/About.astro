@@ -15,17 +15,17 @@ const stars = await cached("total-stars", () => getTotalStars(GITHUB_USERNAME));
 
 <Section title="About" class="container:inline-size | flow">
   <p class="fs-fluid-0">
-    I am a passionate javascript developer, crafting efficient and scalable
+    A passionate javascript developer, who loves crafting efficient and scalable
     solutions to complex challenges.</p
   >
 
   <p
-    >With over <span class="quoted highlight" data-quote-mark="*"
-      >{publicRepos}</span
-    > public repositories and around <span
+    >I am an active contributor in the open-source community with over <span
       class="quoted highlight"
-      data-quote-mark="*">{stars}</span
-    > earned stars, I am active contributer in the open-source community.
+      data-quote-mark="*">{publicRepos}</span
+    > public repositories and <span class="quoted highlight" data-quote-mark="*"
+      >{stars}</span
+    > earned stars.
   </p>
 
   <p> Connect with me on ... </p>
@@ -45,7 +45,7 @@ const stars = await cached("total-stars", () => getTotalStars(GITHUB_USERNAME));
 
   @container (width < 35rem) {
     p {
-      text-wrap: balance;
+      text-wrap: stable;
     }
   }
 </style>
