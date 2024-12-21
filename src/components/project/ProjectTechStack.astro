@@ -22,11 +22,11 @@ const { stack } = Astro.props;
       >
         [+] Tech Stack
       </h3>
-      <ul class="stack | cluster">
+      <ul class="cluster">
         {stack
           .sort((a, b) => booleanCompare(hasIcon(a), hasIcon(b)))
           .map((brand, index) => (
-            <li class="stack-item">
+            <li>
               <a class="hoverable" href={getBrandLink(brand)}>
                 <BrandLogo brand={brand} size={12} />
                 <span class="name">{brand}</span>
@@ -50,11 +50,11 @@ const { stack } = Astro.props;
     text-transform: uppercase;
   }
 
-  .stack {
+  ul {
     gap: 0.25ch;
   }
 
-  .stack-item {
+  li {
     display: flex;
     align-items: center;
     gap: 0.25ch;
