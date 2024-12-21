@@ -8,13 +8,13 @@
   },
 
   /* CSS Variables */
-  "cssvar.ignore": [],
-  "cssvar.files": [
-    "./node_modules/open-props/open-props.min.css",
-    "./src/styles/global/variables.css",
-    "./src/styles/tokens/*.css"
+  "cssVariables.lookupFiles": [
+    "**/*.css",
+    "**/*.scss",
+    "**/*.sass",
+    "**/*.less",
+    "node_modules/open-props/open-props.min.css"
   ],
-  "cssvar.extensions": ["css", "astro"],
 
   /* PostCSS */
   "emmet.includeLanguages": {
