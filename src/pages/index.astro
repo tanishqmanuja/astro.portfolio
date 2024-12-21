@@ -1,15 +1,18 @@
 ---
 import Footer from "@/components/Footer.astro";
 import Layout from "@/layouts/Layout.astro";
+import { AUTHOR } from "@/site.config";
 
 import About from "./_components/About.astro";
 import Experience from "./_components/Experience.astro";
 import Header from "./_components/Header.astro";
 import Projects from "./_components/Projects.astro";
 import Skills from "./_components/Skills.astro";
+
+const description = `${AUTHOR}'s minimalist portfolio website.`;
 ---
 
-<Layout>
+<Layout description={description}>
   <Header />
   <main>
     <About />
