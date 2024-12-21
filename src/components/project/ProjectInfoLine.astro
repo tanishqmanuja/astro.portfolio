@@ -6,8 +6,7 @@ import StarIcon from "@astropub/icons/StarFilled";
 
 import BrandLogo from "@/components/brand/BrandLogo.astro";
 import { cached } from "@/utils/cache";
-import { isGithubUrl, parseGithubUrl } from "@/utils/github/helpers";
-import { getStars } from "./utils/github";
+import { getStars, isGithubUrl, parseGithubUrl } from "@/utils/github/helpers";
 
 interface Props {
   project: CollectionEntry<"project">;
@@ -16,6 +15,7 @@ interface Props {
 const { project } = Astro.props;
 
 const {
+  subtitle,
   links: { repository, npm },
 } = project.data;
 
@@ -29,18 +29,18 @@ if (repository && isGithubUrl(repository)) {
 }
 ---
 
-<ul
-  class="info | scrollbar-thin touch:scrollbar-hidden | fs-pixelated fs-pixelated-small"
->
-  <li>
-    <span>
-      {project.data.subtitle}
-    </span>
-  </li>
+<ul class="reel scrollbar-thin ff-pixelated fs-pixelated-small">
+  {
+    subtitle && (
+      <li>
+        <span>{subtitle}</span>
+      </li>
+    )
+  }
   {
     stars && (
       <li>
-        <StarIcon size="12" class="amber" />
+        <StarIcon size="12" class="color-amber" />
         <span>{stars} stars</span>
       </li>
     )
@@ -48,11 +48,7 @@ if (repository && isGithubUrl(repository)) {
   {
     repository && (
       <li>
-        <a
-          class="primary-selectable"
-          href={repository}
-          title="Visit Repository"
-        >
+        <a class="hoverable" href={repository} title="Visit Repository">
           <GithubIcon size="12" />
           <span>Github</span>
         </a>
@@ -63,7 +59,7 @@ if (repository && isGithubUrl(repository)) {
     npm && (
       <li>
         <a
-          class="primary-selectable"
+          class="hoverable"
           href={npm}
           title="Visit NPM"
           target="_blank"
@@ -79,31 +75,23 @@ if (repository && isGithubUrl(repository)) {
 
 <style lang="scss">
   ul {
-    display: flex;
-    align-items: center;
-    gap: 1ch;
-    margin-bottom: 1rem;
-    padding-block: 0.675rem;
+    --gutter: 1ch;
+
+    margin-bottom: var(--space-fluid-s-m);
+    padding-block: 15px;
 
     text-transform: uppercase;
 
     border-block: 1px dashed var(--color-text-subdued);
-
-    overflow-x: auto;
-    overscroll-behavior-x: contain;
-    scroll-behavior: smooth;
-    scroll-snap-type: x mandatory;
     scroll-padding: 0 2ch;
   }
 
   li {
     display: flex;
     align-items: center;
-    white-space: nowrap;
     gap: 1ch;
-    flex-shrink: 0;
-
-    scroll-snap-align: start;
+    white-space: nowrap;
+    line-height: 100%;
 
     & > a {
       display: flex;

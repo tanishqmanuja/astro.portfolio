@@ -1,14 +1,20 @@
+@use "node_modules/utopia-core-scss/src/utopia" as utopia;
+
 :root {
-  @utopia typeScale({
-    minFontSize: 16,
-    maxFontSize: 18,
-    minTypeScale: 1.2,
-    maxTypeScale: 1.414,
-    positiveSteps: 4,
-    negativeSteps: 0,
-    prefix: 'fs-fluid',
-    relativeTo: 'container'
-  });
+  @include utopia.generateTypeScale(
+    (
+      minWidth: 320,
+      maxWidth: 1080,
+      minFontSize: 16,
+      maxFontSize: 18,
+      minTypeScale: 1.2,
+      maxTypeScale: 1.414,
+      positiveSteps: 4,
+      negativeSteps: 0,
+      relativeTo: "container",
+      prefix: "fs-fluid-",
+    )
+  );
 }
 
 :root {

@@ -6,3 +6,21 @@
     minmax(var(--grid-min-item-size, 16rem), 1fr)
   );
 }
+
+nav:is(.navigation) {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: var(--space-fluid-s);
+
+  a {
+    border-radius: 2px;
+    padding: 4px 8px;
+    text-transform: uppercase;
+
+    &[aria-disabled="true"] {
+      cursor: not-allowed;
+      color: var(--color-text-secondary);
+    }
+  }
+}

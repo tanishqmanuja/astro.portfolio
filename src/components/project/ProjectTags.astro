@@ -14,7 +14,7 @@ const { tags } = Astro.props;
       <h3 id="tags-title" class="ff-pixelated fs-pixelated-small">
         <a
           href="/tags/"
-          class="secondary-selectable"
+          class="color-secondary hoverable"
           title="All Tags"
           aria-label="Tags"
         >
@@ -22,12 +22,12 @@ const { tags } = Astro.props;
         </a>
       </h3>
       <ul
-        class="tag-list | cluster | ff-dotmatrix fs-fluid--1"
+        class="cluster | ff-dotmatrix fs-fluid--1"
         aria-labelledby="tags-title"
       >
         {tags.map((item) => (
           <li>
-            <a href={`/tags/${item}/`} class="tag | primary-selectable">
+            <a href={`/tags/${item}/`} class="tag | hoverable">
               {item}
             </a>
           </li>
@@ -49,7 +49,7 @@ const { tags } = Astro.props;
     white-space: nowrap;
   }
 
-  .tag-list {
+  ul {
     --gutter: 1.25ch;
   }
 

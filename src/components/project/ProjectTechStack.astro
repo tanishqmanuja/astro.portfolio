@@ -16,7 +16,10 @@ const { stack } = Astro.props;
 {
   stack.length > 0 && (
     <section {...Astro.props}>
-      <h3 aria-label="Tech Stack" class="ff-pixelated fs-pixelated-small amber">
+      <h3
+        aria-label="Tech Stack"
+        class="ff-pixelated fs-pixelated-small color-amber"
+      >
         [+] Tech Stack
       </h3>
       <ul class="stack | cluster">
@@ -24,7 +27,7 @@ const { stack } = Astro.props;
           .sort((a, b) => booleanCompare(hasIcon(a), hasIcon(b)))
           .map((brand, index) => (
             <li class="stack-item">
-              <a class="primary-selectable" href={getBrandLink(brand)}>
+              <a class="hoverable" href={getBrandLink(brand)}>
                 <BrandLogo brand={brand} size={12} />
                 <span class="name">{brand}</span>
               </a>

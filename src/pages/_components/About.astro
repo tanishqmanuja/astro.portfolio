@@ -2,8 +2,9 @@
 import Section from "@/components/Section.astro";
 import { GITHUB_USERNAME } from "@/site.config";
 import { cached } from "@/utils/cache";
+import { getTotalPublicRepos, getTotalStars } from "@/utils/github/helpers";
+
 import Socials from "./Socials.astro";
-import { getTotalPublicRepos, getTotalStars } from "./utils/github";
 
 const publicRepos = await cached("total-public-repos", () =>
   getTotalPublicRepos(GITHUB_USERNAME),
@@ -14,12 +15,17 @@ const stars = await cached("total-stars", () => getTotalStars(GITHUB_USERNAME));
 
 <Section title="About" class="container:inline-size | flow">
   <p class="fs-fluid-0">
-    I am a passionate javascript developer who turns complex problems into
-    simple solutions using the right architecture. I have over <span
+    I am a passionate javascript developer, crafting efficient and scalable
+    solutions to complex challenges.</p
+  >
+
+  <p
+    >With over <span class="quoted highlight" data-quote-mark="*"
+      >{publicRepos}</span
+    > public repositories and around <span
       class="quoted highlight"
-      data-quote-mark="_">{publicRepos}</span
-    > public repositories and earned around
-    <span class="quoted highlight" data-quote-mark="_">{stars}</span> stars on github.
+      data-quote-mark="*">{stars}</span
+    > earned stars, I am active contributer in the open-source community.
   </p>
 
   <p> Connect with me on ... </p>

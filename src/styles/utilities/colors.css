@@ -1,0 +1,19 @@
+.color-amber {
+  color: var(--color-amber);
+}
+
+.color-orange {
+  color: var(--color-orange);
+}
+
+.color-primary {
+  color: var(--color-text-primary);
+}
+
+.color-secondary {
+  color: var(--color-text-secondary);
+}
+
+.color-subdued {
+  color: var(--color-text-subdued);
+}

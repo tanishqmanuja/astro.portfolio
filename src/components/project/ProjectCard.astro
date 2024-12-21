@@ -1,9 +1,9 @@
 ---
 import type { CollectionEntry } from "astro:content";
 
-import { getStars } from "@/pages/_components/utils/github";
 import { cached } from "@/utils/cache";
-import { isGithubUrl, parseGithubUrl } from "@/utils/github/helpers";
+import { getStars, isGithubUrl, parseGithubUrl } from "@/utils/github/helpers";
+
 import ProjectCardHeader from "./ProjectCardHeader.astro";
 import ProjectCardInfoLine from "./ProjectCardInfoLine.astro";
 

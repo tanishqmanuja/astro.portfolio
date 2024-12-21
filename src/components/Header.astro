@@ -1,5 +1,5 @@
 ---
-import HeaderNav from "./HeaderNav.astro";
+import HeaderNavigation from "./HeaderNavigation.astro";
 
 interface Props {
   back?: string | boolean;
@@ -10,7 +10,7 @@ const { back = true, home = true } = Astro.props;
 ---
 
 <header>
-  <HeaderNav back={back} home={home} />
+  <HeaderNavigation back={back} home={home} />
   <h1 class="ff-pixelated fs-fluid-3">
     <slot />
   </h1>

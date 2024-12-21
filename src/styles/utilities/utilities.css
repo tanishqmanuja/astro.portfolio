@@ -1,24 +1,13 @@
 @import url(./accessibility.css);
+@import url(./reel.css);
 @import url(./cluster.css);
+@import url(./colors.css);
 @import url(./fonts.css);
 @import url(./container.css);
 @import url(./quoted.css);
 
-.amber {
-  color: var(--color-amber);
-}
-
-.primary-selectable {
-  color: var(--color-text-primary);
-  transition: color 0.2s var(--ease-in-out-1);
-
-  &:is(:hover, :active, :focus-within) {
-    color: var(--color-text-highlight);
-  }
-}
-
-.secondary-selectable {
-  color: var(--color-text-secondary);
+:where(.hoverable) {
+  cursor: pointer;
   transition: color 0.2s var(--ease-in-out-1);
 
   &:is(:hover, :active, :focus-within) {
@@ -27,28 +16,22 @@
 }
 
 .scrollbar-thin {
+  --thumb-color: var(--color-text-subdued);
+
   &::-webkit-scrollbar {
     width: 4px;
     height: 4px;
   }
-}
 
-.touch\:scrollbar-hidden {
-  @media (--touch) {
-    -ms-overflow-style: none;
-    scrollbar-width: none;
+  &::-webkit-scrollbar-track {
+    background-color: transparent;
+  }
 
-    &::-webkit-scrollbar {
-      width: 0;
-    }
+  &::-webkit-scrollbar-thumb {
+    background-color: var(--thumb-color);
+  }
 
-    &::-webkit-scrollbar-track {
-      background-color: transparent;
-    }
-
-    &::-webkit-scrollbar-thumb {
-      border: none;
-      background-color: transparent;
-    }
+  &::-webkit-scrollbar-thumb:hover {
+    background-color: lch(from var(--thumb-color) calc(l + 5) c h);
   }
 }

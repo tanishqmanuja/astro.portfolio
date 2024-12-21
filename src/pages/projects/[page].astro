@@ -28,10 +28,10 @@ const title = `Projects | Page ${page.currentPage}`;
     <h3 class="ff-pixelated fs-pixelated-small">
       Page {page.currentPage} of {page.lastPage}
     </h3>
-    <ul class="project-list | grid" role="list">
+    <ul class="grid">
       {
         projects.map((project) => (
-          <li class="project-list-item">
+          <li>
             <ProjectCard project={project} fullsize />
           </li>
         ))
@@ -41,16 +41,16 @@ const title = `Projects | Page ${page.currentPage}`;
   <Footer>
     {
       page.lastPage > 1 && (
-        <nav class="ff-pixelated fs-small">
+        <nav class="ff-pixelated fs-small | navigation">
           <a
-            class="primary-selectable"
+            class="hoverable"
             href={page.url.prev}
             aria-disabled={page.currentPage === 1}
           >
             {`<`} Prev
           </a>
           <a
-            class="primary-selectable"
+            class="hoverable"
             href={page.url.next}
             aria-disabled={page.currentPage === page.lastPage}
           >
@@ -64,18 +64,13 @@ const title = `Projects | Page ${page.currentPage}`;
 
 <style lang="scss">
   h3 {
-    display: flex;
-    align-items: center;
-    gap: 1ch;
     margin-bottom: 1.5rem;
-    padding-block: 0.675rem;
-
+    padding-block: 15px;
     text-transform: uppercase;
-
     border-block: 1px dashed var(--color-text-subdued);
   }
 
-  .project-list {
+  ul {
     --gutter: 1.125rem 1rem;
     --grid-min-item-size: 300px;
 
@@ -83,19 +78,7 @@ const title = `Projects | Page ${page.currentPage}`;
   }
 
   nav {
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    padding-block: 1rem;
     gap: 2rem;
-
-    a {
-      text-transform: uppercase;
-
-      &[aria-disabled="true"] {
-        cursor: not-allowed;
-        color: var(--color-text-secondary);
-      }
-    }
+    padding-block: 0.75rem;
   }
 </style>

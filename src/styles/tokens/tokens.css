@@ -1,3 +1,3 @@
-@import url(./spacing.css);
 @import url(./colors.css);
-@import url(./fonts.css);
+@import url(./fonts.scss);
+@import url(./spacing.scss);

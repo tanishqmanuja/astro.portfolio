@@ -14,7 +14,7 @@ const alphabeticSort = (a: Project, b: Project) => a.id.localeCompare(b.id);
 
 <Section title="Projects">
   <h3 slot="header">
-    <a href="/projects/1/" class="primary-selectable" set:text="Projects" /></h3
+    <a href="/projects/1/" class="hoverable" set:text="Projects" /></h3
   >
 
   <ol>
@@ -82,12 +82,14 @@ const alphabeticSort = (a: Project, b: Project) => a.id.localeCompare(b.id);
       white-space: nowrap;
       transition: color 0.25s ease-in-out;
 
-      @media (--motionOK) {
-        view-timeline-name: --item-timeline;
-        animation-name: marker--reveal;
-        animation-fill-mode: both;
-        animation-timeline: --item-timeline;
-        animation-range: cover 0% cover 10%;
+      @media (prefers-reduced-motion: no-preference) {
+        @supports (view-timeline-name: --item-timeline) {
+          view-timeline-name: --item-timeline;
+          animation-name: marker--reveal;
+          animation-fill-mode: both;
+          animation-timeline: --item-timeline;
+          animation-range: cover 0% cover 10%;
+        }
       }
     }
 

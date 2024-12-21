@@ -13,7 +13,7 @@ const { slug, title, subtitle } = Astro.props;
 
 <header class:list={Astro.props.class}>
   <h4 class="title | ff-pixelated fs-medium">
-    <a class="primary-selectable" href={`/${slugify(slug)}/`}>{title}</a>
+    <a class="hoverable" href={`/${slugify(slug)}/`}>{title}</a>
     <span aria-hidden="true">↱</span>
   </h4>
   {subtitle && <h5 class="subtitle | ff-pixelated fs-small">{subtitle}</h5>}

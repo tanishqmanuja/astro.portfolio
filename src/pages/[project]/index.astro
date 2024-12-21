@@ -3,18 +3,18 @@ import { getCollection, render } from "astro:content";
 
 import Footer from "@/components/Footer.astro";
 import Header from "@/components/Header.astro";
+import ProjectInfoLine from "@/components/project/ProjectInfoLine.astro";
+import ProjectTags from "@/components/project/ProjectTags.astro";
+import ProjectTechStack from "@/components/project/ProjectTechStack.astro";
 import ProjectComments from "@/components/ProjectComments.astro";
 import Layout from "@/layouts/Layout.astro";
 import { AUTHOR } from "@/site.config";
 import { slugify } from "@/utils/slug";
-import ProjectInfoLine from "./_components/ProjectInfoLine.astro";
-import ProjectStack from "./_components/ProjectStack.astro";
-import ProjectTags from "./_components/ProjectTags.astro";
 
 export async function getStaticPaths() {
   const projects = await getCollection("project");
   return projects.map((project, index, projects) => ({
-    params: { slug: slugify(project.slug) },
+    params: { project: slugify(project.slug) },
     props: {
       project,
       url: {
@@ -39,7 +39,7 @@ const description = project.data.description;
   <Header>{project.data.title}</Header>
   <main>
     <ProjectInfoLine project={project} />
-    <ProjectStack stack={project.data.stack} />
+    <ProjectTechStack stack={project.data.stack} />
 
     <section class="content | fs-fluid-0">
       <Content />
@@ -47,12 +47,12 @@ const description = project.data.description;
   </main>
   <Footer border="thin">
     <ProjectTags class="tags" tags={project.data.tags} />
-    <nav class="ff-pixelated fs-small">
-      <a class="primary-selectable" href={url.prev} aria-disabled={!url.prev}>
+    <nav class="ff-pixelated fs-small | navigation">
+      <a class="hoverable" href={url.prev} aria-disabled={!url.prev}>
         {`<`} Prev
       </a>
-      <a class="primary-selectable" href="/projects/1/">All Projects</a>
-      <a class="primary-selectable" href={url.next} aria-disabled={!url.next}>
+      <a class="hoverable" href="/projects/1/">All Projects</a>
+      <a class="hoverable" href={url.next} aria-disabled={!url.next}>
         Next {`>`}
       </a>
     </nav>
@@ -77,29 +77,14 @@ const description = project.data.description;
     margin-block: 3rem 1rem;
   }
 
-  .comments {
-    margin-block: 2rem;
-  }
-
   nav {
-    display: flex;
-    align-items: center;
-    justify-content: center;
     margin-block: 2rem 1rem;
     gap: 1.25rem;
-
-    padding-block: 0.425rem;
+    padding-block: 8px;
     border-block: 1px dashed var(--color-text-subdued);
+  }
 
-    a {
-      text-transform: uppercase;
-      padding: 0.25rem 0.575rem;
-      border-radius: 8px;
-
-      &[aria-disabled="true"] {
-        cursor: not-allowed;
-        color: var(--color-text-subdued);
-      }
-    }
+  .comments {
+    margin-block: 2rem;
   }
 </style>

@@ -21,7 +21,7 @@ const RepoIcon = repository && isGithubUrl(repository) ? GitHubIcon : LinkIcon;
   {
     stars && stars > 0 && (
       <li class="infoline__item stars">
-        <StarIcon size="12" class="amber" />
+        <StarIcon size="12" class="color-amber" />
         <span>{stars} stars</span>
       </li>
     )
@@ -31,7 +31,7 @@ const RepoIcon = repository && isGithubUrl(repository) ? GitHubIcon : LinkIcon;
     repository && (
       <li class="infoline__item repository">
         <a
-          class="primary-selectable"
+          class="hoverable"
           href={repository}
           title="Visit Repository"
           target="_blank"
@@ -47,11 +47,7 @@ const RepoIcon = repository && isGithubUrl(repository) ? GitHubIcon : LinkIcon;
   {
     !(repository || stars) && typeof slug === "string" && (
       <li class="infoline__item">
-        <a
-          class="primary-selectable"
-          href={`/${slugify(slug)}/`}
-          title="Read more"
-        >
+        <a class="hoverable" href={`/${slugify(slug)}/`} title="Read more">
           <span>More Info</span>
           <span class="symbol">»</span>
         </a>

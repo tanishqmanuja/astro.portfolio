@@ -11,15 +11,16 @@ export const cache = createStorage({
 export async function cached<T extends StorageValue>(
   key: string,
   fn: () => Promise<T>,
+  validator: (value: unknown) => boolean = (v) => v !== null,
 ): Promise<T> {
   if (import.meta.env.PROD) {
     return fn();
   }
 
-  const cachedValue = await cache.getItem<T>(key);
+  const cachedValue = await cache.getItem(key);
 
-  if (cachedValue !== null) {
-    return cachedValue;
+  if (validator(cachedValue)) {
+    return cachedValue as T;
   }
 
   const newValue = await fn();

@@ -1,0 +1,35 @@
+.reel {
+  display: flex;
+  align-items: var(--reel-vertical-alignment, center);
+  justify-content: var(--reel-horizontal-alignment, flex-start);
+  gap: var(--gutter, var(--space-fluid-s));
+
+  overflow-x: auto;
+  overscroll-behavior-x: contain;
+  scroll-behavior: smooth;
+  scroll-snap-type: x mandatory;
+
+  & > * {
+    flex-shrink: 0;
+    scroll-snap-align: var(--reel-scroll-snap-alignment, start);
+  }
+
+  /* Hide scrollbar on touch devices */
+  @media (hover: none) and (pointer: coarse) {
+    -ms-overflow-style: none;
+    scrollbar-width: none;
+
+    &::-webkit-scrollbar {
+      width: 0;
+    }
+
+    &::-webkit-scrollbar-track {
+      background-color: transparent;
+    }
+
+    &::-webkit-scrollbar-thumb {
+      border: none;
+      background-color: transparent;
+    }
+  }
+}

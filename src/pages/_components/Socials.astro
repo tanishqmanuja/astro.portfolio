@@ -6,7 +6,7 @@ import { SOCIALS } from "@/site.config";
   {
     SOCIALS.map(({ href, name, title, Icon }) => (
       <li>
-        <a href={href} title={title}>
+        <a href={href} title={title} class="color-secondary hoverable">
           <Icon size="100%" fill="currentColor" class="icon" />
           <span class="visually-hidden">{name}</span>
         </a>
@@ -19,14 +19,5 @@ import { SOCIALS } from "@/site.config";
   li {
     height: var(--space-fluid-m);
     aspect-ratio: 1;
-  }
-
-  .icon {
-    color: var(--color-text-secondary);
-    transition: color 0.2s ease-in-out;
-
-    &:is(:hover, :active, :focus-within) {
-      color: var(--color-text-highlight);
-    }
   }
 </style>

@@ -4,24 +4,14 @@ import { SKILLS } from "@/site.config";
 ---
 
 <Section title="Skills">
-  <p class="skills | fs-fluid-0">
+  <p class="fs-fluid-0 color-subdued">
     {
       SKILLS.map((skill) => (
         <>
-          <span>{skill}</span>,
+          <span class="color-primary">{skill}</span>,
         </>
       ))
     }
-    <span>and more</span>...
+    <span class="color-primary">and more</span>...
   </p>
 </Section>
-
-<style>
-  .skills {
-    color: var(--color-text-subdued);
-
-    & > span {
-      color: var(--color-text-primary);
-    }
-  }
-</style>
