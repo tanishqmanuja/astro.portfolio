@@ -4,14 +4,30 @@ import { SKILLS } from "@/site.config";
 ---
 
 <Section title="Skills">
-  <p class="fs-fluid-0 color-subdued">
+  <ul class="cluster | fs-fluid-0">
     {
       SKILLS.map((skill) => (
-        <>
-          <span class="color-primary">{skill}</span>,
-        </>
+        <li>
+          <span>{skill}</span>
+          <span class="color-subdued" role="presentation">
+            ,
+          </span>
+        </li>
       ))
     }
-    <span class="color-primary">and more</span>...
-  </p>
+    <li>
+      <span>and more</span>...
+    </li>
+  </ul>
 </Section>
+
+<style>
+  ul {
+    --gutter: 0 1ch;
+
+    li {
+      display: flex;
+      gap: 0.25ch;
+    }
+  }
+</style>
