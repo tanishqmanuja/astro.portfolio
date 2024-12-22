@@ -11,16 +11,31 @@ import OpengraphTags from "@/components/seo/OpenGraphTags.astro";
 import TwitterTags from "@/components/seo/TwitterTags.astro";
 import { AUTHOR, TWITTER_USERNAME } from "@/site.config";
 
+type OgImage = {
+  url: string;
+  alt: string;
+};
+
 interface Props {
   title?: string;
   description?: string;
   class?: string;
+  ogImage?: OgImage;
 }
 
-const { title = `${AUTHOR} | Portfolio`, description } = Astro.props;
+const DEFAULT_OG_IMAGE: OgImage = {
+  url: "og.png",
+  alt: `${AUTHOR} | Portfolio`,
+};
+
+const {
+  title = `${AUTHOR} | Portfolio`,
+  description,
+  ogImage = DEFAULT_OG_IMAGE,
+} = Astro.props;
 
 const canonicalUrl = new URL(Astro.url.pathname, Astro.site).href;
-const ogImageUrl = new URL("og.png", Astro.url.origin).href;
+const ogImageUrl = new URL(ogImage.url, Astro.url.origin).href;
 ---
 
 <!doctype html>
@@ -46,7 +61,7 @@ const ogImageUrl = new URL("og.png", Astro.url.origin).href;
       title={title}
       description={description}
       image={ogImageUrl}
-      imageAlt={`${AUTHOR} | Portfolio`}
+      imageAlt={ogImage.alt}
       type="website"
       url={canonicalUrl}
     />
@@ -56,13 +71,13 @@ const ogImageUrl = new URL("og.png", Astro.url.origin).href;
       title={title}
       description={description}
       image={ogImageUrl}
-      imageAlt={`${AUTHOR} | Portfolio`}
+      imageAlt={ogImage.alt}
       card="summary_large_image"
       creator={`@${TWITTER_USERNAME}`}
     />
 
     <!-- Others -->
-    <EmojiFavicon emoji="🧑🏻‍💻" />
+    <EmojiFavicon emoji="🧑🏻‍💻" fallback="/favicon.svg" />
     <Fonts />
     <GoogleSiteVerification token={GOOGLE_SITE_VERIFICATION_TOKEN} />
   </head>

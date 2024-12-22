@@ -19,6 +19,7 @@ export async function getStaticPaths() {
       project,
       url: {
         prev: index === 0 ? undefined : `/${slugify(projects[index - 1].slug)}`,
+        current: `/${slugify(project.slug)}`,
         next:
           index === projects.length - 1
             ? undefined
@@ -33,9 +34,13 @@ const { Content } = await render(project);
 
 const title = `${project.data.title} | ${AUTHOR}`;
 const description = project.data.description;
+const ogImage = {
+  url: `${url.current}/og.png`,
+  alt: `${project.data.title} by ${AUTHOR}`,
+};
 ---
 
-<Layout title={title} description={description}>
+<Layout title={title} description={description} ogImage={ogImage}>
   <Header>{project.data.title}</Header>
   <main>
     <ProjectInfoLine project={project} />
