@@ -5,9 +5,9 @@ import ProjectCard from "@/components/project/ProjectCard.astro";
 import ProjectCardHeader from "@/components/project/ProjectCardHeader.astro";
 import Section from "@/components/Section.astro";
 
-const projects = await getCollection("project");
+const projects = await getCollection("projects");
 
-type Project = CollectionEntry<"project">;
+type Project = CollectionEntry<"projects">;
 const isFeatured = (project: Project) => project.data.isFeatured;
 const alphabeticSort = (a: Project, b: Project) => a.id.localeCompare(b.id);
 ---

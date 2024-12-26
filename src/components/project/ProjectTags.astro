@@ -11,7 +11,10 @@ const { tags } = Astro.props;
 {
   tags.length > 0 && (
     <section {...Astro.props}>
-      <h3 id="tags-title" class="ff-pixelated fs-pixelated-small">
+      <h3
+        id="tags-title"
+        class="ff-pixelated fs-pixelated-small color-secondary"
+      >
         <a
           href="/tags/"
           class="color-secondary hoverable"
@@ -43,8 +46,7 @@ const { tags } = Astro.props;
 
   h3 {
     max-width: max-content;
-    margin-bottom: var(--size-2);
-    color: var(--color-text-secondary);
+    margin-bottom: 8px;
     text-transform: uppercase;
     white-space: nowrap;
   }

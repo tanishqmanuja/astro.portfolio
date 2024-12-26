@@ -1,6 +1,24 @@
-import { defineCollection, z } from "astro:content";
+import { file } from "astro/loaders";
+import { defineCollection, reference, z } from "astro:content";
 
-const project = defineCollection({
+const CONTENT_DIR = "./src/content";
+
+const developers = defineCollection({
+  loader: file(`${CONTENT_DIR}/developers.yaml`),
+  schema: z.object({
+    name: z.string(),
+    github: z.string(),
+  }),
+});
+
+const experiences = defineCollection({
+  schema: z.object({
+    company: z.string(),
+    designation: z.string(),
+  }),
+});
+
+const projects = defineCollection({
   schema: z.object({
     title: z.string(),
     subtitle: z.string().optional(),
@@ -15,9 +33,12 @@ const project = defineCollection({
     isFeatured: z.boolean().default(false),
     tags: z.array(z.string()).default([]),
     stack: z.array(z.string()).default([]),
+    developers: z.array(reference("developers")).default([]),
   }),
 });
 
 export const collections = {
-  project,
+  developers,
+  experiences,
+  projects,
 };

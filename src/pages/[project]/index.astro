@@ -3,16 +3,17 @@ import { getCollection, render } from "astro:content";
 
 import Footer from "@/components/Footer.astro";
 import Header from "@/components/Header.astro";
+import ProjectDevelopers from "@/components/project/ProjectDevelopers.astro";
 import ProjectInfoLine from "@/components/project/ProjectInfoLine.astro";
 import ProjectTags from "@/components/project/ProjectTags.astro";
 import ProjectTechStack from "@/components/project/ProjectTechStack.astro";
 import ProjectComments from "@/components/ProjectComments.astro";
 import Layout from "@/layouts/Layout.astro";
-import { AUTHOR } from "@/site.config";
+import { AUTHOR, GITHUB_USERNAME } from "@/site.config";
 import { slugify } from "@/utils/slug";
 
 export async function getStaticPaths() {
-  const projects = await getCollection("project");
+  const projects = await getCollection("projects");
   return projects.map((project, index, projects) => ({
     params: { project: slugify(project.slug) },
     props: {
@@ -30,6 +31,7 @@ export async function getStaticPaths() {
 }
 
 const { project, url } = Astro.props;
+const { tags, developers, stack } = project.data;
 const { Content } = await render(project);
 
 const title = `${project.data.title} | ${AUTHOR}`;
@@ -44,14 +46,20 @@ const ogImage = {
   <Header>{project.data.title}</Header>
   <main>
     <ProjectInfoLine project={project} />
-    <ProjectTechStack stack={project.data.stack} />
+    <ProjectTechStack stack={stack} />
 
     <section class="content | fs-fluid-0">
       <Content />
     </section>
+
+    {
+      developers.filter(({ id }) => id !== GITHUB_USERNAME).length > 0 && (
+        <ProjectDevelopers developers={developers} />
+      )
+    }
   </main>
   <Footer border="thin">
-    <ProjectTags class="tags" tags={project.data.tags} />
+    <ProjectTags class="tags" tags={tags} />
     <nav class="ff-pixelated fs-small | navigation">
       <a class="hoverable" href={url.prev} aria-disabled={!url.prev}>
         {`<`} Prev

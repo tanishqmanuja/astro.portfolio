@@ -11,8 +11,7 @@ import { titlecase } from "@/utils/text";
 import { getTagsFromProjects } from "./_utils";
 
 export async function getStaticPaths() {
-  const projects = await getCollection("project");
-  const tags = getTagsFromProjects(projects);
+  const tags = await getCollection("projects").then(getTagsFromProjects);
 
   return tags.map(({ tag, projects }) => ({
     params: { tag },

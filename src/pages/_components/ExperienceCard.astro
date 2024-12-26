@@ -1,15 +1,17 @@
 ---
+import type { CollectionEntry } from "astro:content";
+
 interface Props {
-  company: string;
-  designation?: string;
+  experience: CollectionEntry<"experiences">;
 }
 
-const { company, designation } = Astro.props;
+const { experience } = Astro.props;
+const { company, designation } = experience.data;
 ---
 
 <article class="container:inline-size">
   <h4 class="company | ff-pixelated fs-pixelated-medium">{company}</h4>
-  {designation && <span class="designation"> &lt; {designation} /&gt;</span>}
+  {designation && <span class="designation">{`< ${designation} />`}</span>}
 </article>
 
 <style>

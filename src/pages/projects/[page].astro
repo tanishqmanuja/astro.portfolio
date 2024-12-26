@@ -9,7 +9,7 @@ import ProjectCard from "@/components/project/ProjectCard.astro";
 import Layout from "@/layouts/Layout.astro";
 
 export async function getStaticPaths({ paginate }: GetStaticPathsOptions) {
-  const projects = await getCollection("project");
+  const projects = await getCollection("projects");
   return paginate(
     projects.sort((a, b) => a.id.localeCompare(b.id)),
     { pageSize: 4 },

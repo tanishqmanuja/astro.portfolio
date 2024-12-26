@@ -10,8 +10,7 @@ import { getTagsFromProjects } from "./_utils";
 
 const title = `Tags | ${AUTHOR}`;
 
-const projects = await getCollection("project");
-const tags = getTagsFromProjects(projects);
+const tags = await getCollection("projects").then(getTagsFromProjects);
 ---
 
 <Layout title={title}>

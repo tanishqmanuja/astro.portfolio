@@ -1,13 +1,14 @@
 import type { CollectionEntry } from "astro:content";
 
+type Projects = CollectionEntry<"projects">[];
+
 export type TagEntry = {
   tag: string;
-  projects: CollectionEntry<"project">[];
+  projects: Projects;
   count: number;
 };
 
-type Project = CollectionEntry<"project">;
-export function getTagsFromProjects(projects: Project[]) {
+export function getTagsFromProjects(projects: Projects) {
   const entries: Record<string, TagEntry> = {};
 
   for (const project of projects) {

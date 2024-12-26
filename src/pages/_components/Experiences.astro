@@ -1,14 +1,11 @@
 ---
+import { getCollection } from "astro:content";
+
 import Section from "@/components/Section.astro";
 
 import ExperienceCard from "./ExperienceCard.astro";
 
-const experiences = [
-  {
-    company: "UniConverge Technologies",
-    designation: "FullStack Developer, Intern",
-  },
-];
+const experiences = await getCollection("experiences");
 ---
 
 <Section title="Experience">
@@ -19,7 +16,7 @@ const experiences = [
           <span class="marker | ff-dotmatrix" role="presentation">
             ++
           </span>
-          <ExperienceCard {...experience} />
+          <ExperienceCard experience={experience} />
         </li>
       ))
     }

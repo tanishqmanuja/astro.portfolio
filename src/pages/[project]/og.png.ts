@@ -40,7 +40,7 @@ export const GET: APIRoute<Props> = async ({ props }) => {
 };
 
 export async function getStaticPaths() {
-  const projects = await getCollection("project");
+  const projects = await getCollection("projects");
   return projects.map((project) => ({
     params: { project: slugify(project.slug) },
     props: {

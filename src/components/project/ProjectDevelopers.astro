@@ -1,0 +1,77 @@
+---
+import type { HTMLAttributes } from "astro/types";
+import { Image } from "astro:assets";
+import { getEntries } from "astro:content";
+
+import type { CollectionEntryReference } from "@/utils/astro";
+import { pluralise } from "@/utils/text";
+
+interface Props extends HTMLAttributes<"section"> {
+  developers: CollectionEntryReference<"developers">[];
+}
+
+const developers = await getEntries(Astro.props.developers);
+---
+
+{
+  developers.length > 0 && (
+    <section {...Astro.props}>
+      <h3 class="ff-pixelated fs-pixelated-small color-secondary">
+        {pluralise("Developer", developers.length)}
+      </h3>
+      <ul class="cluster ">
+        {developers.map(({ data: { name, github } }) => (
+          <li>
+            <a href={`https://github.com/${github}`} class="hoverable">
+              <Image
+                src={`https://github.com/${github}.png`}
+                width={24}
+                height={24}
+                alt={`${name}`}
+              />
+              <span>{name}</span>
+            </a>
+          </li>
+        ))}
+      </ul>
+    </section>
+  )
+}
+
+<style lang="scss">
+  h3 {
+    max-width: max-content;
+    margin-top: 28px;
+    margin-bottom: 8px;
+    white-space: nowrap;
+    text-transform: uppercase;
+  }
+
+  ul {
+    --gutter: 2ch;
+  }
+
+  li {
+    display: flex;
+
+    &:not(:last-child)::after {
+      content: ",";
+      padding-left: 0.25ch;
+      color: var(--color-text-subdued);
+    }
+
+    a {
+      display: flex;
+      flex-wrap: nowrap;
+      white-space: nowrap;
+      gap: 8px;
+    }
+
+    img {
+      background-color: var(--color-text-subdued);
+      min-width: fit-content;
+      border-radius: 50%;
+      overflow: hidden;
+    }
+  }
+</style>
