@@ -24,6 +24,7 @@ export const BRAND_LINK_MAP: Record<string, string> = {
   docker: "https://www.docker.com/",
   mongodb: "https://www.mongodb.com/",
   redis: "https://redis.io/",
+  turbo: "https://turbo.build/",
 };
 
 export function getBrandLink(brand: string): string {
