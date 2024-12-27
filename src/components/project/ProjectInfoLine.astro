@@ -22,10 +22,7 @@ const {
 let stars: number | null = null;
 if (repository && isGithubUrl(repository)) {
   const { owner, repo } = parseGithubUrl(repository);
-  stars = await cached(
-    `stars/${repository.slice(repository.lastIndexOf("/"))}`,
-    () => getStars(owner, repo),
-  );
+  stars = await cached(`stars/${repo}`, () => getStars(owner, repo));
 }
 ---
 

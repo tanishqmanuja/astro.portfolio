@@ -21,9 +21,7 @@ const {
 let stars: number | undefined;
 if (repository && isGithubUrl(repository)) {
   const { owner, repo } = parseGithubUrl(repository);
-
-  const cachekey = `stars/${repository.slice(repository.lastIndexOf("/"))}`;
-  stars = await cached(cachekey, () => getStars(owner, repo)).catch(
+  stars = await cached(`stars/${repo}`, () => getStars(owner, repo)).catch(
     () => undefined,
   );
 }
@@ -31,7 +29,7 @@ if (repository && isGithubUrl(repository)) {
 
 <article class="container:inline-size">
   <ProjectCardHeader slug={project.slug} {...project.data} />
-  <p class="fs-fluid-0">{project.data.description}</p>
+  <p class="fs-fluid-0 color-secondary">{project.data.description}</p>
   <ProjectCardInfoLine
     slug={fullsize && project.slug}
     stars={stars}
@@ -39,10 +37,9 @@ if (repository && isGithubUrl(repository)) {
   />
 </article>
 
-<style lang="scss">
+<style>
   p {
     margin-block: 0.5rem;
     max-width: 65ch;
-    color: var(--color-text-secondary);
   }
 </style>
