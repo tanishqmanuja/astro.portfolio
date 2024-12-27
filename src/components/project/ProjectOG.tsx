@@ -1,5 +1,3 @@
-import React from "react";
-
 import { AUTHOR } from "@/site.config";
 
 export default function ProjectOG({ title }: { title: string }) {
