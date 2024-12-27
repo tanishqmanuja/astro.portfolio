@@ -15,20 +15,22 @@ const stars = await cached("total-stars", () => getTotalStars(GITHUB_USERNAME));
 
 <Section title="About" class="container:inline-size | flow">
   <p class="fs-fluid-0">
-    A passionate javascript developer, who loves crafting efficient and scalable
-    solutions to complex challenges.</p
+    A <span class="underlined">passionate javascript developer</span>, who loves
+    crafting efficient and scalable solutions to complex challenges.</p
   >
 
   <p
-    >I am an active contributor in the open-source community with over <span
-      class="quoted highlight"
-      data-quote-mark="*">{publicRepos}</span
-    > public repositories and <span class="quoted highlight" data-quote-mark="*"
+    >I am an <span class="underlined">active contributor</span> in the open-source
+    community with over
+    <span class="quoted highlight" data-quote-mark="*">{publicRepos}</span> public
+    repositories and <span class="quoted highlight" data-quote-mark="*"
       >{stars}</span
     > earned stars.
   </p>
 
-  <p> Connect with me on ... </p>
+  <p>
+    Connect with me <span class="color-orange">...</span>
+  </p>
   <Socials />
 </Section>
 
@@ -41,6 +43,12 @@ const stars = await cached("total-stars", () => getTotalStars(GITHUB_USERNAME));
     font-family: var(--ff-pixelated);
     font-size-adjust: var(--fs-adjust-pixelated);
     color: var(--color-text-highlight);
+  }
+
+  .underlined {
+    text-decoration: underline;
+    text-underline-offset: 3px;
+    text-decoration-color: var(--color-orange);
   }
 
   @container (width < 35rem) {

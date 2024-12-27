@@ -15,5 +15,5 @@
     transparent 28%
   );
 
-  --letter-spacing-fluid-header: clamp(0.0469rem, 0.0284rem + 0.0924vw, 0.1rem);
+  --letter-spacing-fluid-header: clamp(0.04rem, 0.0284rem + 0.0924vw, 0.1rem);
 }
