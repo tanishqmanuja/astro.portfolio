@@ -3,7 +3,7 @@ import { AUTHOR } from "@/site.config";
 export default function ProjectOG({ title }: { title: string }) {
   return (
     <main
-      tw="w-full h-full flex flex-col justify-start align-start p-14 box-border"
+      tw="w-full h-full flex flex-col justify-start p-14"
       style={{
         fontFamily: "Nothing",
         backgroundColor: "#121212",
