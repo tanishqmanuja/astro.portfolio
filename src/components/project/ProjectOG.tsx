@@ -19,7 +19,7 @@ export default function ProjectOG({ title }: { title: string }) {
         style={{
           width: "75%",
           fontFamily: "Departure Mono",
-          fontSize: "77px",
+          fontSize: title.length > 20 ? "99px" : "110px",
         }}
       >
         {title}

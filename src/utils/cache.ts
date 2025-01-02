@@ -32,7 +32,11 @@ export async function cached<T extends StorageValue>(
 
   const cachedValue = await cache.getItem(key);
 
-  if (cachedValue !== null) {
+  if (
+    cachedValue !== null &&
+    cachedValue !== undefined &&
+    "value" in cachedValue
+  ) {
     if (o.validator) {
       return o.validator(cachedValue.value);
     }
