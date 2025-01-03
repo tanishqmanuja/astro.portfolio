@@ -31,9 +31,10 @@ const projects = defineCollection({
       })
       .default({}),
     isFeatured: z.boolean().default(false),
+    isUnlisted: z.boolean().default(false),
     tags: z.array(z.string()).default([]),
     stack: z.array(z.string()).default([]),
-    developers: z.array(reference("developers")).default([]),
+    developers: z.array(reference("developers")).default(["tanishqmanuja"]),
   }),
 });
 

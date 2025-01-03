@@ -48,7 +48,7 @@ const ogImage = {
     <ProjectInfoLine project={project} />
     <ProjectTechStack stack={stack} />
 
-    <section class="content | fs-fluid-0">
+    <section class="content | flow | fs-fluid-0">
       <Content />
     </section>
 
@@ -78,14 +78,6 @@ const ogImage = {
     padding-bottom: 1rem;
   }
 
-  .content {
-    margin-block: 1rem;
-
-    * + * {
-      margin-block-start: 1rem;
-    }
-  }
-
   .tags {
     margin-block: 3rem 1rem;
   }
@@ -99,5 +91,58 @@ const ogImage = {
 
   .comments {
     margin-block: 2rem;
+  }
+</style>
+
+<style>
+  .content {
+    --flow-space: 1.2em;
+    margin-block: 1rem;
+
+    h1::before {
+      content: "#";
+    }
+
+    h2::before {
+      content: "##";
+    }
+
+    h1::before,
+    h2::before,
+    h3::before {
+      color: var(--color-barely-visible);
+      padding-right: 1ch;
+    }
+
+    code {
+      color: var(--color-amber);
+
+      &::before,
+      &::after {
+        content: "`";
+      }
+    }
+
+    ul {
+      list-style-type: disc;
+
+      :where(ul) {
+        list-style-type: circle;
+      }
+    }
+
+    ol {
+      list-style-type: decimal;
+    }
+
+    ul,
+    ol {
+      list-style-position: outside;
+      padding-inline-start: 18px;
+
+      :where(ul, ol) {
+        margin-block-start: 0;
+      }
+    }
   }
 </style>

@@ -1,0 +1,73 @@
+---
+title: UCT Dashboard
+subtitle: Project at UniConverge Technologies
+description: A brief summary of work project at UniConverge Technologies.
+
+isUnlisted: true
+
+stack:
+  - angular
+  - ionic
+  - node
+  - express
+  - prisma
+
+tags:
+  - app
+  - fullstack
+
+developers:
+  - tanishqmanuja
+  - kshitijsharma
+---
+
+import Video from "@/components/Video.astro";
+
+During my Internship at UniConverge Technologies, I worked on a project called UCT Dashboard. It is a fullstack web based application that allows to easily create a dynamic dashboard to present data in a visually appealing and interactive way.
+
+UniConverge Technologies is an IOT solution provider that is why a dashboard was required to represent the enormous unfiltered data collected through various devices and sensors in a user friendly and client accessible manner.
+
+## Key Features
+
+- Multi-Dashboard Support
+- Dynamic Dashboard Widgets
+  - Live Data with time based automatic & manual refresh
+  - Draggable and Resizable
+  - Zoom and Pan for Graphs
+- Multiple Widget Types
+  - Line Chart, Bar Chart, Scatter Plot, Text Tile, Meter, Gauge, Button etc.
+- User Authentication & Management
+- Import/Export of Dashboard
+
+## The Outcome
+
+The goal was to achieve an MVP(Minimum Viable Product) that is a functional dashboard, with rich feature set. UI/UX was not a priority because it can be refined after successful internal test runs.
+
+Here's how easy it is to add a `tile` widget to dashboard showing live data from a public API endpoint `https://api.coindesk.com/v1/bpi/currentprice.json`
+
+<Video
+  src="https://github.com/tanishqmanuja/static/raw/refs/heads/main/assets/uct-dashboard/bitcoin.webm"
+  aspect-ratio={{ h: 1030, w: 1920 }}
+  type="webm"
+  controls
+></Video>
+
+Below is a short demo showcasing the widget system of the dashboard, with full support for drag-drop, resize and automatic as well as manual data refresh.
+
+<Video
+  src="https://github.com/tanishqmanuja/static/raw/refs/heads/main/assets/uct-dashboard/widgets.webm"
+  aspect-ratio={{ h: 1030, w: 1920 }}
+  type="webm"
+  controls
+></Video>
+
+Flow for the import-export functionality is also simple and user friendly allowing pre-made dashboards from the company to be shared to the clients.
+
+<Video
+  src="https://github.com/tanishqmanuja/static/raw/refs/heads/main/assets/uct-dashboard/import-export.webm"
+  aspect-ratio={{ h: 1030, w: 1920 }}
+  type="webm"
+  controls
+></Video>
+
+This project was a great learning experience and I am very happy with the result.

@@ -1,5 +1,6 @@
 ---
 import type { CollectionEntry } from "astro:content";
+import { render } from "astro:content";
 
 interface Props {
   experience: CollectionEntry<"experiences">;
@@ -7,35 +8,54 @@ interface Props {
 
 const { experience } = Astro.props;
 const { company, designation } = experience.data;
+
+const { Content } = await render(experience);
 ---
 
 <article class="container:inline-size">
-  <h4 class="company | ff-pixelated fs-pixelated-medium">{company}</h4>
-  {designation && <span class="designation">{`< ${designation} />`}</span>}
+  <header>
+    <h4 class="company | ff-pixelated fs-pixelated-medium">{company}</h4>
+    {designation && <span class="designation">{`< ${designation} />`}</span>}
+  </header>
+
+  <div class="content | color-secondary fs-fluid-0">
+    <Content />
+  </div>
 </article>
 
 <style>
   article {
     display: flex;
-    column-gap: 2ch;
-    flex-wrap: wrap;
+    flex-direction: column;
+    gap: 4px;
 
-    @container (width < 35rem) {
-      & {
-        flex-direction: column;
+    header {
+      display: flex;
+      column-gap: 2ch;
+      flex-wrap: wrap;
+
+      @container (width < 35rem) {
+        & {
+          flex-direction: column;
+        }
+      }
+
+      .company {
+        line-height: inherit;
+        font-weight: normal;
+        white-space: nowrap;
+        font-weight: bold;
+        letter-spacing: 0.05ch;
+      }
+
+      .designation {
+        color: var(--color-text-secondary-shade);
       }
     }
 
-    .company {
-      line-height: inherit;
-      font-weight: normal;
-      white-space: nowrap;
-      font-weight: bold;
-      letter-spacing: 0.05ch;
-    }
-
-    .designation {
-      color: var(--color-text-secondary-shade);
+    .content {
+      max-width: 65ch;
+      text-wrap: balance;
     }
   }
 </style>

@@ -6,12 +6,13 @@ import type { GetStaticPathsOptions } from "astro";
 import Footer from "@/components/Footer.astro";
 import Header from "@/components/Header.astro";
 import ProjectCard from "@/components/project/ProjectCard.astro";
+import { filters } from "@/helpers/project/filters";
 import Layout from "@/layouts/Layout.astro";
 
 export async function getStaticPaths({ paginate }: GetStaticPathsOptions) {
   const projects = await getCollection("projects");
   return paginate(
-    projects.sort((a, b) => a.id.localeCompare(b.id)),
+    projects.filter(filters.listed).sort((a, b) => a.id.localeCompare(b.id)),
     { pageSize: 4 },
   );
 }
