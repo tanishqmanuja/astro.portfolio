@@ -4,6 +4,7 @@ import { GITHUB_USERNAME } from "@/site.config";
 import { cached } from "@/utils/cache";
 import { getTotalPublicRepos, getTotalStars } from "@/utils/github/helpers";
 
+import Resume from "./Resume.astro";
 import Socials from "./Socials.astro";
 
 const publicRepos = await cached("total-public-repos", () =>
@@ -32,6 +33,7 @@ const stars = await cached("total-stars", () => getTotalStars(GITHUB_USERNAME));
     Connect with me <span class="color-orange">...</span>
   </p>
   <Socials />
+  <Resume />
 </Section>
 
 <style>
