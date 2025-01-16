@@ -18,6 +18,7 @@ const alphabeticSort = (a: Project, b: Project) => a.id.localeCompare(b.id);
   >
 
   <ol>
+    <div class="line" aria-hidden="true"></div>
     {
       projects
         .filter(isFeatured)
@@ -63,10 +64,44 @@ const alphabeticSort = (a: Project, b: Project) => a.id.localeCompare(b.id);
   }
 
   ol {
-    margin-left: 12px;
+    position: relative;
     display: flex;
     flex-direction: column;
     row-gap: 1.125rem;
+
+    .line {
+      position: absolute;
+      width: 1px;
+      opacity: 0.25;
+      z-index: -1;
+      top: 1ch;
+      bottom: 3ch;
+      left: calc(1px + 1ch);
+      border-left: 2px dotted var(--color-text-subdued);
+
+      @media (prefers-reduced-motion: no-preference) {
+        @supports (animation-timeline: scroll()) {
+          animation: line auto linear;
+          animation-timeline: scroll(nearest block);
+          animation-range-start: entry 30%;
+          animation-range-end: exit 100%;
+
+          mask-image: linear-gradient(
+            180deg,
+            rgba(255, 255, 255, 1) 33.33%,
+            rgba(0, 0, 0, 0) 33.33%
+          );
+          mask-size: 100% 300%;
+          mask-position: 0 200%;
+
+          @keyframes line {
+            to {
+              mask-position: 0 150%;
+            }
+          }
+        }
+      }
+    }
   }
 
   li {
@@ -75,11 +110,14 @@ const alphabeticSort = (a: Project, b: Project) => a.id.localeCompare(b.id);
     column-gap: 2ch;
 
     .marker {
+      height: fit-content;
       justify-self: center;
       padding-top: 1.5px;
       font-weight: bold;
       white-space: nowrap;
       color: var(--color-text-secondary-shade);
+      background-color: var(--color-background);
+      box-shadow: 0 0 0 2px var(--color-background);
       transition: color 0.25s ease-in-out;
 
       @media (prefers-reduced-motion: no-preference) {
