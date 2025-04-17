@@ -19,7 +19,7 @@
     "@astropub/icons": "^0.2.0",
     "@octokit/rest": "^21.1.1",
     "@vercel/og": "^0.6.8",
-    "astro": "5.7.2",
+    "astro": "5.7.3",
     "astro-font": "^1.1.0",
     "gsap": "^3.12.7",
     "open-props": "^1.7.15",
@@ -35,7 +35,7 @@
   },
   "devDependencies": {
     "@ianvs/prettier-plugin-sort-imports": "^4.4.1",
-    "@types/bun": "^1.2.9",
+    "@types/bun": "^1.2.10",
     "@types/node": "^22.14.1",
     "@types/react": "^19.1.2",
     "@types/react-dom": "^19.1.2",
