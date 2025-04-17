@@ -17,4 +17,4 @@ const module: AstroSVGModule | null = await import(
 const Component = module?.default;
 ---
 
-{Component && <Component size={size} title={brand} />}
+{Component && <Component height={size} width={size} />}

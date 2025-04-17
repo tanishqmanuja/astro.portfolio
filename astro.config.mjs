@@ -23,7 +23,5 @@ export default defineConfig({
       }),
     },
   },
-  experimental: {
-    svg: true,
-  },
+  experimental: {},
 });
