@@ -9,6 +9,8 @@ import type { APIRoute } from "astro";
 import ProjectOG from "@/components/project/ProjectOG";
 import { slugify } from "@/utils/slug";
 
+const FONTS_DIR = "src/fonts";
+
 interface Props {
   title: string;
 }
@@ -18,9 +20,9 @@ async function loadLocalFont(path: string) {
 }
 
 export const GET: APIRoute<Props> = async ({ props }) => {
-  const NothingFont = await loadLocalFont("public/fonts/ndot57.otf");
+  const NothingFont = await loadLocalFont(`${FONTS_DIR}/ndot57.otf`);
   const DepartureMonoFont = await loadLocalFont(
-    "public/fonts/departure-mono-regular.otf",
+    `${FONTS_DIR}/departure-mono-regular.otf`,
   );
 
   return new ImageResponse(ProjectOG({ title: props.title }), {
