@@ -18,10 +18,9 @@
 }
 
 :root {
-  --ff-monospace: ui-monospace, SFMono-Regular, SF Mono, Menlo, Consolas,
-    Liberation Mono, monospace;
-  --ff-pixelated: "Departure Mono", var(--ff-monospace);
-  --ff-dotmatrix: "Nothing", var(--ff-monospace);
+  --ff-monospace:
+    ui-monospace, SFMono-Regular, SF Mono, Menlo, Consolas, Liberation Mono,
+    monospace;
 
   --fs-pixelated-small: 11px;
   --fs-pixelated-medium: 16.5px;

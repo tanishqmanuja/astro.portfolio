@@ -1,39 +1,6 @@
 ---
-import { join } from "path";
-
-import type { ComponentProps } from "astro/types";
-
-import { AstroFont } from "astro-font";
-
-const FONTS_DIR = "public/fonts";
-type AstroFontConfig = ComponentProps<typeof AstroFont>["config"];
-
-const fontConfig = [
-  {
-    name: "Nothing",
-    src: [
-      {
-        style: "normal",
-        path: join(process.cwd(), FONTS_DIR, "ndot57.otf"),
-      },
-    ],
-    preload: true,
-    display: "swap",
-    fallback: "monospace",
-  },
-  {
-    name: "Departure Mono",
-    src: [
-      {
-        style: "normal",
-        path: join(process.cwd(), FONTS_DIR, "departure-mono-regular.woff2"),
-      },
-    ],
-    preload: true,
-    display: "swap",
-    fallback: "monospace",
-  },
-] satisfies AstroFontConfig;
+import { Font } from "astro:assets";
 ---
 
-<AstroFont config={fontConfig} />
+<Font cssVariable="--ff-dotmatrix" preload />
+<Font cssVariable="--ff-pixelated" preload />

@@ -23,5 +23,39 @@ export default defineConfig({
       }),
     },
   },
-  experimental: {},
+  experimental: {
+    fonts: [
+      {
+        provider: "local",
+        name: "Nothing",
+        cssVariable: "--ff-dotmatrix",
+        variants: [
+          {
+            weight: 400,
+            style: "normal",
+            display: "swap",
+            src: ["./src/fonts/ndot57.otf"],
+          },
+        ],
+        fallbacks: ["var(--ff-monospace)"],
+      },
+      {
+        provider: "local",
+        name: "Departure Mono",
+        cssVariable: "--ff-pixelated",
+        variants: [
+          {
+            weight: 400,
+            style: "normal",
+            display: "swap",
+            src: [
+              "./src/fonts/departure-mono-regular.woff2",
+              "./src/fonts/departure-mono-regular.otf",
+            ],
+          },
+        ],
+        fallbacks: ["var(--ff-monospace)"],
+      },
+    ],
+  },
 });
