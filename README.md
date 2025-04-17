@@ -1,3 +1,3 @@
 # Portfolio 🚀
 
-> A personal portfolio for Tanishq Manuja, built with [Astro](https://astro.build/)
+> Personal portfolio of [Tanishq Manuja](https://github.com/tanishqmanuja), built with [Astro](https://astro.build/)
