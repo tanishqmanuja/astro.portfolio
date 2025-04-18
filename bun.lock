@@ -22,6 +22,7 @@
         "typescript": "^5.8.3",
         "unstorage": "^1.15.0",
         "utopia-core-scss": "^1.2.1",
+        "xxhash-wasm": "^1.1.0",
       },
       "devDependencies": {
         "@ianvs/prettier-plugin-sort-imports": "^4.4.1",
