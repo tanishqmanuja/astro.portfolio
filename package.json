@@ -19,7 +19,7 @@
     "@astropub/icons": "^0.2.0",
     "@octokit/rest": "^21.1.1",
     "@vercel/og": "^0.6.8",
-    "astro": "5.7.3",
+    "astro": "5.7.4",
     "gsap": "^3.12.7",
     "open-props": "^1.7.15",
     "postcss": "^8.5.3",
