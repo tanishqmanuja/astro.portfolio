@@ -6,16 +6,16 @@
 
 @font-face {
   font-family: "Departure Mono";
-  src: url("https://tqman.pages.dev/fonts/departure-mono-regular.woff2")
-    format("woff2");
+  src: url("__DEPARTURE_MONO_SRC__") format("woff2");
   font-weight: normal;
   font-style: normal;
   font-display: swap;
 }
 
 :root {
-  --ff-monospace: ui-monospace, SFMono-Regular, SF Mono, Menlo, Consolas,
-    Liberation Mono, monospace;
+  --ff-monospace:
+    ui-monospace, SFMono-Regular, SF Mono, Menlo, Consolas, Liberation Mono,
+    monospace;
   --ff-departure-mono: "Departure Mono", var(--ff-monospace);
 
   --color-text-primary: #e1e1e1;
