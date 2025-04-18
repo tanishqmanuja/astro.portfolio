@@ -1,5 +1,5 @@
 ---
-import { MANUAL_LOGO_MAP } from "./logos";
+import { BRAND_LOGO_MAP } from "./logos";
 
 type AstroSVGModule = typeof import("*.svg");
 
@@ -10,10 +10,16 @@ interface Props {
 
 const { brand, size } = Astro.props;
 
-const logo = MANUAL_LOGO_MAP[brand] ?? brand;
+const logo = BRAND_LOGO_MAP[brand] ?? brand;
 const module: AstroSVGModule | null = await import(
-  `../../logos/${logo.toLowerCase()}.svg`
-).catch(() => null);
+  `../../assets/logos/${logo.toLowerCase()}.svg`
+).catch(() => {
+  if (import.meta.env.DEV) {
+    console.warn(`[BrandLogo]: Logo "${logo}" not found.`);
+  }
+
+  return null;
+});
 const Component = module?.default;
 ---
 

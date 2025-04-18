@@ -1,9 +1,9 @@
-import BlueSkyIcon from "./logos/socials/bluesky.svg";
-import DiscordIcon from "./logos/socials/discord.svg";
-import GitHubIcon from "./logos/socials/github.svg";
-import GMailIcon from "./logos/socials/gmail.svg";
-import LinkedInIcon from "./logos/socials/linkedin.svg";
-import XIcon from "./logos/socials/x.svg";
+import BlueSkyIcon from "./assets/socials/bluesky.svg";
+import DiscordIcon from "./assets/socials/discord.svg";
+import GitHubIcon from "./assets/socials/github.svg";
+import GMailIcon from "./assets/socials/gmail.svg";
+import LinkedInIcon from "./assets/socials/linkedin.svg";
+import XIcon from "./assets/socials/x.svg";
 import type { Social } from "./types";
 
 export const URL = "https://tqman.pages.dev";
