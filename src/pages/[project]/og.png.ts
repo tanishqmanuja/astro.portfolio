@@ -1,5 +1,5 @@
 import { readFile } from "fs/promises";
-import { resolve } from "path";
+import { join } from "path";
 
 import { getCollection } from "astro:content";
 
@@ -7,23 +7,20 @@ import { ImageResponse } from "@vercel/og";
 import type { APIRoute } from "astro";
 
 import ProjectOG from "@/components/project/ProjectOG";
+import { FONTS_DIR } from "@/constants";
 import { slugify } from "@/utils/slug";
-
-const FONTS_DIR = "src/fonts";
 
 interface Props {
   title: string;
 }
 
 async function loadLocalFont(path: string) {
-  return readFile(resolve(path));
+  return readFile(join(FONTS_DIR, path));
 }
 
 export const GET: APIRoute<Props> = async ({ props }) => {
-  const NothingFont = await loadLocalFont(`${FONTS_DIR}/ndot57.otf`);
-  const DepartureMonoFont = await loadLocalFont(
-    `${FONTS_DIR}/departure-mono-regular.otf`,
-  );
+  const NothingFont = await loadLocalFont("ndot57.otf");
+  const DepartureMonoFont = await loadLocalFont("departure-mono-regular.otf");
 
   return new ImageResponse(ProjectOG({ title: props.title }), {
     width: 1200,

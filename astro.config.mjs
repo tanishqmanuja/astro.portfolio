@@ -4,6 +4,7 @@ import mdx from "@astrojs/mdx";
 import react from "@astrojs/react";
 import sitemap from "@astrojs/sitemap";
 
+import { FONTS_DIR } from "./src/constants";
 import { URL } from "./src/site.config";
 
 export default defineConfig({
@@ -34,7 +35,7 @@ export default defineConfig({
             weight: 400,
             style: "normal",
             display: "swap",
-            src: ["./src/fonts/ndot57.otf"],
+            src: [`${FONTS_DIR}/ndot57.otf`],
           },
         ],
         fallbacks: ["var(--ff-monospace)"],
@@ -48,10 +49,7 @@ export default defineConfig({
             weight: 400,
             style: "normal",
             display: "swap",
-            src: [
-              "./src/fonts/departure-mono-regular.woff2",
-              "./src/fonts/departure-mono-regular.otf",
-            ],
+            src: [`${FONTS_DIR}/departure-mono-regular.woff2`],
           },
         ],
         fallbacks: ["var(--ff-monospace)"],
