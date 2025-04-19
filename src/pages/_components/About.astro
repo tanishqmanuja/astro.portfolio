@@ -32,8 +32,10 @@ const stars = await cached("total-stars", () => getTotalStars(GITHUB_USERNAME));
   <p>
     Connect with me <span class="color-orange">...</span>
   </p>
-  <Socials />
-  <Resume />
+  <div class="socials-and-resume">
+    <Socials />
+    <Resume />
+  </div>
 </Section>
 
 <style>
@@ -51,6 +53,10 @@ const stars = await cached("total-stars", () => getTotalStars(GITHUB_USERNAME));
     text-decoration: underline;
     text-underline-offset: 3px;
     text-decoration-color: var(--color-orange);
+  }
+
+  .socials-and-resume {
+    --socials-icon-size: calc(0.9 * var(--space-fluid-m));
   }
 
   @container (width < 35rem) {
