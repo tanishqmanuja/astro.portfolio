@@ -2,22 +2,42 @@
 const href = "/assets/tanishq-manuja-resume.pdf";
 ---
 
-<a target="_blank" href={href} class="ff-pixelated fs-fluid-1">
+<a
+  target="_blank"
+  href={href}
+  class="ff-pixelated fs-fluid-0"
+  title="View Resume"
+>
   <span>View Resume ↗</span>
 </a>
 
 <style>
   a {
+    --social-size: calc(var(--space-fluid-m) * 0.9);
+    --social-gap: var(--gutter, var(--space-fluid-s));
+
+    --span: 4;
+    --width: calc(
+      var(--social-size) * var(--span) + (var(--span) - 1) * var(--social-gap) -
+        1px
+    );
+
     display: flex;
-    width: fit-content;
-    margin-top: var(--space-fluid-m-l);
+    justify-content: center;
+    width: var(--width);
+    margin-top: calc(10px + var(--flow-space, 1em));
     text-transform: uppercase;
-    padding: 8px 16px;
+    padding-block: 8px;
     border: 1px dashed var(--color-text-subdued);
-    transition: background-color 0.2s ease-in-out;
+    transition:
+      color 0.2s ease-in-out,
+      border-color 0.2s ease-in-out,
+      background-color 0.25s ease-in-out;
 
     &:hover {
-      background-color: var(--color-text-subdued);
+      color: var(--color-background);
+      border-color: var(--color-text-highlight);
+      background-color: var(--color-text-highlight);
     }
 
     span {
