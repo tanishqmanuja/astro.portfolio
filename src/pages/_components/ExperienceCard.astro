@@ -15,7 +15,11 @@ const { Content } = await render(experience);
 <article class="container:inline-size">
   <header>
     <h4 class="company | ff-pixelated fs-pixelated-medium">{company}</h4>
-    {designation && <span class="designation">{`< ${designation} />`}</span>}
+    {
+      designation && (
+        <span class="designation | ff-pixelated fs-small">{`< ${designation} />`}</span>
+      )
+    }
   </header>
 
   <div class="content | color-secondary fs-fluid-0">
@@ -27,15 +31,17 @@ const { Content } = await render(experience);
   article {
     display: flex;
     flex-direction: column;
-    gap: 4px;
+    gap: 0.5em;
 
     header {
       display: flex;
-      column-gap: 2ch;
+      column-gap: 1ch;
       flex-wrap: wrap;
+      align-items: baseline;
 
       @container (width < 35rem) {
         & {
+          row-gap: var(--size-1);
           flex-direction: column;
         }
       }
@@ -49,6 +55,9 @@ const { Content } = await render(experience);
       }
 
       .designation {
+        height: min-content;
+        line-height: 1;
+        text-transform: uppercase;
         color: var(--color-text-secondary-shade);
       }
     }
