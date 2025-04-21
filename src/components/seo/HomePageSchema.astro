@@ -1,0 +1,87 @@
+---
+import { Schema } from "astro-seo-schema";
+import type { Person, WebPage, WebSite } from "schema-dts";
+
+import { AUTHOR, URL as SITE_URL } from "@/site.config";
+
+const personSchema: Person = {
+  "@type": "Person",
+  name: AUTHOR,
+  url: SITE_URL,
+  jobTitle: "Software Developer",
+  image: new URL("assets/avatar.jpg", SITE_URL).href,
+  sameAs: [
+    "https://github.com/tanishqmanuja",
+    "https://twitter.com/tanishqmanuja",
+    "https://www.linkedin.com/in/tanishqmanuja/",
+  ],
+  alumniOf: [
+    {
+      "@type": "CollegeOrUniversity",
+      name: "Jaypee Institute of Information Technology",
+      url: "https://jiit.ac.in/",
+    },
+    {
+      "@type": "School",
+      name: "Ahlcon International",
+      url: "https://www.ahlconinternational.com",
+    },
+  ],
+  nationality: {
+    "@type": "Country",
+    name: "India",
+  },
+  knowsAbout: [
+    "Software Development",
+    "Web Development",
+    "Home Automation",
+    "Electronics",
+    "Open Source",
+  ],
+  knowsLanguage: [
+    {
+      "@type": "Language",
+      name: "English",
+    },
+    {
+      "@type": "Language",
+      name: "Hindi",
+    },
+  ],
+};
+
+const webSiteSchema: WebSite = {
+  "@type": "WebSite",
+  url: SITE_URL,
+  name: `${AUTHOR} | Portfolio`,
+  image: new URL("og.png", SITE_URL).href,
+  description: `Portfolio website of ${AUTHOR}.`,
+  inLanguage: "en",
+  publisher: {
+    "@type": "Person",
+    name: AUTHOR,
+    url: SITE_URL,
+  },
+};
+
+const webPageSchema: WebPage = {
+  "@type": "WebPage",
+  url: SITE_URL,
+  name: `${AUTHOR} | Portfolio`,
+  image: new URL("og.png", SITE_URL).href,
+  description: `Portfolio website of ${AUTHOR}.`,
+  inLanguage: "en",
+  publisher: {
+    "@type": "Person",
+    name: AUTHOR,
+    url: SITE_URL,
+  },
+};
+---
+
+<Schema
+  item={{
+    "@context": "https://schema.org",
+    "@graph": [personSchema, webSiteSchema, webPageSchema],
+  }}
+/>

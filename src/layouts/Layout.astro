@@ -7,6 +7,7 @@ import { ClientRouter } from "astro:transitions";
 import EmojiFavicon from "@/components/EmojiFavicon.astro";
 import Fonts from "@/components/Fonts.astro";
 import GoogleSiteVerification from "@/components/GoogleSiteVerification.astro";
+import HomePageSchema from "@/components/seo/HomePageSchema.astro";
 import OpengraphTags from "@/components/seo/OpenGraphTags.astro";
 import TwitterTags from "@/components/seo/TwitterTags.astro";
 import { AUTHOR, TWITTER_USERNAME } from "@/site.config";
@@ -36,6 +37,8 @@ const {
 
 const canonicalUrl = new URL(Astro.url.pathname, Astro.site).href;
 const ogImageUrl = new URL(ogImage.url, Astro.url.origin).href;
+
+const isHomePage = Astro.url.pathname === "/";
 ---
 
 <!doctype html>
@@ -75,6 +78,9 @@ const ogImageUrl = new URL(ogImage.url, Astro.url.origin).href;
       card="summary_large_image"
       creator={`@${TWITTER_USERNAME}`}
     />
+
+    <!-- JSON-LD -->
+    {isHomePage && <HomePageSchema />}
 
     <!-- Others -->
     <EmojiFavicon emoji="🧑🏻‍💻" fallback="/favicon.svg" />
