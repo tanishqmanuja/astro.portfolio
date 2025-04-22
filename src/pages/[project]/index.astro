@@ -1,6 +1,8 @@
 ---
 import { getCollection, render } from "astro:content";
 
+import { Schema } from "astro-seo-schema";
+
 import Footer from "@/components/Footer.astro";
 import Header from "@/components/Header.astro";
 import ProjectComments from "@/components/project/ProjectComments.astro";
@@ -8,6 +10,7 @@ import ProjectDevelopers from "@/components/project/ProjectDevelopers.astro";
 import ProjectInfoLine from "@/components/project/ProjectInfoLine.astro";
 import ProjectTags from "@/components/project/ProjectTags.astro";
 import ProjectTechStack from "@/components/project/ProjectTechStack.astro";
+import { getProjectSchemaGraph } from "@/components/seo/schema/project";
 import Layout from "@/layouts/Layout.astro";
 import { AUTHOR, GITHUB_USERNAME } from "@/site.config";
 import { slugify } from "@/utils/slug";
@@ -43,6 +46,14 @@ const ogImage = {
 ---
 
 <Layout title={title} description={description} ogImage={ogImage}>
+  <Fragment slot="head">
+    <Schema
+      item={{
+        "@context": "https://schema.org",
+        "@graph": getProjectSchemaGraph(project, url.current),
+      }}
+    />
+  </Fragment>
   <Header>{project.data.title}</Header>
   <main>
     <ProjectInfoLine project={project} />

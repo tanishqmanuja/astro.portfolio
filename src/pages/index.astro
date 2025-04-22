@@ -1,5 +1,10 @@
 ---
+import { Schema } from "astro-seo-schema";
+
 import Footer from "@/components/Footer.astro";
+import { personSchema } from "@/components/seo/schema/person";
+import { profilePageSchema } from "@/components/seo/schema/profile-page";
+import { webSiteSchema } from "@/components/seo/schema/website";
 import Layout from "@/layouts/Layout.astro";
 import { AUTHOR } from "@/site.config";
 
@@ -13,6 +18,14 @@ const description = `${AUTHOR}'s minimalist portfolio website.`;
 ---
 
 <Layout description={description}>
+  <Fragment slot="head">
+    <Schema
+      item={{
+        "@context": "https://schema.org",
+        "@graph": [personSchema, webSiteSchema, profilePageSchema],
+      }}
+    />
+  </Fragment>
   <Header />
   <main>
     <About />
