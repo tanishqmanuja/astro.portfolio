@@ -8,6 +8,7 @@ import Header from "@/components/Header.astro";
 import ProjectCard from "@/components/project/ProjectCard.astro";
 import { filters } from "@/helpers/project/filters";
 import Layout from "@/layouts/Layout.astro";
+import { AUTHOR } from "@/site.config";
 
 export async function getStaticPaths({ paginate }: GetStaticPathsOptions) {
   const projects = await getCollection("projects");
@@ -20,7 +21,7 @@ export async function getStaticPaths({ paginate }: GetStaticPathsOptions) {
 const { page } = Astro.props;
 const { data: projects } = page;
 
-const title = `Projects | Page ${page.currentPage}`;
+const title = `Projects | Page ${page.currentPage} | ${AUTHOR}`;
 ---
 
 <Layout title={title}>
