@@ -6,7 +6,7 @@ export interface Props {
 const { border = "thick" } = Astro.props;
 ---
 
-<footer>
+<footer data-pagefind-ignore>
   <slot />
   {border && border !== "none" && <hr data-type={border} />}
   <span class="ff-pixelated"

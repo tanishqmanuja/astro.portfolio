@@ -1,0 +1,137 @@
+---
+import type { HTMLAttributes } from "astro/types";
+
+interface Props extends HTMLAttributes<"div"> {}
+---
+
+<div id="search" {...Astro.props} data-pagefind-ui transition:persist></div>
+
+<script is:inline>
+  function initPageFind() {
+    const el = document.querySelector("[data-pagefind-ui]");
+
+    if (!el) {
+      console.warn("[PageFindSearch]: No element found with data-pagefind-ui");
+      return;
+    }
+
+    new PagefindUI({
+      element: el,
+      showImages: false,
+      debounceTimeoutMs: 100,
+    });
+
+    const input = document.querySelector(".pagefind-ui__search-input");
+    const clear = document.querySelector(".pagefind-ui__search-clear");
+
+    input?.focus();
+
+    // Check if the current URL has any query params
+    const url = new URL(window.location.href);
+    const params = new URLSearchParams(url.search);
+    const query = params.get("q");
+
+    // If query exists on page load
+    if (query && input) {
+      input.value = query;
+      input.dispatchEvent(new Event("input", { bubbles: true }));
+    }
+
+    // Add Listener to update the URL when the input changes
+    input?.addEventListener("input", (e) => {
+      const input = e.target;
+      const url = new URL(window.location.href);
+      const params = new URLSearchParams(url.search);
+
+      if (input.value.trim() === "") {
+        history.replaceState(history.state, "", window.location.pathname);
+        return;
+      }
+
+      params.set("q", input.value);
+      history.replaceState(history.state, "", "?" + params.toString());
+    });
+
+    clear?.addEventListener("click", () => {
+      history.replaceState(history.state, "", window.location.pathname);
+    });
+  }
+
+  document.addEventListener("astro:page-load", initPageFind);
+</script>
+
+<style is:global>
+  #search {
+    --pagefind-ui-font: var(--ff-monospace);
+    --pagefind-ui-text: var(--color-text-secondary);
+    --pagefind-ui-background: var(--gray-9);
+    --pagefind-ui-border: var(--color-border-muted);
+    --pagefind-ui-primary: var(--color-text-secondary);
+    --pagefind-ui-tag: var(--color-background);
+    --pagefind-ui-border-radius: 4px;
+    --pagefind-ui-border-width: 1px;
+    --pagefind-ui-image-border-radius: 8px;
+    --pagefind-ui-image-box-ratio: 3 / 2;
+
+    form::before {
+      background-color: var(--color-foreground);
+    }
+
+    input {
+      color: var(--color-text-primary);
+      font-weight: 400;
+      border: 1px solid var(--color-border-muted);
+    }
+
+    input:focus-visible {
+      outline: 1px solid var(--color-amber);
+    }
+
+    .pagefind-ui__search-input {
+      padding: 0 calc(70px * var(--pagefind-ui-scale)) 0
+        calc(24px * var(--pagefind-ui-scale));
+    }
+
+    .pagefind-ui__result-title a {
+      color: var(--color-amber);
+      outline-offset: 1px;
+      outline-color: var(--color-amber);
+      outline-offset: 2px;
+    }
+
+    .pagefind-ui__result-title a:focus-visible,
+    .pagefind-ui__search-clear:focus-visible {
+      text-decoration-line: none;
+      outline-width: 2px;
+      outline-style: dashed;
+    }
+
+    .pagefind-ui__result:last-of-type {
+      border-bottom: 0;
+    }
+
+    .pagefind-ui__result {
+      padding: calc(10px * var(--pagefind-ui-scale)) 0
+        calc(20px * var(--pagefind-ui-scale));
+    }
+
+    .pagefind-ui__result-nested {
+      padding-left: calc(30px * var(--pagefind-ui-scale));
+    }
+
+    .pagefind-ui__result-nested .pagefind-ui__result-link:before {
+      content: "↳";
+      font-family: var(--ff-pixelated);
+      font-size: 0.8em;
+      padding-right: 0.5ch;
+    }
+
+    .pagefind-ui__result mark {
+      background-color: var(--color-amber);
+    }
+
+    .pagefind-ui__button {
+      font-family: var(--ff-pixelated);
+    }
+  }
+</style>

@@ -4,7 +4,7 @@ import { GITHUB_USERNAME } from "@/site.config";
 import { cached } from "@/utils/cache";
 import { getTotalPublicRepos, getTotalStars } from "@/utils/github/helpers";
 
-import Resume from "./Resume.astro";
+import ExtraLinks from "./ExtraLinks.astro";
 import Socials from "./Socials.astro";
 
 const publicRepos = await cached("total-public-repos", () =>
@@ -30,11 +30,11 @@ const stars = await cached("total-stars", () => getTotalStars(GITHUB_USERNAME));
   </p>
 
   <p>
-    Connect with me <span class="color-orange">...</span>
+    <!-- Connect with me <span class="color-orange">...</span> -->
   </p>
-  <div class="socials-and-resume">
+  <div class="socials-and-extra-links">
     <Socials />
-    <Resume />
+    <ExtraLinks />
   </div>
 </Section>
 
@@ -55,8 +55,13 @@ const stars = await cached("total-stars", () => getTotalStars(GITHUB_USERNAME));
     text-decoration-color: var(--color-orange);
   }
 
-  .socials-and-resume {
+  .socials-and-extra-links {
     --socials-icon-size: calc(0.9 * var(--space-fluid-m));
+
+    display: flex;
+    flex-direction: column;
+    padding-top: calc(1.25 * var(--flow-space));
+    row-gap: var(--space-fluid-s);
   }
 
   @container (width < 35rem) {

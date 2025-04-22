@@ -5,11 +5,12 @@ import react from "@astrojs/react";
 import sitemap from "@astrojs/sitemap";
 
 import { FONTS_DIR } from "./src/constants";
+import pagefind from "./src/lib/astro/integrations/pagefind";
 import { URL } from "./src/site.config";
 
 export default defineConfig({
   site: URL,
-  integrations: [react(), sitemap(), mdx()],
+  integrations: [react(), sitemap(), mdx(), pagefind()],
   env: {
     schema: {
       GITHUB_TOKEN: envField.string({

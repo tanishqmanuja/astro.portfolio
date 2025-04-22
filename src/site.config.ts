@@ -35,7 +35,7 @@ export const SKILLS = [
   "Bash",
 ];
 
-export const SOCIALS: Social[] = [
+export const SOCIALS = [
   {
     name: "GitHub",
     href: "https://github.com/tanishqmanuja",
@@ -72,4 +72,4 @@ export const SOCIALS: Social[] = [
     title: `${AUTHOR} on Discord`,
     Icon: DiscordIcon,
   },
-];
+] as const satisfies Social[];

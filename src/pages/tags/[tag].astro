@@ -26,7 +26,7 @@ const description = `Projects tagged with #${tag}`;
 
 <Layout title={title} description={description}>
   <Header>{`#${titlecase(tag)}`}</Header>
-  <main>
+  <main data-pagefind-ignore>
     <ul class="project-list | grid" role="list">
       {
         projects

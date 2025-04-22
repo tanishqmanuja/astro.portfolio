@@ -1,0 +1,28 @@
+---
+import Footer from "@/components/Footer.astro";
+import Header from "@/components/Header.astro";
+import PageFindSearch from "@/components/PageFindSearch.astro";
+import Layout from "@/layouts/Layout.astro";
+import { AUTHOR } from "@/site.config";
+
+const title = `Search | ${AUTHOR}`;
+const description = `Search projects`;
+---
+
+<Layout title={title} description={description}>
+  <Fragment slot="head">
+    <link href="/pagefind/pagefind-ui.css" rel="stylesheet" />
+    <script is:inline src="/pagefind/pagefind-ui.js"></script>
+  </Fragment>
+  <Header>Search</Header>
+  <main data-pagefind-ignore>
+    <PageFindSearch />
+  </main>
+  <Footer border="thin" />
+</Layout>
+
+<style>
+  main {
+    padding-bottom: 2rem;
+  }
+</style>

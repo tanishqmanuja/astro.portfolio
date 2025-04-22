@@ -1,0 +1,60 @@
+---
+import { MagnifyingGlass } from "@astropub/icons";
+
+const resumeHref = "/assets/tanishq-manuja-resume.pdf";
+const blogHref = "https://tqblog.pages.dev/";
+---
+
+<div class="links | cluster ff-pixelated fs-fluid-0">
+  <a target="_self" href="/search" class="link icon" title="Search Site">
+    <span><MagnifyingGlass size="100%" stroke="currentColor" /></span>
+  </a>
+
+  <a target="_blank" href={resumeHref} class="link" title="View Resume">
+    <span>Resume ↗</span>
+  </a>
+
+  <a target="_blank" href={blogHref} class="link" title="Visit Blog">
+    <span>Blog ↗</span>
+  </a>
+</div>
+
+<style>
+  .links {
+    --gutter: var(--space-fluid-s);
+  }
+
+  a {
+    display: flex;
+    justify-content: center;
+    width: fit-content;
+    text-transform: uppercase;
+    padding-block: 6px;
+    padding-inline: 14px;
+    border: 2px dashed var(--color-text-subdued);
+    border-radius: 2px;
+    transition:
+      color 0.2s ease-in-out,
+      border-color 0.2s ease-in-out,
+      background-color 0.25s ease-in-out;
+
+    &:hover {
+      color: var(--color-background);
+      border-color: var(--color-text-highlight);
+      background-color: var(--color-text-highlight);
+    }
+
+    span {
+      padding-top: 1.1px;
+    }
+
+    &.icon {
+      align-self: stretch;
+      place-items: center;
+
+      span {
+        height: var(--fs-fluid-0);
+      }
+    }
+  }
+</style>

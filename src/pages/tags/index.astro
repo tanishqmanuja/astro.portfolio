@@ -15,7 +15,7 @@ const tags = await getCollection("projects").then(getTagsFromProjects);
 
 <Layout title={title}>
   <Header>Tags</Header>
-  <main>
+  <main data-pagefind-ignore>
     <ul class="tags | cluster">
       {
         tags
