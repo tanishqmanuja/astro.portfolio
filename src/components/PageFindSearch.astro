@@ -25,6 +25,7 @@ interface Props extends HTMLAttributes<"div"> {}
     const clear = document.querySelector(".pagefind-ui__search-clear");
 
     input?.focus();
+    input.attributes.placeholder.value = "search site";
 
     // Check if the current URL has any query params
     const url = new URL(window.location.href);
@@ -64,7 +65,7 @@ interface Props extends HTMLAttributes<"div"> {}
   #search {
     --pagefind-ui-font: var(--ff-monospace);
     --pagefind-ui-text: var(--color-text-secondary);
-    --pagefind-ui-background: var(--gray-9);
+    --pagefind-ui-background: var(--color-grayscale-1000);
     --pagefind-ui-border: var(--color-border-muted);
     --pagefind-ui-primary: var(--color-text-secondary);
     --pagefind-ui-tag: var(--color-background);
