@@ -6,7 +6,12 @@ import { SOCIALS } from "@/site.config";
   {
     SOCIALS.map(({ href, name, title, Icon }) => (
       <li>
-        <a href={href} title={title} class="color-secondary hoverable">
+        <a
+          href={href}
+          target="_blank"
+          title={title}
+          class="color-secondary hoverable"
+        >
           <Icon height="100%" width="100%" fill="currentColor" class="icon" />
           <span class="visually-hidden">{name}</span>
         </a>
