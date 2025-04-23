@@ -1,14 +1,16 @@
 ---
 export interface Props {
-  border?: false | "thick" | "thin" | "none";
+  separator?: false | "thick" | "thin" | "none";
 }
 
-const { border = "thick" } = Astro.props;
+const { separator = "thick" } = Astro.props;
+
+const shouldDisplaySeparator = separator && separator !== "none";
 ---
 
 <footer data-pagefind-ignore>
   <slot />
-  {border && border !== "none" && <hr data-type={border} />}
+  {shouldDisplaySeparator && <hr data-type={separator} />}
   <span class="ff-pixelated"
     >Created with <span class="heart">♥</span> by Tanishq Manuja</span
   >
