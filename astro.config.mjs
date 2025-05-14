@@ -33,8 +33,6 @@ export default defineConfig({
         cssVariable: "--ff-dotmatrix",
         variants: [
           {
-            weight: 400,
-            style: "normal",
             display: "swap",
             src: [`${FONTS_DIR}/ndot57.otf`],
           },
@@ -47,8 +45,6 @@ export default defineConfig({
         cssVariable: "--ff-pixelated",
         variants: [
           {
-            weight: 400,
-            style: "normal",
             display: "swap",
             src: [`${FONTS_DIR}/departure-mono-regular.woff2`],
           },
