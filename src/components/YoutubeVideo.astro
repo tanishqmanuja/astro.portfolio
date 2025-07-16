@@ -1,0 +1,14 @@
+---
+import { YouTube } from "@astro-community/astro-embed-youtube";
+
+type YTProps = Parameters<typeof YouTube>[0];
+interface Props extends YTProps {}
+---
+
+<YouTube {...Astro.props} class="youtube-video" />
+
+<style>
+  .youtube-video {
+    max-width: 100%;
+  }
+</style>
