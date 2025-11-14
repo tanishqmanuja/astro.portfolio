@@ -19,7 +19,7 @@ const RepoIcon = repository && isGithubUrl(repository) ? GitHubIcon : LinkIcon;
 
 <ul class="infoline | cluster | ff-pixelated fs-small">
   {
-    stars && stars > 0 && (
+    stars != null && stars > 0 && (
       <li class="infoline__item stars">
         <StarIcon size="12" class="color-amber" />
         <span>{stars} stars</span>

@@ -35,7 +35,7 @@ if (repository && isGithubUrl(repository)) {
     )
   }
   {
-    stars && (
+    stars != null && stars > 0 && (
       <li>
         <StarIcon size="12" class="color-amber" />
         <span>{stars} stars</span>
