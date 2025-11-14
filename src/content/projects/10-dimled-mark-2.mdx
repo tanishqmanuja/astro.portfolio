@@ -1,0 +1,42 @@
+---
+title: DimLED Mark II
+subtitle: Hardware, Open Source
+description: A Pulse Width Modulation based LED Dimmer.
+
+links:
+  repository: https://github.com/tqlabs-in/dimled-mark-2
+
+isFeatured: true
+
+stack:
+  - kicad
+  - freecad
+  - esphome
+  - c++
+
+tags:
+  - electronics
+  - hardware
+  - home-automation
+---
+
+import Video from "@/components/Video.astro";
+
+A simple led dimmer based on ESP-01 Module powered by esphome firmware.
+
+I designed the complete PCB from scratch using KiCAD 9 and made the enclosure using FreeCAD.
+
+![PCB Design](https://github.com/tanishqmanuja/static/raw/refs/heads/main/assets/dimled-mark2/pcb_design.png)
+![PCB Render](https://github.com/tanishqmanuja/static/raw/refs/heads/main/assets/dimled-mark2/pcb_render.png)
+
+And here's the final assembled PCB,
+
+![PCB Assembled](https://github.com/tanishqmanuja/static/raw/refs/heads/main/assets/dimled-mark2/pcb_assembled.webp)
+
+It’s already running ESPHome with my custom made DDP (Distributed Display Protocol) component, and syncing with music via LedFx. 🎶💡
+
+<Video
+  src="https://github.com/tanishqmanuja/static/raw/refs/heads/main/assets/dimled-mark2/ddp.webm"
+  type="webm"
+  controls
+></Video>

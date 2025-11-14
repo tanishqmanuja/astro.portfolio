@@ -9,6 +9,7 @@ export const BRAND_LINK_MAP: Record<string, string> = {
   bun: "https://bun.sh/",
   cheerio: "https://cheerio.js.org/",
   elysia: "https://elysiajs.com/",
+  esphome: "https://esphome.io/",
   zustand: "https://zustand.docs.pmnd.rs/",
   arduino: "https://www.arduino.cc/",
   go: "https://go.dev/",
@@ -25,6 +26,7 @@ export const BRAND_LINK_MAP: Record<string, string> = {
   mongodb: "https://www.mongodb.com/",
   redis: "https://redis.io/",
   turbo: "https://turbo.build/",
+  kicad: "https://www.kicad.org/",
 };
 
 export function getBrandLink(brand: string): string {
