@@ -1,0 +1,123 @@
+---
+import type { EmblaOptionsType } from "embla-carousel";
+
+import Controls, { type IndicatorType } from "./CarouselControls.astro";
+
+interface Props {
+  slideHeight?: string;
+  slides?: { src: string; alt: string }[];
+  options?: EmblaOptionsType;
+  indicatorType?: IndicatorType;
+}
+
+const { slides = [], options, slideHeight, indicatorType } = Astro.props;
+---
+
+<div class="embla" data-embla-options={JSON.stringify(options)}>
+  <div class="embla__viewport">
+    <div class="embla__container">
+      {
+        slides.map((slide) => (
+          <div class="embla__slide">
+            <img class="embla__slide__img" src={slide.src} alt={slide.alt} />
+          </div>
+        ))
+      }
+    </div>
+  </div>
+
+  <Controls indicatorType={indicatorType} />
+</div>
+
+<style define:vars={{ slideHeight }}>
+  .embla {
+    padding-top: var(--flow-space);
+    max-width: 48rem;
+    margin: auto;
+    --slide-height: var(--slideHeight);
+    --slide-spacing: 1rem;
+    --slide-size: 70%;
+  }
+  .embla__viewport {
+    overflow: hidden;
+  }
+  .embla__container {
+    display: flex;
+    touch-action: pan-y pinch-zoom;
+    margin-left: calc(var(--slide-spacing) * -1);
+  }
+  .embla__slide {
+    flex: 0 0 var(--slide-size);
+    min-width: 0;
+    padding-left: var(--slide-spacing);
+  }
+  .embla__slide__img {
+    display: block;
+    height: var(--slide-height);
+    width: 100%;
+    object-fit: cover;
+    border-radius: 8px;
+  }
+</style>
+
+<script>
+  import EmblaCarousel from "embla-carousel";
+  import type { EmblaOptionsType } from "embla-carousel";
+
+  import { addPrevNextButtonClickHandlers } from "./enable-arrow-buttons";
+  import { addDotButtonAndClickHandlers } from "./enable-dot-buttons";
+  import { updateSelectedSnapDisplay } from "./enable-snap-count";
+  import { setupTweenOpacity } from "./tween-opacity";
+
+  const initCarousel = (emblaNode: HTMLElement) => {
+    const viewportNode = emblaNode.querySelector(
+      ".embla__viewport",
+    ) as HTMLElement;
+    const prevBtn = emblaNode.querySelector(
+      ".embla__button--prev",
+    ) as HTMLElement;
+    const nextBtn = emblaNode.querySelector(
+      ".embla__button--next",
+    ) as HTMLElement;
+    const dotsNode = emblaNode.querySelector(".embla__dots") as HTMLElement;
+    const displayNode = emblaNode.querySelector(
+      ".embla__selected-snap-display",
+    ) as HTMLElement;
+
+    let options: EmblaOptionsType = { loop: true };
+
+    try {
+      const optionsFromAttribute = JSON.parse(
+        emblaNode.dataset.emblaOptions || "{}",
+      );
+      if (Object.keys(optionsFromAttribute).length > 0)
+        options = optionsFromAttribute;
+    } catch {
+      console.warn(
+        "[EmblaCarousel]: Invalid options provided. Using default options.",
+      );
+    }
+
+    const emblaApi = EmblaCarousel(viewportNode, options);
+    if (emblaApi) {
+      addPrevNextButtonClickHandlers(emblaApi, prevBtn, nextBtn);
+
+      if (dotsNode) {
+        addDotButtonAndClickHandlers(emblaApi, dotsNode);
+      }
+
+      if (displayNode) {
+        updateSelectedSnapDisplay(emblaApi, displayNode);
+      }
+
+      setupTweenOpacity(emblaApi);
+    }
+  };
+
+  document.addEventListener("astro:page-load", () => {
+    const emblaNodes = document.querySelectorAll(".embla");
+    emblaNodes.forEach((emblaNode) => {
+      initCarousel(emblaNode as HTMLElement);
+    });
+  });
+</script>

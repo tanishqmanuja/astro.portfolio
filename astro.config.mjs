@@ -11,6 +11,15 @@ import { URL } from "./src/site.config";
 export default defineConfig({
   site: URL,
   integrations: [react(), sitemap(), mdx(), pagefind()],
+  vite: {
+    css: {
+      preprocessorOptions: {
+        scss: {
+          api: "modern-compiler",
+        },
+      },
+    },
+  },
   env: {
     schema: {
       GITHUB_TOKEN: envField.string({
