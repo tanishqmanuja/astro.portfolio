@@ -5,14 +5,9 @@ import type {
 } from "embla-carousel";
 
 const TWEEN_FACTOR_BASE = 0.84;
-let tweenFactor = 0;
 
 const numberWithinRange = (number: number, min: number, max: number): number =>
   Math.min(Math.max(number, min), max);
-
-const setTweenFactor = (emblaApi: EmblaCarouselType): void => {
-  tweenFactor = TWEEN_FACTOR_BASE * emblaApi.snapList().length;
-};
 
 const tweenOpacity = <EventType extends keyof EmblaEventListType>(
   emblaApi: EmblaCarouselType,
@@ -22,6 +17,7 @@ const tweenOpacity = <EventType extends keyof EmblaEventListType>(
   const scrollProgress = emblaApi.scrollProgress();
   const slidesInView = emblaApi.slidesInView();
   const isScrollEvent = event?.type === "scroll";
+  const tweenFactor = TWEEN_FACTOR_BASE * emblaApi.snapList().length;
 
   emblaApi.snapList().forEach((scrollSnap, snapIndex) => {
     let diffToTarget = scrollSnap - scrollProgress;
@@ -55,11 +51,9 @@ const tweenOpacity = <EventType extends keyof EmblaEventListType>(
 };
 
 export const setupTweenOpacity = (emblaApi: EmblaCarouselType): void => {
-  setTweenFactor(emblaApi);
   tweenOpacity(emblaApi);
 
   emblaApi
-    .on("reinit", setTweenFactor)
     .on("reinit", tweenOpacity)
     .on("scroll", tweenOpacity)
     .on("slidefocus", tweenOpacity);
