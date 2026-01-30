@@ -14,7 +14,12 @@ interface Props {
   indicatorType?: IndicatorType;
 }
 
-const { images = [], options, slideHeight, indicatorType } = Astro.props;
+const {
+  images = [],
+  options,
+  slideHeight = "auto",
+  indicatorType,
+} = Astro.props;
 const optimizedImages = await Promise.all(
   images.map(async (image) => await getImage({ ...image, inferSize: true })),
 );
@@ -48,14 +53,15 @@ const optimizedImages = await Promise.all(
 
 <style define:vars={{ slideHeight }}>
   .embla {
-    padding-top: var(--flow-space);
-    max-width: 48rem;
-    margin: auto;
+    max-width: 100%;
+    margin-inline: auto;
+    margin-top: calc(var(--flow-space) * 1.5);
     --slide-height: var(--slideHeight);
     --slide-spacing: 1rem;
     --slide-size: 70%;
   }
   .embla__viewport {
+    border-radius: 8px;
     overflow: hidden;
   }
   .embla__container {
@@ -78,8 +84,6 @@ const optimizedImages = await Promise.all(
 </style>
 
 <script>
-  import { object } from "astro:schema";
-
   import EmblaCarousel from "embla-carousel";
   import type { EmblaCarouselType, EmblaOptionsType } from "embla-carousel";
   import PhotoSwipeLightbox from "photoswipe/lightbox";
@@ -163,6 +167,8 @@ const optimizedImages = await Promise.all(
         const isSelected = actualIndex === emblaApi.selectedSnap();
 
         if (!isSelected) {
+          emblaApi.goTo(actualIndex);
+
           return -1;
         }
       }
