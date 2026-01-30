@@ -1,25 +1,42 @@
 ---
+import "photoswipe/style.css";
+
+import { getImage } from "astro:assets";
+
 import type { EmblaOptionsType } from "embla-carousel";
 
 import Controls, { type IndicatorType } from "./CarouselControls.astro";
 
 interface Props {
   slideHeight?: string;
-  slides?: { src: string; alt: string }[];
+  images?: { src: string; alt: string }[];
   options?: EmblaOptionsType;
   indicatorType?: IndicatorType;
 }
 
-const { slides = [], options, slideHeight, indicatorType } = Astro.props;
+const { images = [], options, slideHeight, indicatorType } = Astro.props;
+const optimizedImages = await Promise.all(
+  images.map(async (image) => await getImage({ ...image, inferSize: true })),
+);
 ---
 
 <div class="embla" data-embla-options={JSON.stringify(options)}>
   <div class="embla__viewport">
     <div class="embla__container">
       {
-        slides.map((slide) => (
+        optimizedImages.map((image) => (
           <div class="embla__slide">
-            <img class="embla__slide__img" src={slide.src} alt={slide.alt} />
+            <a
+              data-pswp-src={image.src}
+              data-pswp-width={image.options.width}
+              data-pswp-height={image.options.height}
+            >
+              <img
+                class="embla__slide__img"
+                src={image.src}
+                alt={image.attributes.alt}
+              />
+            </a>
           </div>
         ))
       }
@@ -61,13 +78,20 @@ const { slides = [], options, slideHeight, indicatorType } = Astro.props;
 </style>
 
 <script>
+  import { object } from "astro:schema";
+
   import EmblaCarousel from "embla-carousel";
-  import type { EmblaOptionsType } from "embla-carousel";
+  import type { EmblaCarouselType, EmblaOptionsType } from "embla-carousel";
+  import PhotoSwipeLightbox from "photoswipe/lightbox";
 
   import { addPrevNextButtonClickHandlers } from "./enable-arrow-buttons";
   import { addDotButtonAndClickHandlers } from "./enable-dot-buttons";
   import { updateSelectedSnapDisplay } from "./enable-snap-count";
   import { setupTweenOpacity } from "./tween-opacity";
+
+  interface EmblaElement extends HTMLElement {
+    __emblaApi?: EmblaCarouselType;
+  }
 
   const initCarousel = (emblaNode: HTMLElement) => {
     const viewportNode = emblaNode.querySelector(
@@ -98,8 +122,10 @@ const { slides = [], options, slideHeight, indicatorType } = Astro.props;
       );
     }
 
-    const emblaApi = EmblaCarousel(viewportNode, options);
-    if (emblaApi) {
+    let emblaApi = (emblaNode as EmblaElement).__emblaApi;
+    if (!emblaApi) {
+      emblaApi = EmblaCarousel(viewportNode, options);
+      (emblaNode as EmblaElement).__emblaApi = emblaApi;
       addPrevNextButtonClickHandlers(emblaApi, prevBtn, nextBtn);
 
       if (dotsNode) {
@@ -112,6 +138,54 @@ const { slides = [], options, slideHeight, indicatorType } = Astro.props;
 
       setupTweenOpacity(emblaApi);
     }
+
+    return emblaApi;
+  };
+
+  const initPhotoswipe = () => {
+    const lightbox = new PhotoSwipeLightbox({
+      gallery: ".embla",
+      children: ".embla__slide a",
+      pswpModule: () => import("photoswipe"),
+      bgClickAction: "close",
+    });
+
+    lightbox.addFilter("clickedIndex", (clickedIndex, e) => {
+      const target = e.target as HTMLElement;
+      const galleryEl = target.closest(".embla") as EmblaElement;
+      const emblaApi = galleryEl?.__emblaApi;
+
+      if (emblaApi) {
+        const clickedSlide = target.closest(".embla__slide");
+        const slides = Array.from(galleryEl.querySelectorAll(".embla__slide"));
+        const actualIndex = slides.indexOf(clickedSlide!);
+
+        const isSelected = actualIndex === emblaApi.selectedSnap();
+
+        if (!isSelected) {
+          return -1;
+        }
+      }
+
+      return clickedIndex;
+    });
+
+    lightbox.init();
+    lightbox.on("change", () => {
+      const pwsp = lightbox.pswp;
+      if (!pwsp) return;
+
+      const index = pwsp.currIndex;
+      const galleryEl = pwsp.currSlide?.data.element?.closest(".embla");
+      if (!galleryEl) return;
+
+      const emblaApi = (galleryEl as EmblaElement).__emblaApi;
+      if (!emblaApi) return;
+
+      pwsp.isOpen && emblaApi.goTo(index);
+    });
+
+    return lightbox;
   };
 
   document.addEventListener("astro:page-load", () => {
@@ -119,5 +193,7 @@ const { slides = [], options, slideHeight, indicatorType } = Astro.props;
     emblaNodes.forEach((emblaNode) => {
       initCarousel(emblaNode as HTMLElement);
     });
+
+    initPhotoswipe();
   });
 </script>
