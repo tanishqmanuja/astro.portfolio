@@ -1,0 +1,29 @@
+---
+import CarousalSnapCount from "./CarousalSnapCount.astro";
+import CarouselButtons from "./CarouselButtons.astro";
+import CarouselDots from "./CarouselDots.astro";
+
+export type IndicatorType = "dot" | "number" | "none";
+
+interface Props {
+  indicatorType?: IndicatorType;
+}
+
+const { indicatorType = "none" } = Astro.props;
+---
+
+<div class="embla__controls">
+  <CarouselButtons />
+  {indicatorType === "number" && <CarousalSnapCount />}
+  {indicatorType === "dot" && <CarouselDots />}
+</div>
+
+<style>
+  .embla__controls {
+    display: grid;
+    grid-template-columns: auto 1fr;
+    justify-content: space-between;
+    gap: 1.2rem;
+    margin-top: var(--flow-space, 1em);
+  }
+</style>

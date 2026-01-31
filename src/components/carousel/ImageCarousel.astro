@@ -1,0 +1,113 @@
+---
+import "photoswipe/style.css";
+
+import { getImage } from "astro:assets";
+
+import type { EmblaOptionsType } from "embla-carousel";
+
+import CarousalSnapCount from "./components/CarousalSnapCount.astro";
+import CarouselButtons from "./components/CarouselButtons.astro";
+import CarouselDots from "./components/CarouselDots.astro";
+import { serializeEmblaOptions } from "./utils";
+
+type IndicatorType = "dot" | "number" | "none";
+
+interface Props {
+  images: { src: string; alt: string }[];
+  options?: EmblaOptionsType;
+  indicatorType?: IndicatorType;
+  class?: string;
+}
+
+const { images = [], options, indicatorType } = Astro.props;
+
+const optimizedImages = await Promise.all(
+  images.map(async (image) => await getImage({ ...image, inferSize: true })),
+);
+---
+
+<div
+  class:list={["embla", Astro.props.class]}
+  data-embla-options={options ? serializeEmblaOptions(options) : undefined}
+>
+  <div class="embla__viewport">
+    <div class="embla__container">
+      {
+        optimizedImages.map((image) => (
+          <div class="embla__slide">
+            <a
+              data-pswp-src={image.src}
+              data-pswp-width={image.options.width}
+              data-pswp-height={image.options.height}
+            >
+              <img
+                class="embla__slide__img"
+                src={image.src}
+                alt={image.attributes.alt}
+              />
+            </a>
+          </div>
+        ))
+      }
+    </div>
+  </div>
+  <div class="embla__controls">
+    <CarouselButtons />
+    {indicatorType === "number" && <CarousalSnapCount />}
+    {indicatorType === "dot" && <CarouselDots />}
+  </div>
+</div>
+
+<style>
+  .embla {
+    --slide-height: auto;
+    --slide-spacing: 1rem;
+    --slide-size: 70%;
+
+    max-width: 100%;
+    margin-inline: auto;
+    margin-top: calc(var(--flow-space) * 1.5);
+  }
+  .embla__viewport {
+    border-radius: 8px;
+    overflow: hidden;
+  }
+  .embla__container {
+    display: flex;
+    touch-action: pan-y pinch-zoom;
+    margin-left: calc(var(--slide-spacing) * -1);
+  }
+  .embla__slide {
+    flex: 0 0 var(--slide-size);
+    min-width: 0;
+    padding-left: var(--slide-spacing);
+  }
+  .embla__slide__img {
+    display: block;
+    height: var(--slide-height);
+    width: 100%;
+    object-fit: cover;
+    border-radius: 8px;
+  }
+  .embla__controls {
+    display: grid;
+    grid-template-columns: auto 1fr;
+    justify-content: space-between;
+    gap: 1.2rem;
+    margin-top: var(--flow-space, 1em);
+  }
+</style>
+
+<script>
+  import { initEmblaCarousel } from "./embla-carousel";
+  import { initPhotoSwipeLightbox } from "./photoswipe-lightbox";
+
+  document.addEventListener("astro:page-load", () => {
+    const emblaNodes = document.querySelectorAll(".embla");
+    emblaNodes.forEach((emblaNode) => {
+      initEmblaCarousel(emblaNode as HTMLElement);
+    });
+
+    initPhotoSwipeLightbox();
+  });
+</script>
