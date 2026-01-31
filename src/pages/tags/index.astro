@@ -1,8 +1,7 @@
 ---
-import { getCollection } from "astro:content";
-
 import Footer from "@/components/Footer.astro";
 import Header from "@/components/Header.astro";
+import { getProjectsCollection } from "@/helpers/project";
 import Layout from "@/layouts/Layout.astro";
 import { AUTHOR } from "@/site.config";
 
@@ -10,7 +9,7 @@ import { getTagsFromProjects } from "./_utils";
 
 const title = `Tags | ${AUTHOR}`;
 
-const tags = await getCollection("projects").then(getTagsFromProjects);
+const tags = await getProjectsCollection().then(getTagsFromProjects);
 ---
 
 <Layout title={title}>
