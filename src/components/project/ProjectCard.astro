@@ -28,7 +28,7 @@ if (repository && isGithubUrl(repository)) {
 ---
 
 <article class="container:inline-size">
-  <ProjectCardHeader slug={project.slug} {...project.data} />
+  <ProjectCardHeader href={`/${project.slug}/`} {...project.data} />
   <p class="fs-fluid-0 color-secondary">{project.data.description}</p>
   <ProjectCardInfoLine
     slug={fullsize && project.slug}

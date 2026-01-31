@@ -1,14 +1,12 @@
 import { readFile } from "fs/promises";
 import { join } from "path";
 
-import { getCollection } from "astro:content";
-
 import { ImageResponse } from "@vercel/og";
 import type { APIRoute } from "astro";
 
 import ProjectOG from "@/components/project/ProjectOG";
 import { FONTS_DIR } from "@/constants";
-import { slugify } from "@/utils/slug";
+import { getProjectsCollection } from "@/helpers/project";
 
 interface Props {
   title: string;
@@ -39,9 +37,9 @@ export const GET: APIRoute<Props> = async ({ props }) => {
 };
 
 export async function getStaticPaths() {
-  const projects = await getCollection("projects");
+  const projects = await getProjectsCollection();
   return projects.map((project) => ({
-    params: { project: slugify(project.slug) },
+    params: { project: project.slug },
     props: {
       title: project.data.title,
     } satisfies Props,

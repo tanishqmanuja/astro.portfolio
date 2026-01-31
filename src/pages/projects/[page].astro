@@ -1,19 +1,18 @@
 ---
-import { getCollection } from "astro:content";
-
 import type { GetStaticPathsOptions } from "astro";
 
 import Footer from "@/components/Footer.astro";
 import Header from "@/components/Header.astro";
 import ProjectCard from "@/components/project/ProjectCard.astro";
+import { getProjectsCollection } from "@/helpers/project";
 import { filters } from "@/helpers/project/filters";
 import Layout from "@/layouts/Layout.astro";
 import { AUTHOR } from "@/site.config";
 
 export async function getStaticPaths({ paginate }: GetStaticPathsOptions) {
-  const projects = await getCollection("projects");
+  const projects = await getProjectsCollection();
   return paginate(
-    projects.filter(filters.listed).sort((a, b) => a.id.localeCompare(b.id)),
+    projects.filter(filters.isListed).sort((a, b) => a.id.localeCompare(b.id)),
     { pageSize: 4 },
   );
 }

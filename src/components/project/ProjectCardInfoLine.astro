@@ -4,7 +4,6 @@ import LinkIcon from "@astropub/icons/Link2";
 import StarIcon from "@astropub/icons/StarFilled";
 
 import { isGithubUrl } from "@/utils/github/helpers";
-import { slugify } from "@/utils/slug";
 
 interface Props {
   stars?: number;
@@ -47,7 +46,7 @@ const RepoIcon = repository && isGithubUrl(repository) ? GitHubIcon : LinkIcon;
   {
     !(repository || stars) && typeof slug === "string" && (
       <li class="infoline__item">
-        <a class="hoverable" href={`/${slugify(slug)}/`} title="Read more">
+        <a class="hoverable" href={`/${slug}/`} title="Read more">
           <span>More Info</span>
           <span class="symbol">»</span>
         </a>

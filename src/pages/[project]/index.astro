@@ -1,5 +1,5 @@
 ---
-import { getCollection, render } from "astro:content";
+import { render } from "astro:content";
 
 import { Schema } from "astro-seo-schema";
 
@@ -11,23 +11,23 @@ import ProjectInfoLine from "@/components/project/ProjectInfoLine.astro";
 import ProjectTags from "@/components/project/ProjectTags.astro";
 import ProjectTechStack from "@/components/project/ProjectTechStack.astro";
 import { getProjectSchemaGraph } from "@/components/seo/schema/project";
+import { getProjectsCollection } from "@/helpers/project";
 import Layout from "@/layouts/Layout.astro";
 import { AUTHOR, GITHUB_USERNAME } from "@/site.config";
-import { slugify } from "@/utils/slug";
 
 export async function getStaticPaths() {
-  const projects = await getCollection("projects");
+  const projects = await getProjectsCollection();
   return projects.map((project, index, projects) => ({
-    params: { project: slugify(project.slug) },
+    params: { project: project.slug },
     props: {
       project,
       url: {
-        prev: index === 0 ? undefined : `/${slugify(projects[index - 1].slug)}`,
-        current: `/${slugify(project.slug)}`,
+        prev: index === 0 ? undefined : `/${projects[index - 1].slug}`,
+        current: `/${project.slug}`,
         next:
           index === projects.length - 1
             ? undefined
-            : `/${slugify(projects[index + 1].slug)}`,
+            : `/${projects[index + 1].slug}`,
       },
     },
   }));
