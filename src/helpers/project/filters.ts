@@ -6,6 +6,10 @@ export function isListed(project: Project) {
   return !project.data.isUnlisted;
 }
 
+export function isFeatured(project: Project) {
+  return project.data.isFeatured;
+}
+
 export function isInCategory(category: string) {
   return (project: Project) => {
     const match = project.filePath?.match(/content\/projects\/([^/]+)\//);
@@ -15,4 +19,4 @@ export function isInCategory(category: string) {
   };
 }
 
-export const filters = { isListed, isInCategory };
+export const projectFilters = { isListed, isInCategory, isFeatured };

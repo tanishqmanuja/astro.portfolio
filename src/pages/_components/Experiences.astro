@@ -5,7 +5,9 @@ import Section from "@/components/Section.astro";
 
 import ExperienceCard from "./ExperienceCard.astro";
 
-const experiences = await getCollection("experiences");
+const experiences = (await getCollection("experiences")).sort((a, b) =>
+  a.id.localeCompare(b.id),
+);
 ---
 
 <Section title="Experience">

@@ -1,22 +1,20 @@
 ---
-import ProjectCard from "@/components/project/ProjectCard.astro";
-import ProjectCardHeader from "@/components/project/ProjectCardHeader.astro";
 import ProjectGroup from "@/components/project/ProjectGroup.astro";
 import Section from "@/components/Section.astro";
 import { getProjectsCollection, type Project } from "@/helpers/project";
-import { filters } from "@/helpers/project/filters";
+import { projectFilters } from "@/helpers/project/filters";
+import { projectSorters } from "@/helpers/project/sorters";
 
 const projects = await getProjectsCollection();
 
-const isFeatured = (project: Project) => project.data.isFeatured;
-// const alphabeticSort = (a: Project, b: Project) => a.id.localeCompare(b.id);
-
 const iotProjects = projects
-  .filter(isFeatured)
-  .filter(filters.isInCategory("iot"));
+  .filter(projectFilters.isFeatured)
+  .filter(projectFilters.isInCategory("iot"))
+  .toSorted(projectSorters.byPriority);
 const softwareProjects = projects
-  .filter(isFeatured)
-  .filter(filters.isInCategory("software"));
+  .filter(projectFilters.isFeatured)
+  .filter(projectFilters.isInCategory("software"))
+  .toSorted(projectSorters.byPriority);
 ---
 
 <Section title="Projects" class="projects">
@@ -26,13 +24,21 @@ const softwareProjects = projects
 
   <div class="projects-wrapper">
     <div class="line" aria-hidden="true"></div>
-    <ProjectGroup title="IOT & Embedded" projects={iotProjects} />
-    <ProjectGroup
-      title="Software"
-      projects={softwareProjects}
-      startIndex={iotProjects.length}
-      displayAllProjectsListItem
-    />
+    {
+      iotProjects.length > 0 && (
+        <ProjectGroup title="IOT & Embedded" projects={iotProjects} />
+      )
+    }
+    {
+      softwareProjects.length > 0 && (
+        <ProjectGroup
+          title="Software"
+          projects={softwareProjects}
+          startIndex={iotProjects.length}
+          displayAllProjectsListItem
+        />
+      )
+    }
   </div>
 </Section>
 
@@ -65,7 +71,7 @@ const softwareProjects = projects
     width: 1px;
     opacity: 0.25;
     z-index: -1;
-    top: 1ch;
+    top: calc(1.125rem + 14px);
     bottom: 3ch;
     left: calc(1px + 1ch);
     border-left: 2px dotted var(--color-text-subdued);

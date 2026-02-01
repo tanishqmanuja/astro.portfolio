@@ -11,23 +11,55 @@ import ProjectInfoLine from "@/components/project/ProjectInfoLine.astro";
 import ProjectTags from "@/components/project/ProjectTags.astro";
 import ProjectTechStack from "@/components/project/ProjectTechStack.astro";
 import { getProjectSchemaGraph } from "@/components/seo/schema/project";
-import { getProjectsCollection } from "@/helpers/project";
+import { getProjectsCollection, type Project } from "@/helpers/project";
+import { projectFilters } from "@/helpers/project/filters";
 import Layout from "@/layouts/Layout.astro";
 import { AUTHOR, GITHUB_USERNAME } from "@/site.config";
 
 export async function getStaticPaths() {
-  const projects = await getProjectsCollection();
-  return projects.map((project, index, projects) => ({
+  const allProjects = await getProjectsCollection();
+  const listedProjects = allProjects.filter(projectFilters.isListed);
+
+  const getPrevUrl = (project: Project) => {
+    const isListed = !project.data.isUnlisted;
+    if (isListed) {
+      const currIndex = listedProjects.findIndex((p) => p.id === project.id);
+      const isFirst = currIndex === 0;
+      const prevIndex = isFirst ? undefined : currIndex - 1;
+      return prevIndex
+        ? `/projects/${listedProjects[prevIndex].slug}/`
+        : undefined;
+    }
+
+    const currIndex = allProjects.findIndex((p) => p.id === project.id);
+    const isFirst = currIndex === 0;
+    const prevIndex = isFirst ? undefined : currIndex - 1;
+    return prevIndex ? `/projects/${allProjects[prevIndex].slug}/` : undefined;
+  };
+
+  const getNextUrl = (project: Project) => {
+    const isListed = !project.data.isUnlisted;
+    if (isListed) {
+      const currIndex = listedProjects.findIndex((p) => p.id === project.id);
+      const isLast = currIndex === listedProjects.length - 1;
+      const nextIndex = isLast ? undefined : currIndex + 1;
+      return nextIndex ? `/${listedProjects[nextIndex].slug}/` : undefined;
+    }
+
+    const currIndex = allProjects.findIndex((p) => p.id === project.id);
+    const isLast = currIndex === allProjects.length - 1;
+    const nextIndex = isLast ? undefined : currIndex + 1;
+    return nextIndex ? `/${allProjects[nextIndex].slug}/` : undefined;
+  };
+
+  return allProjects.map((project, index, projects) => ({
     params: { project: project.slug },
     props: {
       project,
       url: {
-        prev: index === 0 ? undefined : `/${projects[index - 1].slug}`,
+        prev: getPrevUrl(project),
         current: `/${project.slug}`,
-        next:
-          index === projects.length - 1
-            ? undefined
-            : `/${projects[index + 1].slug}`,
+        next: getNextUrl(project),
       },
     },
   }));

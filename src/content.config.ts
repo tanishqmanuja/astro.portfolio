@@ -1,4 +1,4 @@
-import { file } from "astro/loaders";
+import { file, glob } from "astro/loaders";
 import { defineCollection, reference, z } from "astro:content";
 
 const CONTENT_DIR = "./src/content";
@@ -12,6 +12,7 @@ const developers = defineCollection({
 });
 
 const experiences = defineCollection({
+  loader: glob({ pattern: `[^_]*.md`, base: `${CONTENT_DIR}/experiences` }),
   schema: z.object({
     company: z.string(),
     designation: z.string(),
@@ -19,6 +20,10 @@ const experiences = defineCollection({
 });
 
 const projects = defineCollection({
+  loader: glob({
+    pattern: `**/[^_]*.{md,mdx}`,
+    base: `${CONTENT_DIR}/projects`,
+  }),
   schema: z.object({
     title: z.string(),
     subtitle: z.string().optional(),

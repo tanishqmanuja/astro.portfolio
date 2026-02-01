@@ -57,23 +57,38 @@ const {
   h4 {
     display: inline-flex;
     align-items: center;
+    justify-content: flex-end;
     gap: 2ch;
-    padding-left: calc(2px + 2ch);
+    padding-left: calc(2px + 1ch);
     margin-bottom: var(--gap);
+    width: 100%;
 
     font-family: var(--ff-dotmatrix);
     font-size: var(--fs-small);
+    line-height: 14px;
     letter-spacing: calc(2 * var(--letter-spacing-fluid-header));
     text-transform: uppercase;
     color: var(--color-text-subdued);
-    background-color: var(--color-background);
 
-    &::before {
+    &::after {
       content: "";
-      width: 50px;
-      height: 2px;
+      width: clamp(12px, 10vw, 140px);
+      height: 1px;
       background-color: var(--color-barely-visible);
       flex-shrink: 0;
+
+      -webkit-mask-image: linear-gradient(
+        to right,
+        black 0%,
+        black 30%,
+        transparent 100%
+      );
+      mask-image: linear-gradient(
+        to right,
+        black 0%,
+        black 30%,
+        transparent 100%
+      );
     }
   }
 

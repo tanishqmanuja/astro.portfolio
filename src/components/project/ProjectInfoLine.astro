@@ -1,15 +1,14 @@
 ---
-import type { CollectionEntry } from "astro:content";
-
 import GithubIcon from "@astropub/icons/GitHubLogo";
 import StarIcon from "@astropub/icons/StarFilled";
 
 import BrandLogo from "@/components/brand/BrandLogo.astro";
+import type { Project } from "@/helpers/project";
 import { cached } from "@/utils/cache";
 import { getStars, isGithubUrl, parseGithubUrl } from "@/utils/github/helpers";
 
 interface Props {
-  project: CollectionEntry<"projects">;
+  project: Project;
 }
 
 const { project } = Astro.props;

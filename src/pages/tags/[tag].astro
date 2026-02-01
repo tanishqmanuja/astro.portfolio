@@ -3,6 +3,7 @@ import Footer from "@/components/Footer.astro";
 import Header from "@/components/Header.astro";
 import ProjectCard from "@/components/project/ProjectCard.astro";
 import { getProjectsCollection } from "@/helpers/project";
+import { projectFilters } from "@/helpers/project/filters";
 import Layout from "@/layouts/Layout.astro";
 import { AUTHOR } from "@/site.config";
 import { titlecase } from "@/utils/text";
@@ -10,7 +11,8 @@ import { titlecase } from "@/utils/text";
 import { getTagsFromProjects } from "./_utils";
 
 export async function getStaticPaths() {
-  const tags = await getProjectsCollection().then(getTagsFromProjects);
+  const projects = await getProjectsCollection();
+  const tags = getTagsFromProjects(projects.filter(projectFilters.isListed));
 
   return tags.map(({ tag, projects }) => ({
     params: { tag },
