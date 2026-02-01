@@ -1,6 +1,6 @@
-import type { CollectionEntry } from "astro:content";
+import type { Project } from "@/helpers/project";
 
-type Projects = CollectionEntry<"projects">[];
+type Projects = Project[];
 
 export type TagEntry = {
   tag: string;

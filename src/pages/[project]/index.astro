@@ -52,7 +52,7 @@ export async function getStaticPaths() {
     return nextIndex ? `/${allProjects[nextIndex].slug}/` : undefined;
   };
 
-  return allProjects.map((project, index, projects) => ({
+  return allProjects.map((project) => ({
     params: { project: project.slug },
     props: {
       project,

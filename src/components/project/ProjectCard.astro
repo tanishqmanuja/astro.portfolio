@@ -1,6 +1,5 @@
 ---
-import type { CollectionEntry } from "astro:content";
-
+import type { Project } from "@/helpers/project";
 import { cached } from "@/utils/cache";
 import { getStars, isGithubUrl, parseGithubUrl } from "@/utils/github/helpers";
 
@@ -8,7 +7,7 @@ import ProjectCardHeader from "./ProjectCardHeader.astro";
 import ProjectCardInfoLine from "./ProjectCardInfoLine.astro";
 
 interface Props {
-  project: CollectionEntry<"projects">;
+  project: Project;
   fullsize?: boolean;
 }
 

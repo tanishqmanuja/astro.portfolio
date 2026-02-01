@@ -2,10 +2,12 @@ import { getCollection, type CollectionEntry } from "astro:content";
 
 import { projectSlug } from "./slug";
 
-export type Project = CollectionEntry<"projects">;
+export type Project = CollectionEntry<"projects"> & { slug: string };
 
 export async function getProjectsCollection(
-  filter?: (entry: Project) => entry is Project,
+  filter?: (
+    entry: CollectionEntry<"projects">,
+  ) => entry is CollectionEntry<"projects">,
 ) {
   const projects = await getCollection("projects", filter);
   return projects.map((project) => ({
