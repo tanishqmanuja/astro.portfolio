@@ -19,8 +19,8 @@ const {
 } = Astro.props;
 ---
 
-<section title={title} class="project-group">
-  <h4>{title}</h4>
+<section class="project-group" aria-labelledby={`project-group-${title}`}>
+  <h4 id={`project-group-${title}`}>{title}</h4>
   <ol>
     {
       projects.map((project, i) => (
@@ -55,13 +55,12 @@ const {
   }
 
   h4 {
-    display: inline-flex;
+    display: flex;
     align-items: center;
-    justify-content: flex-end;
     gap: 2ch;
-    padding-left: calc(2px + 1ch);
+    padding-left: calc(2px + 2ch);
     margin-bottom: var(--gap);
-    width: 100%;
+    white-space: nowrap;
 
     font-family: var(--ff-dotmatrix);
     font-size: var(--fs-small);
@@ -69,27 +68,41 @@ const {
     letter-spacing: calc(2 * var(--letter-spacing-fluid-header));
     text-transform: uppercase;
     color: var(--color-text-subdued);
+  }
 
-    &::after {
-      content: "";
-      width: clamp(12px, 10vw, 140px);
-      height: 1px;
-      background-color: var(--color-barely-visible);
-      flex-shrink: 0;
+  h4::before,
+  h4::after {
+    content: "";
+    height: 1px;
+    background-color: var(--color-barely-visible);
+    flex: 1;
+    // min-width: clamp(12px, 10vw, 140px);
 
-      -webkit-mask-image: linear-gradient(
-        to right,
-        black 0%,
-        black 30%,
-        transparent 100%
-      );
-      mask-image: linear-gradient(
-        to right,
-        black 0%,
-        black 30%,
-        transparent 100%
-      );
-    }
+    --fade-dir: to left;
+
+    -webkit-mask-image: linear-gradient(
+      var(--fade-dir),
+      black 0%,
+      black 30%,
+      transparent 100%
+    );
+    mask-image: linear-gradient(
+      var(--fade-dir),
+      black 0%,
+      black 30%,
+      transparent 100%
+    );
+  }
+
+  h4::before {
+    flex: 1 1 auto;
+    min-width: 0;
+  }
+
+  h4::after {
+    --fade-dir: to right;
+    flex: 0 0 auto;
+    width: clamp(12px, 10vw, 140px);
   }
 
   .project-group + .project-group {
