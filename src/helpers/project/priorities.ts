@@ -1,4 +1,5 @@
-import { getCollection, z } from "astro:content";
+import { getCollection } from "astro:content";
+import { z } from "astro/zod";
 
 import { file, YAML } from "bun";
 

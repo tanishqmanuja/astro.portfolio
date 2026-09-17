@@ -1,4 +1,4 @@
-import { defineConfig, envField } from "astro/config";
+import { defineConfig, envField, fontProviders } from "astro/config";
 
 import mdx from "@astrojs/mdx";
 import react from "@astrojs/react";
@@ -11,6 +11,13 @@ import { URL } from "./src/site.config";
 export default defineConfig({
   site: URL,
   integrations: [react(), sitemap(), mdx(), pagefind()],
+  image: {
+    remotePatterns: [
+      { protocol: "https", hostname: "raw.githubusercontent.com" },
+      { protocol: "https", hostname: "github.com" },
+      { protocol: "https", hostname: "avatars.githubusercontent.com" },
+    ],
+  },
   vite: {
     css: {
       preprocessorOptions: {
@@ -34,32 +41,34 @@ export default defineConfig({
       }),
     },
   },
-  experimental: {
-    fonts: [
-      {
-        provider: "local",
-        name: "Nothing",
-        cssVariable: "--ff-dotmatrix",
+  fonts: [
+    {
+      provider: fontProviders.local(),
+      name: "Nothing",
+      cssVariable: "--ff-dotmatrix",
+      fallbacks: ["var(--ff-monospace)"],
+      options: {
         variants: [
           {
             display: "swap",
             src: [`${FONTS_DIR}/ndot57.otf`],
           },
         ],
-        fallbacks: ["var(--ff-monospace)"],
       },
-      {
-        provider: "local",
-        name: "Departure Mono",
-        cssVariable: "--ff-pixelated",
+    },
+    {
+      provider: fontProviders.local(),
+      name: "Departure Mono",
+      cssVariable: "--ff-pixelated",
+      fallbacks: ["var(--ff-monospace)"],
+      options: {
         variants: [
           {
             display: "swap",
             src: [`${FONTS_DIR}/departure-mono-regular.woff2`],
           },
         ],
-        fallbacks: ["var(--ff-monospace)"],
       },
-    ],
-  },
+    },
+  ],
 });

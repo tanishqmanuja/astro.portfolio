@@ -1,5 +1,6 @@
 import { file, glob } from "astro/loaders";
-import { defineCollection, reference, z } from "astro:content";
+import { defineCollection, reference } from "astro:content";
+import { z } from "astro/zod";
 
 const CONTENT_DIR = "./src/content";
 
@@ -27,19 +28,21 @@ const projects = defineCollection({
   schema: z.object({
     title: z.string(),
     subtitle: z.string().optional(),
-    description: z.string().max(100, { message: "Description too long" }),
+    description: z.string().max(100, { error: "Description too long" }),
     links: z
       .object({
-        repository: z.string().url().optional(),
-        deployment: z.string().url().optional(),
-        npm: z.string().url().optional(),
+        repository: z.url().optional(),
+        deployment: z.url().optional(),
+        npm: z.url().optional(),
       })
       .default({}),
     isFeatured: z.boolean().default(false),
     isUnlisted: z.boolean().default(false),
     tags: z.array(z.string()).default([]),
     stack: z.array(z.string()).default([]),
-    developers: z.array(reference("developers")).default(["tanishqmanuja"]),
+    developers: z
+      .array(reference("developers"))
+      .default([{ collection: "developers", id: "tanishqmanuja" }]),
   }),
 });
 
